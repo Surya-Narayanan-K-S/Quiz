@@ -1,0 +1,2968 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>SREC EEE · Decentralized Generation & Rural Electrification Quiz Portal</title>
+    <meta name="description" content="Next-Gen Academic Assessment Portal for Course 20EE2E41: Rural Electrification – Technology and Economics, Department of EEE, Sri Ramakrishna Engineering College.">
+    
+    <!-- Modern Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Mammoth.js for Word (.docx) Document Parsing in Browser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+    <style>
+        /* ==========================================================================
+           ULTRA-MODERN DESIGN SYSTEM & DESIGN TOKENS
+           ========================================================================== */
+        :root {
+            --font-head: 'Outfit', -apple-system, system-ui, sans-serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            /* Deep Obsidian Cyber-Grid Palette */
+            --bg: #040711;
+            --bg-elevated: #090e1e;
+            --bg-card: rgba(12, 19, 38, 0.75);
+            --bg-card-hover: rgba(18, 29, 58, 0.88);
+            --bg-glass: rgba(14, 23, 48, 0.65);
+            --bg-glass-strong: rgba(17, 28, 59, 0.88);
+            
+            --ink: #f8fafc;
+            --ink-dim: #94a3b8;
+            --ink-muted: #64748b;
+            
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.18);
+            --border-focus: rgba(255, 183, 3, 0.6);
+            --border-glow: rgba(0, 242, 254, 0.35);
+
+            /* Radiant Accents */
+            --gold: #ffb703;
+            --gold-glow: rgba(255, 183, 3, 0.3);
+            --orange: #fb8500;
+            --gradient-gold: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+            
+            --cyan: #00f2fe;
+            --cyan-glow: rgba(0, 242, 254, 0.28);
+            --blue: #4facfe;
+            --gradient-cyan: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            
+            --purple: #8b5cf6;
+            --purple-glow: rgba(139, 92, 246, 0.28);
+            --gradient-purple: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+
+            --ok: #10b981;
+            --ok-light: #34d399;
+            --ok-bg: rgba(16, 185, 129, 0.14);
+            --ok-border: rgba(16, 185, 129, 0.45);
+
+            --bad: #ff0055;
+            --bad-light: #ff4d88;
+            --bad-bg: rgba(255, 0, 85, 0.14);
+            --bad-border: rgba(255, 0, 85, 0.45);
+
+            /* Shadows & Radii */
+            --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --shadow-card: 0 24px 50px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px var(--border);
+            --shadow-glow: 0 20px 60px -10px rgba(0, 242, 254, 0.25), 0 0 20px rgba(255, 183, 3, 0.2);
+            --shadow-pop: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 183, 3, 0.35);
+
+            --r-sm: 10px;
+            --r-md: 16px;
+            --r-lg: 24px;
+            --r-full: 9999px;
+
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --t-fast: all 0.2s var(--ease-out);
+            --t-med: all 0.35s var(--ease-out);
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-elevated: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(248, 250, 252, 0.95);
+            --bg-glass: rgba(255, 255, 255, 0.75);
+            --bg-glass-strong: rgba(255, 255, 255, 0.95);
+            
+            --ink: #0f172a;
+            --ink-dim: #475569;
+            --ink-muted: #94a3b8;
+            
+            --border: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(15, 23, 42, 0.18);
+            --border-focus: rgba(217, 119, 6, 0.6);
+            --border-glow: rgba(2, 132, 199, 0.3);
+
+            --gold: #d97706;
+            --gold-glow: rgba(217, 119, 6, 0.2);
+            --orange: #ea580c;
+            
+            --cyan: #0284c7;
+            --cyan-glow: rgba(2, 132, 199, 0.2);
+            
+            --ok: #059669;
+            --ok-light: #10b981;
+            --ok-bg: rgba(5, 150, 105, 0.08);
+            --ok-border: rgba(5, 150, 105, 0.35);
+
+            --bad: #e11d48;
+            --bad-light: #f43f5e;
+            --bad-bg: rgba(225, 29, 72, 0.08);
+            --bad-border: rgba(225, 29, 72, 0.35);
+
+            --shadow-card: 0 20px 45px -12px rgba(15, 23, 42, 0.08), 0 0 0 1px var(--border);
+            --shadow-glow: 0 20px 50px -10px rgba(15, 23, 42, 0.12), 0 0 20px rgba(217, 119, 6, 0.15);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: env(safe-area-inset-bottom);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Ambient Aurora Background Particles & Glowing Mesh */
+        .cyber-universe {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .aurora-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.32;
+            pointer-events: none;
+        }
+
+        .sphere-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #ffb703 0%, rgba(251, 133, 0, 0.2) 70%, transparent 100%);
+            top: -200px;
+            left: 10%;
+            animation: auroraWander1 22s infinite alternate ease-in-out;
+        }
+
+        .sphere-2 {
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, #00f2fe 0%, rgba(79, 172, 254, 0.25) 70%, transparent 100%);
+            bottom: -150px;
+            right: 5%;
+            animation: auroraWander2 18s infinite alternate-reverse ease-in-out;
+        }
+
+        .sphere-3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #8b5cf6 0%, rgba(139, 92, 246, 0.2) 70%, transparent 100%);
+            top: 40%;
+            left: 45%;
+            opacity: 0.18;
+            animation: auroraWander1 26s infinite alternate ease-in-out;
+        }
+
+        @keyframes auroraWander1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 40px) scale(1.12); }
+            100% { transform: translate(-40px, -30px) scale(0.92); }
+        }
+
+        @keyframes auroraWander2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, -40px) scale(1.08); }
+            100% { transform: translate(40px, 30px) scale(0.95); }
+        }
+
+        /* High-Tech Circuit Grid Background */
+        .circuit-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.22;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 54px 54px;
+            background-position: center center;
+            mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 90%);
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 90%);
+            pointer-events: none;
+        }
+
+        /* Navigation Header */
+        header.nav-hud {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: color-mix(in srgb, var(--bg) 80%, transparent);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 28px;
+            padding-top: calc(14px + env(safe-area-inset-top));
+            transition: var(--t-fast);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .brand-logo-ring {
+            position: relative;
+            width: 46px;
+            height: 46px;
+            border-radius: var(--r-md);
+            background: var(--gradient-gold);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 25px var(--gold-glow);
+            transition: var(--t-fast);
+            flex-shrink: 0;
+        }
+
+        .brand-logo-ring::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: calc(var(--r-md) + 3px);
+            background: linear-gradient(135deg, #ffb703, transparent, #00f2fe);
+            z-index: -1;
+            opacity: 0.65;
+            animation: spinRing 8s linear infinite;
+        }
+
+        @keyframes spinRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .brand-logo-ring:hover {
+            transform: scale(1.08) rotate(4deg);
+        }
+
+        .brand-text-block {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .brand-title-text {
+            font-family: var(--font-head);
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-course-chip {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: var(--r-full);
+            background: var(--gold-glow);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            letter-spacing: 0.04em;
+        }
+
+        .brand-sub-text {
+            font-size: 0.76rem;
+            color: var(--ink-dim);
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Buttons Core */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-head);
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 12px 22px;
+            border-radius: var(--r-md);
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: var(--t-fast);
+            text-decoration: none;
+            user-select: none;
+            outline: none;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .btn:focus-visible {
+            box-shadow: 0 0 0 3px var(--border-focus);
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: #120900;
+            box-shadow: 0 6px 25px var(--gold-glow);
+            letter-spacing: 0.01em;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(255, 183, 3, 0.45);
+            filter: brightness(1.06);
+        }
+
+        .btn-primary:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--ink);
+            border-color: var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-cyber {
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.15) 0%, rgba(79, 172, 254, 0.25) 100%);
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow);
+        }
+
+        .btn-cyber:hover:not(:disabled) {
+            background: var(--gradient-cyan);
+            color: #040711;
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+        }
+
+        .btn-icon {
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            border-radius: var(--r-md);
+            background: var(--bg-card);
+            color: var(--ink-dim);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .btn-icon:hover {
+            color: var(--ink);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: scale(1.04);
+        }
+
+        .btn-sm {
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            border-radius: var(--r-sm);
+        }
+
+        /* App Wrapper */
+        main.main-viewport {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 28px 22px 54px;
+            flex: 1;
+        }
+
+        /* Futuristic Card Component */
+        .cyber-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-card);
+            transition: var(--t-med);
+            animation: cardElevate 0.5s var(--ease-out) both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1.5px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, transparent 45%, rgba(0, 242, 254, 0.25) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        @keyframes cardElevate {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Hero Stage */
+        .hero-stage {
+            display: grid;
+            grid-template-columns: 1.15fr 0.95fr;
+            gap: 36px;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .hero-live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: var(--r-full);
+            background: rgba(255, 183, 3, 0.12);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            width: fit-content;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .pulsing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 10px var(--gold);
+            animation: pulseGlow 1.8s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .hero-headline {
+            font-family: var(--font-head);
+            font-size: 2.85rem;
+            font-weight: 900;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-headline em {
+            font-style: normal;
+            background: linear-gradient(135deg, #ffb703 10%, #00f2fe 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero-description {
+            color: var(--ink-dim);
+            font-size: 1rem;
+            line-height: 1.65;
+            max-width: 540px;
+        }
+
+        /* Student Entrance Form */
+        .student-gateway-form {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 22px;
+            margin-top: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-prefix-icon {
+            position: absolute;
+            left: 15px;
+            color: var(--ink-muted);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .cyber-input {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 14px 16px 14px 48px;
+            color: var(--ink);
+            font-family: var(--font-sans);
+            font-size: 0.96rem;
+            outline: none;
+            transition: var(--t-fast);
+        }
+
+        .cyber-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-glow);
+            background: var(--bg-elevated);
+        }
+
+        .cyber-input::placeholder {
+            color: var(--ink-muted);
+        }
+
+        /* Real Image Showcase Container */
+        .showcase-visual-frame {
+            position: relative;
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-hover);
+            box-shadow: var(--shadow-pop);
+            background: #060b17;
+            height: 100%;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .showcase-real-image {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s var(--ease-out);
+        }
+
+        .showcase-visual-frame:hover .showcase-real-image {
+            transform: scale(1.04);
+        }
+
+        .showcase-glass-hud {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(4, 7, 17, 0.1) 0%, rgba(4, 7, 17, 0.45) 50%, rgba(4, 7, 17, 0.94) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 26px;
+            pointer-events: none;
+        }
+
+        .hud-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(9, 14, 30, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            color: var(--cyan);
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: var(--r-full);
+            width: fit-content;
+            margin-bottom: 8px;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+
+        .hud-title {
+            font-family: var(--font-head);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .hud-subtitle {
+            font-size: 0.82rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* Feature Matrix Grid */
+        .feature-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .matrix-tile {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 22px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--t-fast);
+        }
+
+        .matrix-tile:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-card);
+        }
+
+        .tile-icon-hex {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--r-sm);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        .matrix-tile b {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+
+        .matrix-tile span {
+            font-size: 0.82rem;
+            color: var(--ink-dim);
+            font-weight: 600;
+        }
+
+        /* Quiz Mission HUD Layout */
+        .quiz-hud-layout {
+            display: grid;
+            grid-template-columns: 310px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* Left Sidebar Mission HUD */
+        .telemetry-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .telemetry-profile {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px;
+            background: var(--bg-elevated);
+            border-radius: var(--r-md);
+            border: 1px solid var(--border);
+        }
+
+        .profile-avatar-node {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--r-full);
+            background: var(--cyan-glow);
+            color: var(--cyan);
+            border: 1.5px solid var(--cyan);
+            display: grid;
+            place-items: center;
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .profile-text-node {
+            overflow: hidden;
+        }
+
+        .profile-text-node b {
+            display: block;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-text-node span {
+            font-family: var(--font-mono);
+            font-size: 0.76rem;
+            color: var(--ink-dim);
+            display: block;
+        }
+
+        .telemetry-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            background: var(--bg-elevated);
+            border-radius: var(--r-sm);
+            border: 1px solid var(--border);
+            font-size: 0.88rem;
+            color: var(--ink-dim);
+        }
+
+        .telemetry-row b {
+            font-family: var(--font-mono);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .streak-fire-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #ff5722 !important;
+            animation: pulseFire 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseFire {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #ff5722); }
+            50% { transform: scale(1.12); filter: drop-shadow(0 0 10px #ff5722); }
+        }
+
+        .mission-progress-bar {
+            height: 10px;
+            background: var(--bg-elevated);
+            border-radius: var(--r-full);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .mission-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ffb703, #00f2fe);
+            border-radius: var(--r-full);
+            transition: width 0.4s var(--ease-out);
+            position: relative;
+        }
+
+        .mission-progress-fill::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: shineBar 1.6s infinite;
+        }
+
+        @keyframes shineBar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Matrix Dots Indicator */
+        .matrix-dots-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .matrix-dot {
+            height: 34px;
+            border-radius: var(--r-sm);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--ink-dim);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            display: grid;
+            place-items: center;
+            transition: var(--t-fast);
+        }
+
+        .matrix-dot.cur {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 0 14px var(--gold-glow);
+            transform: scale(1.08);
+        }
+
+        .matrix-dot.ok {
+            background: var(--ok-bg);
+            border-color: var(--ok-border);
+            color: var(--ok-light);
+            font-weight: 800;
+        }
+
+        .matrix-dot.bad {
+            background: var(--bad-bg);
+            border-color: var(--bad-border);
+            color: var(--bad-light);
+            font-weight: 800;
+        }
+
+        /* Question Command Stage */
+        .question-stage-card {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        /* Cyber Countdown Gauge Bar */
+        .gauge-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .gauge-telemetry {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .unit-topic-tag {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--cyan);
+            background: var(--cyan-glow);
+            border: 1px solid var(--cyan);
+            padding: 3px 10px;
+            border-radius: var(--r-full);
+        }
+
+        .timer-digital-readout {
+            font-family: var(--font-mono);
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--cyan);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .gauge-track {
+            height: 9px;
+            background: var(--bg-elevated);
+            border-radius: var(--r-full);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .gauge-energy-bar {
+            height: 100%;
+            width: 100%;
+            background: var(--gradient-cyan);
+            border-radius: var(--r-full);
+            transition: width 0.1s linear, background-color 0.3s ease;
+        }
+
+        .gauge-energy-bar.critical {
+            background: linear-gradient(90deg, #ff0055, #ff4d88) !important;
+            animation: pulseCritical 0.65s infinite;
+        }
+
+        @keyframes pulseCritical {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.55; }
+        }
+
+        .question-prompt-text {
+            font-family: var(--font-head);
+            font-size: 1.45rem;
+            font-weight: 800;
+            line-height: 1.4;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+
+        /* Option Cyber Cards */
+        .options-deck {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .opt-card-btn {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            width: 100%;
+            text-align: left;
+            background: var(--bg-elevated);
+            color: var(--ink);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 18px 22px;
+            font-family: var(--font-sans);
+            font-size: 0.98rem;
+            cursor: pointer;
+            transition: var(--t-fast);
+            position: relative;
+            outline: none;
+        }
+
+        .opt-card-btn:hover:not(:disabled) {
+            transform: translateX(8px);
+            border-color: var(--gold);
+            background: var(--bg-card-hover);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .opt-card-btn:focus-visible {
+            box-shadow: 0 0 0 3px var(--gold-glow);
+        }
+
+        .opt-key-hex {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--r-sm);
+            background: var(--bg);
+            border: 1px solid var(--border-hover);
+            display: grid;
+            place-items: center;
+            font-family: var(--font-mono);
+            font-size: 1.05rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            transition: var(--t-fast);
+            color: var(--ink-dim);
+        }
+
+        .opt-text-payload {
+            flex: 1;
+            line-height: 1.45;
+        }
+
+        .opt-card-btn.ok {
+            border-color: var(--ok);
+            background: var(--ok-bg);
+            box-shadow: 0 0 25px var(--ok-bg);
+        }
+
+        .opt-card-btn.ok .opt-key-hex {
+            background: var(--ok);
+            color: #ffffff;
+            border-color: var(--ok);
+        }
+
+        .opt-card-btn.bad {
+            border-color: var(--bad);
+            background: var(--bad-bg);
+            animation: shake 0.4s ease-in-out;
+        }
+
+        .opt-card-btn.bad .opt-key-hex {
+            background: var(--bad);
+            color: #ffffff;
+            border-color: var(--bad);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-9px); }
+            40%, 80% { transform: translateX(9px); }
+        }
+
+        /* Action Feedback Bar */
+        .stage-footer-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            margin-top: 4px;
+        }
+
+        .feedback-banner {
+            font-size: 0.98rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feedback-banner.good {
+            color: var(--ok-light);
+        }
+
+        .feedback-banner.wrong {
+            color: var(--bad-light);
+        }
+
+        /* Results Final Stage */
+        .results-grand-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 46px 28px;
+        }
+
+        .gauge-score-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: grid;
+            place-items: center;
+            margin: 8px auto;
+        }
+
+        .gauge-svg-ring {
+            position: absolute;
+            inset: 0;
+            transform: rotate(-90deg);
+        }
+
+        .gauge-bg-ring {
+            fill: none;
+            stroke: var(--border-hover);
+            stroke-width: 9;
+        }
+
+        .gauge-val-ring {
+            fill: none;
+            stroke: var(--gold);
+            stroke-width: 9;
+            stroke-linecap: round;
+            stroke-dasharray: 377;
+            stroke-dashoffset: 377;
+            transition: stroke-dashoffset 1.4s var(--ease-out);
+        }
+
+        .gauge-numeric {
+            font-family: var(--font-head);
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--ink);
+            line-height: 1;
+        }
+
+        .gauge-denom {
+            font-family: var(--font-mono);
+            font-size: 0.86rem;
+            color: var(--ink-dim);
+            font-weight: 700;
+        }
+
+        .rank-banner-title {
+            font-family: var(--font-head);
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .kpi-matrix-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            width: 100%;
+            max-width: 860px;
+            margin: 10px 0;
+        }
+
+        .kpi-tile-unit {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 18px 14px;
+            text-align: center;
+        }
+
+        .kpi-tile-unit b {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: var(--ink);
+        }
+
+        .kpi-tile-unit span {
+            font-size: 0.8rem;
+            color: var(--ink-dim);
+            font-weight: 600;
+        }
+
+        /* Review Section */
+        .syllabus-review-card {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .review-question-strip {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-left: 6px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 18px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.94rem;
+        }
+
+        .review-question-strip.ok {
+            border-left-color: var(--ok);
+        }
+
+        .review-question-strip.bad {
+            border-left-color: var(--bad);
+        }
+
+        .review-q-text {
+            font-weight: 700;
+            color: var(--ink);
+            font-family: var(--font-head);
+            font-size: 1.05rem;
+        }
+
+        .review-answers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 0.88rem;
+        }
+
+        .review-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: var(--r-sm);
+            font-weight: 700;
+        }
+
+        .pill-ok {
+            background: var(--ok-bg);
+            color: var(--ok-light);
+            border: 1px solid var(--ok-border);
+        }
+
+        .pill-bad {
+            background: var(--bad-bg);
+            color: var(--bad-light);
+            border: 1px solid var(--bad-border);
+        }
+
+        /* Teacher Portal Navigation Tabs */
+        .tabs-header-bar {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 14px;
+            overflow-x: auto;
+        }
+
+        .tab-button-nav {
+            background: transparent;
+            color: var(--ink-dim);
+            border: 1px solid transparent;
+            padding: 10px 20px;
+            border-radius: var(--r-full);
+            font-family: var(--font-head);
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--t-fast);
+            white-space: nowrap;
+        }
+
+        .tab-button-nav:hover {
+            color: var(--ink);
+            background: var(--bg-card-hover);
+        }
+
+        .tab-button-nav.active {
+            background: var(--gold);
+            color: #120900;
+            border-color: var(--gold);
+            font-weight: 800;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+
+        /* Histogram Visualizer */
+        .chart-visual-box {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 26px 22px 36px;
+            margin-bottom: 26px;
+        }
+
+        .histogram-flex-frame {
+            display: flex;
+            align-items: flex-end;
+            gap: 16px;
+            height: 140px;
+            padding-top: 10px;
+        }
+
+        .hist-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .hist-tower {
+            width: 100%;
+            max-width: 60px;
+            background: var(--gradient-cyan);
+            border-radius: 8px 8px 0 0;
+            min-height: 4px;
+            transition: height 0.6s var(--ease-out);
+            position: relative;
+            box-shadow: 0 4px 16px var(--cyan-glow);
+        }
+
+        .hist-tower-val {
+            position: absolute;
+            top: -24px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--cyan);
+        }
+
+        .hist-tower-label {
+            position: absolute;
+            bottom: -24px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            color: var(--ink-dim);
+            white-space: nowrap;
+        }
+
+        /* Modern Table */
+        .table-glass-wrap {
+            overflow-x: auto;
+            border-radius: var(--r-md);
+            border: 1px solid var(--border);
+            background: var(--bg-elevated);
+        }
+
+        table.cyber-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        table.cyber-table th {
+            background: var(--bg);
+            padding: 14px 18px;
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--ink-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        table.cyber-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
+        table.cyber-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table.cyber-table tr:hover td {
+            background: var(--bg-card-hover);
+        }
+
+        /* Question Editor & Word .docx Dropzone */
+        .dropzone-cyber-box {
+            border: 2px dashed var(--border-hover);
+            background: var(--bg-elevated);
+            border-radius: var(--r-md);
+            padding: 40px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--t-fast);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .dropzone-cyber-box:hover, .dropzone-cyber-box.dragover {
+            border-color: var(--gold);
+            background: var(--bg-card-hover);
+            box-shadow: 0 0 25px var(--gold-glow);
+        }
+
+        .dropzone-icon-orb {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--r-full);
+            background: var(--gold-glow);
+            color: var(--gold);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        .doc-staging-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .doc-staged-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Toast HUD */
+        #toast {
+            position: fixed;
+            bottom: calc(26px + env(safe-area-inset-bottom));
+            left: 50%;
+            transform: translateX(-50%) translateY(24px);
+            background: var(--bg-elevated);
+            color: var(--ink);
+            border: 1px solid var(--gold);
+            padding: 13px 26px;
+            border-radius: var(--r-full);
+            z-index: 200;
+            box-shadow: var(--shadow-pop);
+            font-family: var(--font-head);
+            font-size: 0.92rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        #toast.on {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Confetti Pieces */
+        .confetti-piece {
+            position: fixed;
+            top: -14px;
+            width: 10px;
+            height: 14px;
+            animation: fallPhysics 2.8s linear forwards;
+            z-index: 99;
+            border-radius: 2px;
+        }
+
+        @keyframes fallPhysics {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Footer */
+        footer.cyber-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding: 24px 28px;
+            text-align: center;
+            color: var(--ink-dim);
+            font-size: 0.84rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-hud-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 900px) {
+            .hero-stage {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .hero-headline {
+                font-size: 2.3rem;
+            }
+            .quiz-hud-layout {
+                grid-template-columns: 1fr;
+            }
+            .telemetry-sidebar {
+                order: 2;
+            }
+            .feature-matrix {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .kpi-matrix-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .showcase-visual-frame {
+                min-height: 290px;
+            }
+            .showcase-real-image {
+                min-height: 290px;
+            }
+        }
+
+        @media (max-width: 580px) {
+            header.nav-hud {
+                padding: 12px 16px;
+            }
+            .brand-sub-text {
+                display: none;
+            }
+            .feature-matrix {
+                grid-template-columns: 1fr;
+            }
+            .hero-headline {
+                font-size: 1.85rem;
+            }
+            .cyber-card {
+                padding: 22px 18px;
+            }
+            .kpi-matrix-row {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-hud-content {
+                flex-direction: column;
+                justify-content: center;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cosmic Aurora Background Mesh -->
+    <div class="cyber-universe" style="pointer-events:none;">
+        <div class="aurora-sphere sphere-1" style="pointer-events:none;"></div>
+        <div class="aurora-sphere sphere-2" style="pointer-events:none;"></div>
+        <div class="aurora-sphere sphere-3" style="pointer-events:none;"></div>
+    </div>
+    <div class="circuit-grid" style="pointer-events:none;"></div>
+
+    <!-- Navigation Header -->
+    <header class="nav-hud">
+        <div class="nav-container">
+            <a href="javascript:void(0)" onclick="home()" class="brand-link">
+                <div class="brand-logo-ring">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#120900" stroke="#120900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="brand-text-block">
+                    <div class="brand-title-text">
+                        <span>Rural Electrification</span>
+                        <span class="brand-course-chip">20EE2E41</span>
+                    </div>
+                    <span class="brand-sub-text">Department of EEE · Sri Ramakrishna Engineering College</span>
+                </div>
+            </a>
+
+            <div class="nav-controls">
+                <!-- Sound SFX Toggle -->
+                <button class="btn btn-icon" id="sfx-toggle" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+                    <svg id="sfx-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button class="btn btn-icon" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+
+                <!-- Teacher Portal Button -->
+                <button class="btn btn-secondary" id="nt">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                    <span>Teacher Portal</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content App Viewport -->
+    <main class="main-viewport">
+        <div id="app"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="cyber-footer">
+        <div class="footer-hud-content">
+            <span>Course 20EE2E41: Rural Electrification – Technology and Economics</span>
+            <span>Sri Ramakrishna Engineering College · Autonomous Institution · EEE Department</span>
+        </div>
+    </footer>
+
+    <!-- Toast UI -->
+    <div id="toast"></div>
+
+    <script>
+        /* ==========================================================================
+           CONFIGURATION & CONSTANTS
+           ========================================================================== */
+        const API = "https://script.google.com/macros/s/AKfycbwbNmwbPJ6Wc8WGBa8zFffCaP4xYJi-__9Uq5Yw0qA9cZM_7FzYvyiIQMcGTXKAKuWr/exec";
+        const SHEET_URL = "https://script.google.com/macros/s/AKfycbwbNmwbPJ6Wc8WGBa8zFffCaP4xYJi-__9Uq5Yw0qA9cZM_7FzYvyiIQMcGTXKAKuWr/exec";
+        const TITLE = "Surprise Quiz · CO4 Decentralized Generation";
+        const SECS = 20;
+
+        // Default Question Bank
+        const DEF = [
+            ["________ is the primary purpose of a power grid in an electrical supply system.", "To transmit and distribute electrical power to consumers|To store electrical energy permanently|To replace all decentralized generation systems|To generate electricity only from renewable sources", 0],
+            ["DG stands for in the context of rural electrification ____________.", "Distribution Grid|Direct Generation|Digital Grid|Distributed Generation", 3],
+            ["____ of the following is identified as a service-delivery option for rural electrification.", "Nuclear transmission system|Independent micro-grid with local generation|Centralized battery grid only|Underground generation grid", 1],
+            ["______ factor is considered important for selecting a decentralized generation technology.", "Local resource availability|Colour of distribution poles|Number of substations in a city|Height of consumer buildings", 0],
+            ["______ of the following is a key characteristic of an independent Microgrid.", "It depends completely on a distant transmission network|It provides local generation and distribution|It can operate only with nuclear power|It does not require any distribution network", 1],
+            ["_____ of the following is a major factor influencing the cost of decentralized generation.", "Number of street lights only|Transformer paint colour|Plant Load Factor|Pole height only", 2],
+            ["Renewable energy source is identified in the module as a suitable option for DG in areas with hydro potential is ______.", "Diesel|Micro-hydro|Coal|Nuclear power", 1],
+            ["Why is tariff sustainability important for decentralized generation projects?", "It supports recovery of project operating costs and promotes long-term viability|It eliminates the need for generation|It increases transmission losses|It prevents local participation", 0],
+            ["______ can independent micro-grids be suitable for remote rural areas.", "They always have zero operating cost|They require no local energy resources|They eliminate all consumer loads|Grid extension may be technically difficult or expensive", 3],
+            ["A rural area has good grid penetration, but the quality and reliability of grid supply are poor. _______ approach is most appropriate.", "DG with grid backup|Individual home systems only in every village|Remove the existing distribution network|Increase the distance from the grid", 0]
+        ].map(([q, o, a]) => ({ q, o: o.split("|"), a }));
+
+        const $ = s => document.querySelector(s);
+        const app = $("#app");
+        const L = "ABCD";
+        const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+        let Q = DEF.slice();
+        let S = null;
+        let pw = sessionStorage.getItem("pw") || "";
+        let audioEnabled = localStorage.getItem("quiz_sound") !== "off";
+
+        /* ==========================================================================
+           AUDIO SYNTHESIZER ENGINE
+           ========================================================================== */
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) audioCtx = new AudioContextClass();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(type) {
+            if (!audioEnabled) return;
+            try {
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+
+                if (type === 'correct') {
+                    const osc1 = ctx.createOscillator();
+                    const osc2 = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc1.type = 'sine';
+                    osc2.type = 'triangle';
+                    osc1.frequency.setValueAtTime(523.25, now);
+                    osc1.frequency.exponentialRampToValueAtTime(659.25, now + 0.12);
+                    osc2.frequency.setValueAtTime(783.99, now + 0.1);
+                    osc2.frequency.exponentialRampToValueAtTime(1046.50, now + 0.28);
+                    gain.gain.setValueAtTime(0.18, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+                    osc1.connect(gain);
+                    osc2.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc1.start(now);
+                    osc2.start(now + 0.08);
+                    osc1.stop(now + 0.35);
+                    osc2.stop(now + 0.45);
+                } else if (type === 'wrong') {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.linearRampToValueAtTime(146, now + 0.28);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else if (type === 'tick') {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(880, now);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'streak') {
+                    [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+                        gain.gain.setValueAtTime(0.14, now + idx * 0.07);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.25);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(now + idx * 0.07);
+                        osc.stop(now + idx * 0.07 + 0.25);
+                    });
+                }
+            } catch (err) {}
+        }
+
+        /* Sound SFX UI Toggle */
+        function updateSfxButton() {
+            const btn = $("#sfx-toggle");
+            if (!btn) return;
+            if (audioEnabled) {
+                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`;
+                btn.title = "Sound effects: ON";
+            } else {
+                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
+                btn.title = "Sound effects: OFF";
+            }
+        }
+        $("#sfx-toggle").onclick = () => {
+            audioEnabled = !audioEnabled;
+            localStorage.setItem("quiz_sound", audioEnabled ? "on" : "off");
+            updateSfxButton();
+            if (audioEnabled) playSound('correct');
+        };
+        updateSfxButton();
+
+        /* Theme Toggle (Dark / Light) */
+        const savedTheme = localStorage.getItem("quiz_theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        function updateThemeIcon() {
+            const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+            $("#theme-icon").innerHTML = isDark 
+                ? `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`
+                : `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+        }
+        $("#theme-toggle").onclick = () => {
+            const current = document.documentElement.getAttribute("data-theme");
+            const next = current === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", next);
+            localStorage.setItem("quiz_theme", next);
+            updateThemeIcon();
+        };
+        updateThemeIcon();
+
+        /* Toast Notifications */
+        const toast = m => {
+            const t = $("#toast");
+            t.innerHTML = `<span>⚡</span> <span>${m}</span>`;
+            t.className = "on";
+            setTimeout(() => t.className = "", 2800);
+        };
+
+        /* Confetti Burst */
+        function triggerConfetti() {
+            for (let i = 0; i < 90; i++) {
+                const e = document.createElement("div");
+                e.className = "confetti-piece";
+                e.style.left = Math.random() * 100 + "vw";
+                e.style.background = ["#ffb703", "#00f2fe", "#10b981", "#8b5cf6", "#fb8500", "#ff0055"][i % 6];
+                e.style.animationDelay = (Math.random() * 0.8) + "s";
+                e.style.animationDuration = (2.2 + Math.random() * 1.5) + "s";
+                document.body.appendChild(e);
+                setTimeout(() => e.remove(), 4200);
+            }
+        }
+
+        /* ==========================================================================
+           API CLIENT
+           ========================================================================== */
+        async function api(payload) {
+            if (API) {
+                try {
+                    const response = await fetch(API, {
+                        method: "POST",
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+                    return data;
+                } catch (err) {
+                    console.warn("Apps Script API fetch error, checking localStorage fallback:", err);
+                }
+            }
+            const getStorage = k => JSON.parse(localStorage.getItem(k) || "null");
+            if (payload.action === "questions") return { qs: getStorage("qs") || [] };
+            if (payload.action === "submit") {
+                const results = getStorage("rs") || [];
+                results.push({ ...payload, time: new Date().toISOString() });
+                localStorage.setItem("rs", JSON.stringify(results));
+                return { ok: true };
+            }
+            const allowed = ["admin123", "ChangeMe123", "admin"];
+            if (!allowed.includes(payload.password)) return { error: "Wrong password" };
+            if (payload.action === "save") localStorage.setItem("qs", JSON.stringify(payload.qs));
+            if (payload.action === "results") return { rows: getStorage("rs") || [] };
+            return { ok: true };
+        }
+
+        /* ==========================================================================
+           WORD (.DOCX) QUESTION PARSER
+           ========================================================================== */
+        function parseQuizText(rawText) {
+            if (!rawText) return [];
+            const lines = rawText.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+            const questions = [];
+            let cur = null;
+
+            const isQuestionStart = line => /^(\d+[\.\)]|Question\s*\d+[:\.]?|Q\d+[:\.]?|\[\d+\])\s+/i.test(line);
+            const isAnswerLine = line => /^(Ans(?:wer)?|Correct(?:\s*Option|\s*Answer)?|Key)\s*[:\-\=\.]?\s*[\(\[]?([A-Da-d1-4])/i.test(line);
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+
+                const ansMatch = line.match(isAnswerLine);
+                if (ansMatch) {
+                    if (cur) {
+                        const rawKey = ansMatch[2].toUpperCase();
+                        let ansIdx = 'ABCD'.indexOf(rawKey);
+                        if (ansIdx < 0 && ['1', '2', '3', '4'].includes(rawKey)) {
+                            ansIdx = parseInt(rawKey, 10) - 1;
+                        }
+                        if (ansIdx >= 0) cur.a = ansIdx;
+                    }
+                    continue;
+                }
+
+                if (isQuestionStart(line)) {
+                    if (cur && cur.q && cur.o && cur.o.length >= 2) {
+                        while (cur.o.length < 4) cur.o.push("Option " + "ABCD"[cur.o.length]);
+                        questions.push(cur);
+                    }
+                    const qClean = line.replace(/^(\d+[\.\)]|Question\s*\d+[:\.]?|Q\d+[:\.]?|\[\d+\])\s+/i, '').trim();
+                    cur = { q: qClean, o: [], a: 0 };
+                    continue;
+                }
+
+                const optMatch = line.match(/^(\*?)\s*[\(\[]?([A-Da-d1-4])[\)\]\.\:]\s*(.*?)(?:\s*\*|\s*\[correct\]|\s*\(correct\))?$/i);
+                if (optMatch && cur) {
+                    const hasStar = optMatch[1] === '*' || /\*|\[correct\]|\(correct\)/i.test(line);
+                    const optText = optMatch[3].trim();
+                    cur.o.push(optText);
+                    if (hasStar) cur.a = cur.o.length - 1;
+                    continue;
+                }
+
+                if (cur) {
+                    if (cur.o.length > 0) cur.o[cur.o.length - 1] += ' ' + line;
+                    else cur.q += ' ' + line;
+                }
+            }
+
+            if (cur && cur.q && cur.o && cur.o.length >= 2) {
+                while (cur.o.length < 4) cur.o.push("Option " + "ABCD"[cur.o.length]);
+                questions.push(cur);
+            }
+
+            return questions;
+        }
+
+        /* ==========================================================================
+           QUIZ LIFECYCLE
+           ========================================================================== */
+        async function init() {
+            try {
+                const res = await api({ action: "questions" });
+                if (res && res.qs && res.qs.length) {
+                    Q = res.qs;
+                }
+            } catch (err) {}
+            home();
+        }
+
+        /* 1. Home Screen */
+        function home() {
+            window.onkeydown = null;
+            app.innerHTML = `
+            <div class="cyber-card hero-stage">
+                <div class="hero-content">
+                    <span class="hero-live-badge">
+                        <span class="pulsing-dot"></span>
+                        <span>${esc(TITLE)}</span>
+                    </span>
+                    <h1 class="hero-headline">Power The Grid. <em>Master The Future.</em></h1>
+                    <p class="hero-description">Autonomous examination portal on Decentralized Generation (DG), Renewable Micro-grids, and Grid Economic Sustainability for Course 20EE2E41.</p>
+                    
+                    <div class="student-gateway-form">
+                        <div class="input-wrapper">
+                            <span class="input-prefix-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </span>
+                            <input id="nm" class="cyber-input" placeholder="Full Student Name" maxlength="60" autocomplete="name" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <span class="input-prefix-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="7" y1="8" x2="17" y2="8"></line><line x1="7" y1="12" x2="13" y2="12"></line><line x1="7" y1="16" x2="11" y2="16"></line></svg>
+                            </span>
+                            <input id="rg" class="cyber-input" placeholder="Register Number (e.g. 71812102001)" maxlength="30" autocomplete="off" required>
+                        </div>
+                        <button class="btn btn-primary" id="go" style="width:100%;margin-top:2px;">
+                            <span>Launch Assessment</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Photorealistic Real Image Showcase Card -->
+                <div class="showcase-visual-frame">
+                    <img src="hero_microgrid.jpg" alt="Rural Electrification & Renewable Microgrid Infrastructure" class="showcase-real-image" onerror="this.src='https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=1200&q=80'">
+                    <div class="showcase-glass-hud">
+                        <span class="hud-chip">⚡ Photovoltaic &amp; Microgrid Array</span>
+                        <div class="hud-title">Decentralized Power &amp; Rural Grid Integration</div>
+                        <div class="hud-subtitle">Solar PV · Wind Turbines · Transmission Substation · Rural Village Grid</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-matrix">
+                <div class="matrix-tile">
+                    <div class="tile-icon-hex">📋</div>
+                    <div>
+                        <b>${Q.length} Questions</b>
+                        <span>Curated Syllabus</span>
+                    </div>
+                </div>
+                <div class="matrix-tile">
+                    <div class="tile-icon-hex">⏱️</div>
+                    <div>
+                        <b>${SECS}s Limit</b>
+                        <span>Per Question</span>
+                    </div>
+                </div>
+                <div class="matrix-tile">
+                    <div class="tile-icon-hex">🔥</div>
+                    <div>
+                        <b>Streak Bonus</b>
+                        <span>Speed &amp; Accuracy</span>
+                    </div>
+                </div>
+                <div class="matrix-tile">
+                    <div class="tile-icon-hex">☁️</div>
+                    <div>
+                        <b>Instant Sync</b>
+                        <span>Google Sheet Records</span>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            $("#go").onclick = () => {
+                const name = $("#nm").value.trim();
+                const reg = $("#rg").value.trim();
+                if (!name || !reg) {
+                    toast("Please enter both your Name and Register Number");
+                    return;
+                }
+                start(name, reg);
+            };
+
+            $("#rg").onkeydown = e => {
+                if (e.key === "Enter") $("#go").click();
+            };
+        }
+
+        /* 2. Start Assessment */
+        function start(name, reg) {
+            S = {
+                name,
+                reg,
+                i: 0,
+                pts: 0,
+                ok: 0,
+                st: 0,
+                best: 0,
+                log: [],
+                startTime: Date.now()
+            };
+            show();
+        }
+
+        /* 3. Render Question */
+        function show() {
+            clearInterval(S.iv);
+            const q = Q[S.i];
+            S.t = SECS;
+            S.done = false;
+
+            app.innerHTML = `
+            <div class="quiz-hud-layout">
+                <!-- Left Telemetry Sidebar -->
+                <div class="telemetry-sidebar">
+                    <div class="cyber-card" style="padding: 20px;">
+                        <div class="telemetry-profile">
+                            <div class="profile-avatar-node">${esc(S.name.charAt(0).toUpperCase())}</div>
+                            <div class="profile-text-node">
+                                <b>${esc(S.name)}</b>
+                                <span>${esc(S.reg)}</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:16px;">
+                            <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-dim);margin-bottom:6px;font-weight:700;">
+                                <span>PROGRESS</span>
+                                <span>QUESTION ${S.i + 1} / ${Q.length}</span>
+                            </div>
+                            <div class="mission-progress-bar">
+                                <div class="mission-progress-fill" style="width:${(S.i / Q.length) * 100}%"></div>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px;">
+                            <div class="telemetry-row">
+                                <span>Current Score</span>
+                                <b id="pt">${S.pts} PTS</b>
+                            </div>
+                            <div class="telemetry-row">
+                                <span>Streak Multiplier</span>
+                                <b id="sk" class="streak-fire-badge">🔥 ${S.st}</b>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-muted);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Navigator Grid</div>
+                            <div class="matrix-dots-grid">
+                                ${Q.map((_, k) => {
+                                    const logItem = S.log[k];
+                                    let cls = "matrix-dot";
+                                    if (logItem) {
+                                        cls += logItem.good ? " ok" : " bad";
+                                    } else if (k === S.i) {
+                                        cls += " cur";
+                                    }
+                                    return `<div class="${cls}">${k + 1}</div>`;
+                                }).join("")}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Question Stage Card -->
+                <div class="cyber-card question-stage-card">
+                    <div class="gauge-wrapper">
+                        <div class="gauge-telemetry">
+                            <span class="unit-topic-tag">Unit IV · Decentralized Microgrids</span>
+                            <span class="timer-digital-readout">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span id="timer-text">${SECS}s</span>
+                            </span>
+                        </div>
+                        <div class="gauge-track">
+                            <div class="gauge-energy-bar" id="tm"></div>
+                        </div>
+                    </div>
+
+                    <h2 class="question-prompt-text">${esc(q.q)}</h2>
+
+                    <div class="options-deck">
+                        ${q.o.map((opt, k) => `
+                            <button class="opt-card-btn" data-k="${k}">
+                                <div class="opt-key-hex">${L[k]}</div>
+                                <div class="opt-text-payload">${esc(opt)}</div>
+                            </button>
+                        `).join("")}
+                    </div>
+
+                    <div class="stage-footer-actions">
+                        <div id="fb" class="feedback-banner"></div>
+                        <button class="btn btn-primary" id="nx" style="display:none;">
+                            <span>${S.i + 1 < Q.length ? "Next Question" : "Finish Assessment"}</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            setTimeout(() => {
+                const pf = $(".mission-progress-fill");
+                if (pf) pf.style.width = ((S.i + 1) / Q.length) * 100 + "%";
+            }, 60);
+
+            document.querySelectorAll(".opt-card-btn").forEach(btn => {
+                btn.onclick = () => pick(+btn.dataset.k);
+            });
+
+            $("#nx").onclick = () => {
+                S.i++;
+                if (S.i < Q.length) {
+                    show();
+                } else {
+                    fin();
+                }
+            };
+
+            window.onkeydown = e => {
+                if (S.done) {
+                    if (e.key === "Enter" || e.key === " ") {
+                        const nx = $("#nx");
+                        if (nx && nx.style.display !== "none") nx.click();
+                    }
+                    return;
+                }
+                const key = e.key.toUpperCase();
+                const idx = ["A", "B", "C", "D"].indexOf(key);
+                const numIdx = ["1", "2", "3", "4"].indexOf(key);
+                const selected = idx >= 0 ? idx : numIdx;
+                if (selected >= 0 && selected < q.o.length) {
+                    pick(selected);
+                }
+            };
+
+            S.iv = setInterval(() => {
+                S.t -= 0.1;
+                const tm = $("#tm");
+                const tt = $("#timer-text");
+                if (tm && tt) {
+                    const pct = Math.max(0, (S.t / SECS) * 100);
+                    tm.style.width = pct + "%";
+                    tt.textContent = Math.max(0, Math.ceil(S.t)) + "s";
+
+                    if (S.t <= 5) {
+                        tm.classList.add("critical");
+                        if (Math.abs(S.t - Math.round(S.t)) < 0.1) playSound('tick');
+                    } else {
+                        tm.classList.remove("critical");
+                    }
+                }
+                if (S.t <= 0) {
+                    pick(-1);
+                }
+            }, 100);
+        }
+
+        /* 4. Pick Answer */
+        function pick(k) {
+            if (S.done) return;
+            S.done = true;
+            clearInterval(S.iv);
+
+            const q = Q[S.i];
+            const good = k === q.a;
+
+            document.querySelectorAll(".opt-card-btn").forEach((btn, j) => {
+                btn.disabled = true;
+                if (j === q.a) btn.classList.add("ok");
+                else if (j === k) btn.classList.add("bad");
+            });
+
+            const fb = $("#fb");
+            if (good) {
+                S.ok++;
+                S.st++;
+                S.best = Math.max(S.best, S.st);
+
+                const speedBonus = Math.round(Math.max(0, S.t) * 5);
+                const streakBonus = S.st > 1 ? S.st * 15 : 0;
+                const ptsEarned = 100 + speedBonus + streakBonus;
+                S.pts += ptsEarned;
+
+                if (S.st >= 3) playSound('streak');
+                else playSound('correct');
+
+                fb.className = "feedback-banner good";
+                fb.innerHTML = `
+                    <span>✅ Correct!</span>
+                    <span style="font-size:0.86rem;color:var(--ink-dim);">(+${ptsEarned} PTS: 100 Base + ${speedBonus} Speed${streakBonus ? ` + ${streakBonus} Streak` : ''})</span>
+                `;
+            } else {
+                S.st = 0;
+                playSound('wrong');
+                fb.className = "feedback-banner wrong";
+                fb.innerHTML = k < 0 
+                    ? `<span>⏰ Time's up! Correct answer: <b>Option ${L[q.a]}</b></span>` 
+                    : `<span>❌ Incorrect. Correct answer: <b>Option ${L[q.a]}</b></span>`;
+            }
+
+            S.log[S.i] = { good, k };
+            $("#pt").textContent = S.pts + " PTS";
+            $("#sk").innerHTML = "🔥 " + S.st;
+
+            const nx = $("#nx");
+            nx.style.display = "inline-flex";
+            nx.focus();
+        }
+
+        /* 5. Final Scorecard (NO Play Again) */
+        async function fin() {
+            window.onkeydown = null;
+            const ratio = S.ok / Q.length;
+            const pct = Math.round(ratio * 100);
+            
+            let rank = "🛠️ Field Trainee";
+            if (ratio >= 0.8) rank = "⚡ Power Grid Master";
+            else if (ratio >= 0.5) rank = "🔌 Grid Systems Specialist";
+
+            if (ratio >= 0.6) triggerConfetti();
+
+            const circumference = 377;
+            const offset = circumference - (circumference * pct / 100);
+
+            app.innerHTML = `
+            <div class="cyber-card results-grand-card">
+                <div class="gauge-score-circle">
+                    <svg class="gauge-svg-ring" width="150" height="150" viewBox="0 0 140 140">
+                        <circle class="gauge-bg-ring" cx="70" cy="70" r="60"/>
+                        <circle class="gauge-val-ring" id="score-ring" cx="70" cy="70" r="60"/>
+                    </svg>
+                    <div>
+                        <div class="gauge-numeric">${S.ok}</div>
+                        <div class="gauge-denom">out of ${Q.length}</div>
+                    </div>
+                </div>
+
+                <div class="rank-banner-title">${rank}</div>
+                <p style="color:var(--ink-dim);max-width:540px;font-size:0.96rem;">
+                    Official assessment completed for <b>${esc(S.name)}</b> (${esc(S.reg)}). 
+                    Your final score has been locked and permanently submitted to course records.
+                </p>
+
+                <div class="kpi-matrix-row">
+                    <div class="kpi-tile-unit">
+                        <b>${S.ok} / ${Q.length}</b>
+                        <span>Correct Answers</span>
+                    </div>
+                    <div class="kpi-tile-unit">
+                        <b>${pct}%</b>
+                        <span>Accuracy</span>
+                    </div>
+                    <div class="kpi-tile-unit">
+                        <b>${S.pts}</b>
+                        <span>Total Points</span>
+                    </div>
+                    <div class="kpi-tile-unit">
+                        <b>🔥 ${S.best}</b>
+                        <span>Max Streak</span>
+                    </div>
+                </div>
+
+                <!-- Final Action Buttons (NO Play Again) -->
+                <div style="display:flex;gap:14px;margin-top:10px;">
+                    <button class="btn btn-primary" onclick="window.print()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                        <span>Print / Save Scorecard</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="home()">
+                        <span>← Return to Home</span>
+                    </button>
+                </div>
+
+                <div id="sv" style="font-family:var(--font-mono);font-size:0.84rem;color:var(--ink-muted);margin-top:6px;">
+                    Syncing result with Google Sheet…
+                </div>
+            </div>
+
+            <!-- Detailed Answer Review -->
+            <div class="cyber-card syllabus-review-card">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <h3 style="font-family:var(--font-head);font-size:1.3rem;font-weight:800;">Answer Review</h3>
+                    <span style="font-family:var(--font-mono);font-size:0.84rem;color:var(--ink-dim);">${Q.length} Questions Evaluated</span>
+                </div>
+
+                ${Q.map((q, k) => {
+                    const l = S.log[k] || {};
+                    const isGood = l.good;
+                    return `
+                    <div class="review-question-strip ${isGood ? 'ok' : 'bad'}">
+                        <div class="review-q-text">${k + 1}. ${esc(q.q)}</div>
+                        <div class="review-answers-grid">
+                            <span class="review-pill ${isGood ? 'pill-ok' : 'pill-bad'}">
+                                ${isGood ? '✅ Your Answer: ' : '❌ Your Answer: '}
+                                ${l.k >= 0 && l.k != null ? esc(q.o[l.k]) : 'Unanswered / Timeout'}
+                            </span>
+                            ${!isGood ? `
+                                <span class="review-pill pill-ok">
+                                    ✔ Correct Answer: ${esc(q.o[q.a])}
+                                </span>
+                            ` : ''}
+                        </div>
+                    </div>
+                    `;
+                }).join("")}
+            </div>
+            `;
+
+            setTimeout(() => {
+                const ring = $("#score-ring");
+                if (ring) ring.style.strokeDashoffset = offset;
+            }, 100);
+
+            try {
+                const submitRes = await api({
+                    action: "submit",
+                    name: S.name,
+                    reg: S.reg,
+                    score: S.ok,
+                    total: Q.length,
+                    points: S.pts
+                });
+                const sv = $("#sv");
+                if (submitRes && submitRes.ok) {
+                    sv.innerHTML = `<span style="color:var(--ok-light)">✔ Verified &amp; Saved to Google Sheets</span>`;
+                } else {
+                    sv.innerHTML = `<span style="color:var(--bad-light)">⚠ Saved locally (Sync note: ${submitRes && submitRes.error ? submitRes.error : "offline"})</span>`;
+                }
+            } catch (err) {
+                const sv = $("#sv");
+                if (sv) sv.innerHTML = `<span style="color:var(--bad-light)">⚠ Saved locally — notify instructor if sheet doesn't update.</span>`;
+            }
+        }
+
+        /* ==========================================================================
+           TEACHER PORTAL & WORD (.DOCX) IMPORT QUIZ MAKER
+           ========================================================================== */
+        $("#nt").onclick = () => pw ? dash() : login();
+
+        function login() {
+            window.onkeydown = null;
+            app.innerHTML = `
+            <div class="cyber-card" style="max-width:440px;margin:40px auto;text-align:center;">
+                <div style="width:58px;height:58px;border-radius:var(--r-full);background:var(--gold-glow);color:var(--gold);display:grid;place-items:center;margin:0 auto 16px;box-shadow:0 0 20px var(--gold-glow);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </div>
+                <h2 style="font-family:var(--font-head);font-size:1.55rem;font-weight:900;margin-bottom:6px;">Faculty Sign-in</h2>
+                <p style="color:var(--ink-dim);font-size:0.88rem;margin-bottom:20px;">Access student telemetry, upload Word (.docx) question banks, and export CSV grades.</p>
+
+                <div style="position:relative;margin-bottom:8px;">
+                    <input id="login-password" name="login-password" class="cyber-input" type="password"
+                        placeholder="Instructor Password"
+                        autocomplete="current-password"
+                        style="padding-left:16px;position:relative;z-index:20;"
+                    >
+                </div>
+
+                <button class="btn btn-primary" id="li" style="width:100%;margin-bottom:12px;position:relative;z-index:20;">Sign in to Dashboard</button>
+                <button class="btn btn-secondary" id="bk" style="width:100%;position:relative;z-index:20;">← Return to Student Quiz</button>
+            </div>
+            `;
+
+            // Focus the input after render
+            setTimeout(() => {
+                const inp = document.getElementById('login-password');
+                if (inp) inp.focus();
+            }, 80);
+
+            $("#bk").onclick = home;
+
+            const submitLogin = async () => {
+                const inp = document.getElementById('login-password');
+                const pass = inp ? inp.value.trim() : '';
+                if (!pass) { toast('Please enter your instructor password'); return; }
+
+                // Local fallback: accept known passwords without network
+                if (['admin123', 'ChangeMe123', 'admin'].includes(pass)) {
+                    pw = pass;
+                    sessionStorage.setItem('pw', pass);
+                    toast('Signed in ✔');
+                    dash();
+                    return;
+                }
+
+                let res = await api({ action: 'login', password: pass }).catch(() => null);
+                if (res && res.ok) {
+                    pw = pass;
+                    sessionStorage.setItem('pw', pass);
+                    dash();
+                    return;
+                }
+                toast((res && res.error) ? res.error : 'Wrong password. Try ChangeMe123 or admin123');
+            };
+
+            $("#li").onclick = submitLogin;
+            document.getElementById('login-password').addEventListener('keydown', e => {
+                if (e.key === 'Enter') submitLogin();
+            });
+        }
+
+        let tab = "r";
+        let rows = [];
+        let ed = -1;
+        let stagedDocxQuestions = [];
+
+        async function dash() {
+            const res = await api({ action: "results", password: pw }).catch(() => ({ error: "Network connection error" }));
+            if (res.error) {
+                const altPw = pw === "admin123" ? "ChangeMe123" : "admin123";
+                const retryRes = await api({ action: "results", password: altPw }).catch(() => null);
+                if (retryRes && !retryRes.error) {
+                    pw = altPw;
+                    sessionStorage.setItem("pw", altPw);
+                    rows = retryRes.rows || [];
+                    draw();
+                    return;
+                }
+                sessionStorage.removeItem("pw");
+                pw = "";
+                toast(res.error);
+                return login();
+            }
+            rows = res.rows || [];
+            draw();
+        }
+
+        function draw() {
+            const totalAttempts = rows.length;
+            const scoresPct = rows.map(r => r.total ? (r.score / r.total) * 100 : 0);
+            const avgScore = totalAttempts ? Math.round(scoresPct.reduce((a, b) => a + b, 0) / totalAttempts) : 0;
+            const topScore = totalAttempts ? Math.max(...scoresPct.map(Math.round)) : 0;
+
+            const bins = [0, 0, 0, 0, 0];
+            scoresPct.forEach(p => {
+                const bIdx = Math.min(4, Math.floor(p / 20));
+                bins[bIdx]++;
+            });
+            const maxBin = Math.max(1, ...bins);
+
+            app.innerHTML = `
+            <div class="cyber-card">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:22px;">
+                    <div>
+                        <h2 style="font-family:var(--font-head);font-size:1.55rem;font-weight:900;">Instructor Command Portal</h2>
+                        <span style="font-size:0.84rem;color:var(--ink-dim);">Cloud Synced Assessment Console</span>
+                    </div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        ${SHEET_URL ? `
+                            <a class="btn btn-secondary btn-sm" href="${esc(SHEET_URL)}" target="_blank" rel="noopener">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                <span>Google Sheet</span>
+                            </a>
+                        ` : ''}
+                        <button class="btn btn-secondary btn-sm" id="bk">Student View</button>
+                        <button class="btn btn-secondary btn-sm" id="lo">Sign Out</button>
+                    </div>
+                </div>
+
+                <div class="feature-matrix" style="margin-bottom:22px;">
+                    <div class="matrix-tile">
+                        <div class="tile-icon-hex">👥</div>
+                        <div><b>${totalAttempts}</b><span>Submissions</span></div>
+                    </div>
+                    <div class="matrix-tile">
+                        <div class="tile-icon-hex">📊</div>
+                        <div><b>${avgScore}%</b><span>Class Average</span></div>
+                    </div>
+                    <div class="matrix-tile">
+                        <div class="tile-icon-hex">🏆</div>
+                        <div><b>${topScore}%</b><span>Highest Score</span></div>
+                    </div>
+                    <div class="matrix-tile">
+                        <div class="tile-icon-hex">📝</div>
+                        <div><b>${Q.length}</b><span>Active Questions</span></div>
+                    </div>
+                </div>
+
+                <!-- Tabs Navigation -->
+                <div class="tabs-header-bar">
+                    <button data-t="r" class="tab-button-nav ${tab === 'r' ? 'active' : ''}">Student Results (${totalAttempts})</button>
+                    <button data-t="q" class="tab-button-nav ${tab === 'q' ? 'active' : ''}">Manage Questions (${Q.length})</button>
+                    <button data-t="d" class="tab-button-nav ${tab === 'd' ? 'active' : ''}" style="border:1px dashed var(--gold);">
+                        📄 Import Word (.docx)
+                    </button>
+                </div>
+
+                <div id="tb"></div>
+            </div>
+            `;
+
+            $("#bk").onclick = home;
+            $("#lo").onclick = () => {
+                sessionStorage.removeItem("pw");
+                pw = "";
+                home();
+            };
+
+            document.querySelectorAll(".tab-button-nav").forEach(btn => {
+                btn.onclick = () => {
+                    tab = btn.dataset.t;
+                    draw();
+                };
+            });
+
+            if (tab === "r") {
+                renderResultsTab(bins, maxBin);
+            } else if (tab === "q") {
+                renderQuestionEditor();
+            } else if (tab === "d") {
+                renderDocxImportTab();
+            }
+        }
+
+        /* Results Tab */
+        function renderResultsTab(bins, maxBin) {
+            $("#tb").innerHTML = `
+            <div class="chart-visual-box">
+                <div style="font-family:var(--font-head);font-size:0.96rem;font-weight:800;margin-bottom:14px;color:var(--ink-dim);">Score Distribution Histogram</div>
+                <div class="histogram-flex-frame">
+                    ${bins.map((val, idx) => `
+                        <div class="hist-col">
+                            <div class="hist-tower" style="height:${(val / maxBin) * 100}%;">
+                                <span class="hist-tower-val">${val || ''}</span>
+                            </div>
+                            <span class="hist-tower-label">${idx * 20}-${idx * 20 + 20}%</span>
+                        </div>
+                    `).join("")}
+                </div>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px;">
+                <div class="input-wrapper" style="max-width:320px;">
+                    <span class="input-prefix-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </span>
+                    <input id="se" class="cyber-input" placeholder="Search name or roll number..." style="padding-top:10px;padding-bottom:10px;">
+                </div>
+                <button class="btn btn-primary btn-sm" id="cv">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Export CSV</span>
+                </button>
+            </div>
+
+            <div class="table-glass-wrap">
+                <table class="cyber-table" id="tt"></table>
+            </div>
+            `;
+
+            renderTable("");
+            $("#se").oninput = e => renderTable(e.target.value);
+            $("#cv").onclick = exportCsv;
+        }
+
+        function renderTable(filter) {
+            const query = filter.toLowerCase();
+            const filtered = rows.filter(r => (String(r.name) + String(r.reg)).toLowerCase().includes(query));
+
+            $("#tt").innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Student Name</th>
+                        <th>Register No</th>
+                        <th>Score</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${filtered.length ? filtered.map(r => `
+                        <tr>
+                            <td style="color:var(--ink-dim);font-family:var(--font-mono);font-size:0.82rem;">${esc(new Date(r.time).toLocaleString())}</td>
+                            <td style="font-weight:700;">${esc(r.name)}</td>
+                            <td><span style="font-family:var(--font-mono);font-size:0.85rem;background:var(--bg);padding:3px 8px;border-radius:4px;border:1px solid var(--border);">${esc(r.reg)}</span></td>
+                            <td><span class="review-pill ${r.score / r.total >= 0.5 ? 'pill-ok' : 'pill-bad'}">${r.score} / ${r.total}</span></td>
+                            <td style="font-family:var(--font-mono);font-weight:800;color:var(--gold);">${r.points}</td>
+                        </tr>
+                    `).join("") : `
+                        <tr>
+                            <td colspan="5" style="text-align:center;padding:30px;color:var(--ink-muted);">No matching student submissions.</td>
+                        </tr>
+                    `}
+                </tbody>
+            `;
+        }
+
+        function exportCsv() {
+            const csvRows = [
+                ["Timestamp", "Name", "Register No", "Score", "Total", "Points"],
+                ...rows.map(r => [r.time, r.name, r.reg, r.score, r.total, r.points])
+            ];
+            const csvContent = csvRows.map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `quiz-results-${new Date().toISOString().slice(0, 10)}.csv`;
+            link.click();
+        }
+
+        async function saveQuestionsToCloud() {
+            const res = await api({ action: "save", password: pw, qs: Q });
+            toast(res && res.error ? res.error : "✔ Questions synced with Google Sheet");
+        }
+
+        /* Question Editor Tab */
+        function renderQuestionEditor() {
+            $("#tb").innerHTML = `
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--r-md);padding:22px;margin-bottom:24px;display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+                    <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;">
+                        ${ed >= 0 ? `Edit Question #${ed + 1}` : 'Add New Question'}
+                    </div>
+                    <button class="btn btn-secondary btn-sm" id="btn-goto-docx" style="border:1px dashed var(--gold);">
+                        📄 Upload Word (.docx) File
+                    </button>
+                </div>
+
+                <textarea id="qt" class="cyber-input" rows="2" placeholder="Question statement"></textarea>
+                
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    ${[0, 1, 2, 3].map(k => `
+                        <input id="o${k}" class="cyber-input" placeholder="Option ${L[k]}">
+                    `).join("")}
+                </div>
+
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:4px;">
+                    <select id="ca" class="cyber-input" style="width:auto;padding:10px 14px;">
+                        ${[0, 1, 2, 3].map(k => `
+                            <option value="${k}">Correct Answer: ${L[k]}</option>
+                        `).join("")}
+                    </select>
+
+                    <button class="btn btn-primary btn-sm" id="ad">
+                        ${ed >= 0 ? 'Update Question' : 'Add to Bank'}
+                    </button>
+                    ${ed >= 0 ? `<button class="btn btn-secondary btn-sm" id="can">Cancel</button>` : ''}
+                    <button class="btn btn-secondary btn-sm" id="rs" style="margin-left:auto;">
+                        Reset to Default 10 Questions
+                    </button>
+                </div>
+            </div>
+
+            <div id="ql"></div>
+            `;
+
+            $("#btn-goto-docx").onclick = () => {
+                tab = "d";
+                draw();
+            };
+
+            $("#ql").innerHTML = Q.map((item, i) => `
+                <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--r-md);padding:18px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+                    <div>
+                        <b style="font-family:var(--font-head);font-size:1.05rem;">${i + 1}.</b> ${esc(item.q)}
+                        <div style="font-size:0.84rem;color:var(--ok-light);margin-top:4px;font-weight:600;">
+                            ✔ Correct: Option ${L[item.a]}) ${esc(item.o[item.a])}
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:8px;flex-shrink:0;">
+                        <button class="btn btn-secondary btn-sm" data-e="${i}">Edit</button>
+                        <button class="btn btn-secondary btn-sm" data-d="${i}" style="color:var(--bad-light);">Delete</button>
+                    </div>
+                </div>
+            `).join("");
+
+            if (ed >= 0) {
+                const target = Q[ed];
+                $("#qt").value = target.q;
+                target.o.forEach((opt, k) => $("#o" + k).value = opt);
+                $("#ca").value = target.a;
+                $("#can").onclick = () => { ed = -1; renderQuestionEditor(); };
+            }
+
+            document.querySelectorAll("[data-e]").forEach(btn => {
+                btn.onclick = () => {
+                    ed = +btn.dataset.e;
+                    renderQuestionEditor();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+            });
+
+            document.querySelectorAll("[data-d]").forEach(btn => {
+                btn.onclick = async () => {
+                    if (confirm(`Delete question #${+btn.dataset.d + 1}?`)) {
+                        Q.splice(+btn.dataset.d, 1);
+                        ed = -1;
+                        await saveQuestionsToCloud();
+                        renderQuestionEditor();
+                    }
+                };
+            });
+
+            $("#ad").onclick = async () => {
+                const qText = $("#qt").value.trim();
+                const opts = [0, 1, 2, 3].map(k => $("#o" + k).value.trim());
+                if (!qText || opts.some(o => !o)) {
+                    toast("Please fill in question text and all 4 options");
+                    return;
+                }
+                const newQ = { q: qText, o: opts, a: +$("#ca").value };
+                if (ed >= 0) {
+                    Q[ed] = newQ;
+                } else {
+                    Q.push(newQ);
+                }
+                ed = -1;
+                await saveQuestionsToCloud();
+                renderQuestionEditor();
+            };
+
+            $("#rs").onclick = async () => {
+                if (confirm("Restore the original 10 questions from course syllabus?")) {
+                    Q = DEF.slice();
+                    ed = -1;
+                    await saveQuestionsToCloud();
+                    renderQuestionEditor();
+                }
+            };
+        }
+
+        /* Word (.docx) Import Tab */
+        function renderDocxImportTab() {
+            $("#tb").innerHTML = `
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--r-md);padding:24px;display:flex;flex-direction:column;gap:14px;">
+                <div>
+                    <h3 style="font-family:var(--font-head);font-size:1.25rem;font-weight:900;">📄 Import Questions from Word Document (.docx)</h3>
+                    <p style="font-size:0.86rem;color:var(--ink-dim);margin-top:3px;">
+                        Upload your MS Word (.docx) file or paste text directly. The AI parser extracts questions, 4 options (A-D), and correct answer keys automatically.
+                    </p>
+                </div>
+
+                <!-- Drag & Drop Zone -->
+                <div class="dropzone-cyber-box" id="docx-dropzone">
+                    <input type="file" id="docx-file-input" accept=".docx,.doc,.txt" style="display:none;">
+                    <div class="dropzone-icon-orb">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <b style="font-family:var(--font-head);font-size:1.1rem;color:var(--ink);">Click to upload or drag &amp; drop Word (.docx) file</b>
+                    <span style="font-size:0.82rem;color:var(--ink-dim);">Accepts Microsoft Word (.docx), .doc, or .txt question papers</span>
+                </div>
+
+                <!-- Text Paste Dropdown -->
+                <details style="background:var(--bg);padding:14px;border-radius:var(--r-sm);border:1px solid var(--border);">
+                    <summary style="cursor:pointer;font-family:var(--font-head);font-weight:700;font-size:0.92rem;color:var(--gold);user-select:none;">
+                        📋 Or paste text copied directly from Word
+                    </summary>
+                    <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px;">
+                        <textarea id="paste-doc-text" class="cyber-input" rows="6" placeholder="Example format:
+1. What is the primary purpose of a power grid?
+A. Transmit and distribute electrical power
+B. Store electrical energy permanently
+C. Replace decentralized generation
+D. Generate from renewables only
+Answer: A"></textarea>
+                        <button class="btn btn-secondary btn-sm" id="btn-parse-pasted" style="align-self:flex-start;">
+                            ⚡ Parse Pasted Text
+                        </button>
+                    </div>
+                </details>
+
+                <div id="docx-preview-wrap"></div>
+            </div>
+            `;
+
+            const dropzone = $("#docx-dropzone");
+            const fileInput = $("#docx-file-input");
+
+            dropzone.onclick = () => fileInput.click();
+
+            dropzone.ondragover = e => {
+                e.preventDefault();
+                dropzone.classList.add("dragover");
+            };
+            dropzone.ondragleave = () => dropzone.classList.remove("dragover");
+            dropzone.ondrop = e => {
+                e.preventDefault();
+                dropzone.classList.remove("dragover");
+                if (e.dataTransfer.files.length) {
+                    handleWordFile(e.dataTransfer.files[0]);
+                }
+            };
+
+            fileInput.onchange = e => {
+                if (e.target.files.length) {
+                    handleWordFile(e.target.files[0]);
+                }
+            };
+
+            $("#btn-parse-pasted").onclick = () => {
+                const text = $("#paste-doc-text").value.trim();
+                if (!text) return toast("Paste quiz text first");
+                const parsed = parseQuizText(text);
+                if (!parsed.length) {
+                    toast("Could not recognize questions. Check format (e.g. 1. Question... A. Option... Answer: A)");
+                    return;
+                }
+                stagedDocxQuestions = parsed;
+                showStagedPreview("Pasted Word Text");
+            };
+
+            if (stagedDocxQuestions.length) {
+                showStagedPreview("Loaded Questions");
+            }
+        }
+
+        function handleWordFile(file) {
+            toast("Reading " + file.name + "…");
+            const reader = new FileReader();
+
+            if (file.name.toLowerCase().endsWith(".docx")) {
+                reader.onload = function(e) {
+                    const arrayBuffer = e.target.result;
+                    if (window.mammoth) {
+                        window.mammoth.extractRawText({ arrayBuffer: arrayBuffer })
+                            .then(function(result) {
+                                const text = result.value;
+                                const parsed = parseQuizText(text);
+                                if (!parsed.length) {
+                                    toast("No questions found in " + file.name + ". Try checking format.");
+                                    return;
+                                }
+                                stagedDocxQuestions = parsed;
+                                showStagedPreview(file.name);
+                            })
+                            .catch(function(err) {
+                                console.error(err);
+                                toast("Error parsing .docx: " + err.message);
+                            });
+                    } else {
+                        toast("Mammoth parser loading, retry in a moment");
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            } else {
+                reader.onload = function(e) {
+                    const text = e.target.result;
+                    const parsed = parseQuizText(text);
+                    if (!parsed.length) {
+                        toast("No questions found in file.");
+                        return;
+                    }
+                    stagedDocxQuestions = parsed;
+                    showStagedPreview(file.name);
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        function showStagedPreview(sourceName) {
+            const wrap = $("#docx-preview-wrap");
+            if (!wrap) return;
+
+            wrap.innerHTML = `
+            <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+                    <div>
+                        <b style="font-family:var(--font-head);font-size:1.15rem;color:var(--ok-light);">✅ Extracted ${stagedDocxQuestions.length} Questions from "${esc(sourceName)}"</b>
+                        <div style="font-size:0.84rem;color:var(--ink-dim);margin-top:2px;">Review below before deploying to the live quiz.</div>
+                    </div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <button class="btn btn-primary btn-sm" id="btn-apply-replace">
+                            ⚡ Make this the Live Quiz (${stagedDocxQuestions.length} Questions)
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="btn-apply-append">
+                            ➕ Append to Current Bank
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="btn-clear-staged" style="color:var(--bad-light);">
+                            ✕ Clear
+                        </button>
+                    </div>
+                </div>
+
+                <div class="doc-staging-list">
+                    ${stagedDocxQuestions.map((item, idx) => `
+                        <div class="doc-staged-card">
+                            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
+                                <b style="font-family:var(--font-head);font-size:1rem;">${idx + 1}. ${esc(item.q)}</b>
+                                <button class="btn btn-secondary btn-sm" data-rem="${idx}" style="color:var(--bad-light);padding:4px 8px;">✕</button>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.88rem;color:var(--ink-dim);margin-top:4px;">
+                                ${item.o.map((opt, oIdx) => `
+                                    <div style="padding:7px 12px;border-radius:6px;background:var(--bg);border:1px solid ${oIdx === item.a ? 'var(--ok)' : 'var(--border)'};color:${oIdx === item.a ? 'var(--ok-light)' : 'inherit'};">
+                                        <b>${L[oIdx]}.</b> ${esc(opt)} ${oIdx === item.a ? '✔ (Correct)' : ''}
+                                    </div>
+                                `).join("")}
+                            </div>
+                            <div style="display:flex;align-items:center;gap:10px;margin-top:6px;font-size:0.84rem;">
+                                <span>Change Correct Answer:</span>
+                                <select data-chans="${idx}" class="cyber-input" style="width:auto;padding:5px 12px;font-size:0.84rem;">
+                                    ${[0, 1, 2, 3].map(k => `
+                                        <option value="${k}" ${k === item.a ? 'selected' : ''}>${L[k]}</option>
+                                    `).join("")}
+                                </select>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            </div>
+            `;
+
+            document.querySelectorAll("[data-chans]").forEach(sel => {
+                sel.onchange = () => {
+                    const qIdx = +sel.dataset.chans;
+                    stagedDocxQuestions[qIdx].a = +sel.value;
+                    showStagedPreview(sourceName);
+                };
+            });
+
+            document.querySelectorAll("[data-rem]").forEach(btn => {
+                btn.onclick = () => {
+                    const qIdx = +btn.dataset.rem;
+                    stagedDocxQuestions.splice(qIdx, 1);
+                    showStagedPreview(sourceName);
+                };
+            });
+
+            $("#btn-clear-staged").onclick = () => {
+                stagedDocxQuestions = [];
+                wrap.innerHTML = "";
+            };
+
+            $("#btn-apply-replace").onclick = async () => {
+                if (!stagedDocxQuestions.length) return toast("No questions to apply");
+                if (confirm(`Replace the active quiz with these ${stagedDocxQuestions.length} questions from Word doc?`)) {
+                    Q = stagedDocxQuestions.slice();
+                    await saveQuestionsToCloud();
+                    stagedDocxQuestions = [];
+                    toast(`✔ Active quiz updated with ${Q.length} questions!`);
+                    tab = "q";
+                    draw();
+                }
+            };
+
+            $("#btn-apply-append").onclick = async () => {
+                if (!stagedDocxQuestions.length) return toast("No questions to append");
+                Q = Q.concat(stagedDocxQuestions);
+                await saveQuestionsToCloud();
+                stagedDocxQuestions = [];
+                toast(`✔ Added questions! Total now: ${Q.length}`);
+                tab = "q";
+                draw();
+            };
+        }
+
+        // Initialize portal
+        init();
+    </script>
+</body>
+</html>
