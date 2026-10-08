@@ -1,7 +1,7 @@
 {
-  "name": "srec-eee-quiz-portal",
+  "name": "voltedge",
   "version": "1.0.0",
-  "description": "SREC EEE Rural Electrification & Microgrids Quiz Portal",
+  "description": "voltEdge — Rural Electrification & Microgrids Academic Assessment Portal",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
