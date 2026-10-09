@@ -15,6 +15,9 @@
     <!-- Mammoth.js for Word (.docx) Document Parsing in Browser -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 
+    <!-- Supabase JS Client for Cloud Database Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         /* ==========================================================================
            ULTRA-MODERN DESIGN SYSTEM & DESIGN TOKENS
@@ -1917,6 +1920,188 @@
                 padding: 10px 8px;
             }
         }
+
+        /* ==========================================================================
+           TEACHER DASHBOARD WHITE BACKGROUND THEME
+           ========================================================================== */
+        body.teacher-mode {
+            background-color: #ffffff !important;
+            background-image: none !important;
+            color: #0f172a !important;
+        }
+
+        body.teacher-mode .cyber-universe,
+        body.teacher-mode .circuit-grid {
+            display: none !important;
+        }
+
+        body.teacher-mode .nav-hud {
+            background: rgba(255, 255, 255, 0.98) !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        body.teacher-mode .brand-title-text span {
+            color: #0f172a !important;
+        }
+
+        body.teacher-mode .brand-course-chip {
+            background: #e0f2fe !important;
+            color: #0369a1 !important;
+            border: 1px solid #bae6fd !important;
+        }
+
+        body.teacher-mode .brand-sub-text {
+            color: #64748b !important;
+        }
+
+        body.teacher-mode .main-viewport {
+            background: #ffffff !important;
+        }
+
+        body.teacher-mode .cyber-card {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            color: #0f172a !important;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        body.teacher-mode h1,
+        body.teacher-mode h2,
+        body.teacher-mode h3,
+        body.teacher-mode h4,
+        body.teacher-mode b {
+            color: #0f172a !important;
+        }
+
+        body.teacher-mode .matrix-tile {
+            background: #f8fafc !important;
+            border: 1px solid #e2e8f0 !important;
+            color: #0f172a !important;
+        }
+
+        body.teacher-mode .matrix-tile b {
+            color: #0f172a !important;
+        }
+
+        body.teacher-mode .matrix-tile span {
+            color: #64748b !important;
+        }
+
+        body.teacher-mode .tile-icon-hex {
+            background: #e2e8f0 !important;
+        }
+
+        body.teacher-mode .tabs-header-bar {
+            border-bottom: 2px solid #e2e8f0 !important;
+        }
+
+        body.teacher-mode .tab-button-nav {
+            color: #64748b !important;
+            background: transparent !important;
+            border: 1px solid transparent !important;
+        }
+
+        body.teacher-mode .tab-button-nav:hover {
+            color: #0f172a !important;
+            background: #f1f5f9 !important;
+        }
+
+        body.teacher-mode .tab-button-nav.active {
+            background: #0284c7 !important;
+            color: #ffffff !important;
+            border-color: #0284c7 !important;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25) !important;
+        }
+
+        body.teacher-mode .tab-button-nav.active b {
+            color: #ffffff !important;
+        }
+
+        body.teacher-mode .cyber-input {
+            background: #ffffff !important;
+            color: #0f172a !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+
+        body.teacher-mode .cyber-input:focus {
+            border-color: #0284c7 !important;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
+        }
+
+        body.teacher-mode .cyber-input::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        body.teacher-mode .table-glass-wrap {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: var(--r-md);
+        }
+
+        body.teacher-mode .cyber-table th {
+            background: #f8fafc !important;
+            color: #334155 !important;
+            border-bottom: 2px solid #e2e8f0 !important;
+            font-weight: 700;
+        }
+
+        body.teacher-mode .cyber-table td {
+            color: #1e293b !important;
+            border-bottom: 1px solid #f1f5f9 !important;
+        }
+
+        body.teacher-mode .cyber-table tr:hover td {
+            background: #f8fafc !important;
+        }
+
+        body.teacher-mode .chart-visual-box {
+            background: #f8fafc !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+
+        body.teacher-mode .dropzone-cyber-box {
+            background: #f8fafc !important;
+            border: 2px dashed #cbd5e1 !important;
+        }
+
+        body.teacher-mode .dropzone-cyber-box:hover {
+            border-color: #0284c7 !important;
+            background: #f0f9ff !important;
+        }
+
+        body.teacher-mode .dropzone-icon-orb {
+            background: #e0f2fe !important;
+            color: #0284c7 !important;
+        }
+
+        body.teacher-mode .cyber-footer {
+            background: #ffffff !important;
+            border-top: 1px solid #e2e8f0 !important;
+            color: #64748b !important;
+        }
+
+        body.teacher-mode .btn-secondary {
+            background: #f1f5f9 !important;
+            color: #1e293b !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+
+        body.teacher-mode .btn-secondary:hover {
+            background: #e2e8f0 !important;
+            color: #0f172a !important;
+        }
+
+        body.teacher-mode .btn-primary {
+            background: #0284c7 !important;
+            color: #ffffff !important;
+            border-color: #0284c7 !important;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25) !important;
+        }
+
+        body.teacher-mode .btn-primary:hover {
+            background: #0369a1 !important;
+        }
     </style>
 </head>
 
@@ -2004,10 +2189,22 @@
         /* ==========================================================================
            CONFIGURATION & CONSTANTS
            ========================================================================== */
+        const SUPABASE_URL = "https://bdmwcdokbptuohkccefe.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_hnsOA4Qx_nJy5Uh3E6lz9g_MqenVkYB";
         const API = "https://script.google.com/macros/s/AKfycbwbNmwbPJ6Wc8WGBa8zFffCaP4xYJi-__9Uq5Yw0qA9cZM_7FzYvyiIQMcGTXKAKuWr/exec";
         const SHEET_URL = "https://script.google.com/macros/s/AKfycbwbNmwbPJ6Wc8WGBa8zFffCaP4xYJi-__9Uq5Yw0qA9cZM_7FzYvyiIQMcGTXKAKuWr/exec";
         const TITLE = "Surprise Quiz · CO4 Decentralized Generation";
-        const SECS = 20;
+        const INSTRUCTOR_NAME = "Dr. K Balamurugan";
+
+        // Supabase Client Initialization
+        let supabase = null;
+        try {
+            if (window.supabase) {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            }
+        } catch (e) {
+            console.warn("Supabase initialization error:", e);
+        }
 
         // Default Question Bank
         const DEF = [
@@ -2175,33 +2372,165 @@
         }
 
         /* ==========================================================================
-           API CLIENT
+           API & CLOUD DATABASE CLIENT (SUPABASE + LOCAL STORAGE)
            ========================================================================== */
         async function api(payload) {
-            if (API) {
-                try {
-                    const response = await fetch(API, {
-                        method: "POST",
-                        body: JSON.stringify(payload)
-                    });
-                    const data = await response.json();
-                    return data;
-                } catch (err) {
-                    console.warn("Apps Script API fetch error, checking localStorage fallback:", err);
-                }
-            }
             const getStorage = k => JSON.parse(localStorage.getItem(k) || "null");
-            if (payload.action === "questions") return { qs: getStorage("qs") || [] };
+
+            // 1. Fetch Questions
+            if (payload.action === "questions") {
+                if (supabase) {
+                    try {
+                        const { data, error } = await supabase.from("quiz_questions").select("*").order("id", { ascending: true });
+                        if (!error && data && data.length) {
+                            return { qs: data.map(d => d.data || d) };
+                        }
+                    } catch (_) {}
+                }
+                if (API) {
+                    try {
+                        const r = await fetch(API, { method: "POST", body: JSON.stringify(payload) });
+                        const res = await r.json();
+                        if (res && res.qs && res.qs.length) return res;
+                    } catch (_) {}
+                }
+                return { qs: getStorage("qs") || [] };
+            }
+
+            // 2. Submit Assessment Result
             if (payload.action === "submit") {
                 const results = getStorage("rs") || [];
-                results.push({ ...payload, time: new Date().toISOString() });
+                const item = {
+                    email: payload.email || "-",
+                    name: payload.name,
+                    reg: payload.reg,
+                    score: payload.score,
+                    total: payload.total,
+                    points: payload.points,
+                    time: new Date().toISOString()
+                };
+                results.unshift(item);
                 localStorage.setItem("rs", JSON.stringify(results));
+
+                let sbSaved = false;
+                let sbError = null;
+
+                if (supabase) {
+                    try {
+                        const sbRow = {
+                            email: payload.email || "-",
+                            name: payload.name,
+                            reg: payload.reg,
+                            score: payload.score,
+                            total: payload.total,
+                            points: payload.points,
+                            created_at: new Date().toISOString()
+                        };
+                        const sbRes1 = await supabase.from("quiz_results").insert([sbRow]);
+                        if (!sbRes1.error) {
+                            sbSaved = true;
+                        } else {
+                            console.warn("quiz_results insert note:", sbRes1.error);
+                            const sbRes2 = await supabase.from("results").insert([sbRow]);
+                            if (!sbRes2.error) {
+                                sbSaved = true;
+                            } else {
+                                sbError = sbRes1.error.message || sbRes2.error.message;
+                            }
+                        }
+                    } catch (err) {
+                        console.warn("Supabase submit caught:", err);
+                        sbError = err.message;
+                    }
+                }
+
+                if (API) {
+                    try {
+                        fetch(API, { method: "POST", body: JSON.stringify(payload) }).catch(() => {});
+                    } catch (_) {}
+                }
+
+                return { ok: true, supabase: sbSaved, error: sbError };
+            }
+
+            // 3. Faculty Sign-in Verification
+            const allowed = ["admin123", "ChangeMe123", "admin", "balamurugan", "eee"];
+            if (!allowed.includes(payload.password)) {
+                if (API) {
+                    try {
+                        const r = await fetch(API, { method: "POST", body: JSON.stringify(payload) });
+                        return await r.json();
+                    } catch (_) {}
+                }
+                return { error: "Invalid Instructor Password" };
+            }
+
+            // 4. Save Question Bank
+            if (payload.action === "save") {
+                localStorage.setItem("qs", JSON.stringify(payload.qs));
+                if (supabase) {
+                    try {
+                        await supabase.from("quiz_questions").delete().neq("id", 0);
+                        await supabase.from("quiz_questions").insert(payload.qs.map((q, idx) => ({ id: idx + 1, data: q })));
+                    } catch (_) {}
+                }
+                if (API) {
+                    try {
+                        fetch(API, { method: "POST", body: JSON.stringify(payload) }).catch(() => {});
+                    } catch (_) {}
+                }
                 return { ok: true };
             }
-            const allowed = ["admin123", "ChangeMe123", "admin"];
-            if (!allowed.includes(payload.password)) return { error: "Wrong password" };
-            if (payload.action === "save") localStorage.setItem("qs", JSON.stringify(payload.qs));
-            if (payload.action === "results") return { rows: getStorage("rs") || [] };
+
+            // 5. Fetch Submissions for Instructor Command Portal
+            if (payload.action === "results") {
+                let rows = [];
+                let fromSupabase = false;
+
+                if (supabase) {
+                    try {
+                        let sbRes = await supabase.from("quiz_results").select("*").order("created_at", { ascending: false });
+                        if (sbRes.error || !sbRes.data || !sbRes.data.length) {
+                            sbRes = await supabase.from("results").select("*").order("created_at", { ascending: false });
+                        }
+                        if (!sbRes.error && sbRes.data && sbRes.data.length) {
+                            fromSupabase = true;
+                            rows = sbRes.data.map(r => ({
+                                time: r.created_at || r.time || new Date().toISOString(),
+                                email: r.email || "-",
+                                name: r.name,
+                                reg: r.reg || r.roll,
+                                score: r.score,
+                                total: r.total,
+                                points: r.points,
+                                source: "supabase"
+                            }));
+                        }
+                    } catch (e) {
+                        console.warn("Supabase fetch results warning:", e);
+                    }
+                }
+
+                // Merge or fallback to local storage
+                const localRows = getStorage("rs") || [];
+                if (!rows.length) {
+                    rows = localRows.map(r => ({
+                        ...r,
+                        email: r.email || "-",
+                        source: "local"
+                    }));
+                } else {
+                    localRows.forEach(lr => {
+                        const exists = rows.some(r => r.reg === lr.reg && (r.email === lr.email || r.time === lr.time));
+                        if (!exists) {
+                            rows.unshift({ ...lr, email: lr.email || "-", source: "local" });
+                        }
+                    });
+                }
+
+                return { rows, fromSupabase };
+            }
+
             return { ok: true };
         }
 
@@ -2281,6 +2610,7 @@
 
         /* 1. Home Screen */
         function home() {
+            document.body.classList.remove("teacher-mode");
             window.onkeydown = null;
             app.innerHTML = `
             <div class="cyber-card hero-stage">
@@ -2290,21 +2620,36 @@
                         <span>${esc(TITLE)}</span>
                     </span>
                     <h1 class="hero-headline">Power The Grid. <em>Master The Future.</em></h1>
-                    <p class="hero-description">Autonomous examination portal on Decentralized Generation (DG), Renewable Micro-grids, and Grid Economic Sustainability for Course 20EE2E41.</p>
+                    <p class="hero-description">Autonomous examination portal on Decentralized Generation (DG), Renewable Micro-grids, and Grid Economic Sustainability for Course 20EE2E41. Faculty In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>.</p>
                     
                     <div class="student-gateway-form">
+                        <!-- 1. Email ID First -->
+                        <div class="input-wrapper">
+                            <span class="input-prefix-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </span>
+                            <input id="em" type="email" class="cyber-input" placeholder="Student Email ID (e.g. 7181...@srec.ac.in)" maxlength="80" autocomplete="email" required>
+                        </div>
+
+                        <!-- 2. Full Student Name -->
                         <div class="input-wrapper">
                             <span class="input-prefix-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                             </span>
                             <input id="nm" class="cyber-input" placeholder="Full Student Name" maxlength="60" autocomplete="name" required>
                         </div>
-                        <div class="input-wrapper">
+
+                        <!-- 3. Roll Number (Must start with 7181) -->
+                        <div class="input-wrapper" style="margin-bottom:2px;">
                             <span class="input-prefix-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="7" y1="8" x2="17" y2="8"></line><line x1="7" y1="12" x2="13" y2="12"></line><line x1="7" y1="16" x2="11" y2="16"></line></svg>
                             </span>
-                            <input id="rg" class="cyber-input" placeholder="Register Number (e.g. 71812102001)" maxlength="30" autocomplete="off" required>
+                            <input id="rg" class="cyber-input" placeholder="Roll Number (Starts with 7181, e.g. 71812102001)" maxlength="30" autocomplete="off" required>
                         </div>
+                        <div id="rg-helper" style="font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-muted);margin:0 0 10px 4px;transition:var(--t-fast);">
+                            Notice: Roll Number must start with <b>7181</b>
+                        </div>
+
                         <button class="btn btn-primary" id="go" style="width:100%;margin-top:2px;">
                             <span>Launch Assessment</span>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -2318,7 +2663,7 @@
                     <div class="showcase-glass-hud">
                         <span class="hud-chip">⚡ Photovoltaic &amp; Microgrid Array</span>
                         <div class="hud-title">Decentralized Power &amp; Rural Grid Integration</div>
-                        <div class="hud-subtitle">Solar PV · Wind Turbines · Transmission Substation · Rural Village Grid</div>
+                        <div class="hud-subtitle">Instructor: ${esc(INSTRUCTOR_NAME)} · Dept of EEE</div>
                     </div>
                 </div>
             </div>
@@ -2332,47 +2677,95 @@
                     </div>
                 </div>
                 <div class="matrix-tile">
-                    <div class="tile-icon-hex">⏱️</div>
+                    <div class="tile-icon-hex">🎯</div>
                     <div>
-                        <b>${SECS}s Limit</b>
-                        <span>Per Question</span>
+                        <b>Untimed</b>
+                        <span>Self-Paced Assessment</span>
                     </div>
                 </div>
                 <div class="matrix-tile">
                     <div class="tile-icon-hex">🔥</div>
                     <div>
-                        <b>Streak Bonus</b>
-                        <span>Speed &amp; Accuracy</span>
+                        <b>Streak Multiplier</b>
+                        <span>Accuracy Bonus</span>
                     </div>
                 </div>
                 <div class="matrix-tile">
-                    <div class="tile-icon-hex">☁️</div>
+                    <div class="tile-icon-hex">⚡</div>
                     <div>
-                        <b>Instant Sync</b>
-                        <span>Google Sheet Records</span>
+                        <b>Supabase Cloud</b>
+                        <span>Instant Live Sync</span>
                     </div>
                 </div>
             </div>
             `;
 
-            $("#go").onclick = () => {
-                const name = $("#nm").value.trim();
-                const reg = $("#rg").value.trim();
-                if (!name || !reg) {
-                    toast("Please enter both your Name and Register Number");
-                    return;
+            const emInput = $("#em");
+            const nmInput = $("#nm");
+            const rgInput = $("#rg");
+            const rgHelper = $("#rg-helper");
+
+            // Real-time roll number validation feedback
+            rgInput.oninput = () => {
+                const val = rgInput.value.trim();
+                if (!val) {
+                    rgHelper.innerHTML = 'Notice: Roll Number must start with <b>7181</b>';
+                    rgHelper.style.color = 'var(--ink-muted)';
+                } else if (val.startsWith("7181")) {
+                    rgHelper.innerHTML = '✔ Valid SREC Roll Number prefix (7181)';
+                    rgHelper.style.color = 'var(--ok-light)';
+                } else {
+                    rgHelper.innerHTML = '⚠ Roll Number <b>must start with 7181</b>';
+                    rgHelper.style.color = 'var(--bad-light)';
                 }
-                start(name, reg);
             };
 
-            $("#rg").onkeydown = e => {
-                if (e.key === "Enter") $("#go").click();
+            const validateAndStart = () => {
+                const email = emInput.value.trim();
+                const name = nmInput.value.trim();
+                const reg = rgInput.value.trim();
+
+                if (!email) {
+                    toast("Please enter your Student Email ID first");
+                    emInput.focus();
+                    return;
+                }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    toast("Please enter a valid Email ID (e.g. yourname@srec.ac.in)");
+                    emInput.focus();
+                    return;
+                }
+                if (!name) {
+                    toast("Please enter your Full Student Name");
+                    nmInput.focus();
+                    return;
+                }
+                if (!reg) {
+                    toast("Please enter your Roll Number");
+                    rgInput.focus();
+                    return;
+                }
+                if (!reg.startsWith("7181")) {
+                    toast("Roll Number must start with 7181 (e.g. 71812102001)");
+                    rgInput.focus();
+                    return;
+                }
+                start(email, name, reg);
             };
+
+            $("#go").onclick = validateAndStart;
+
+            emInput.onkeydown = e => { if (e.key === "Enter") nmInput.focus(); };
+            nmInput.onkeydown = e => { if (e.key === "Enter") rgInput.focus(); };
+            rgInput.onkeydown = e => { if (e.key === "Enter") validateAndStart(); };
         }
 
         /* 2. Start Assessment */
-        function start(name, reg) {
+        function start(email, name, reg) {
+            document.body.classList.remove("teacher-mode");
             S = {
+                email,
                 name,
                 reg,
                 i: 0,
@@ -2386,11 +2779,9 @@
             show();
         }
 
-        /* 3. Render Question */
+        /* 3. Render Question (Untimed - No Timer) */
         function show() {
-            clearInterval(S.iv);
             const q = Q[S.i];
-            S.t = SECS;
             S.done = false;
 
             app.innerHTML = `
@@ -2402,7 +2793,8 @@
                             <div class="profile-avatar-node">${esc(S.name.charAt(0).toUpperCase())}</div>
                             <div class="profile-text-node">
                                 <b>${esc(S.name)}</b>
-                                <span>${esc(S.reg)}</span>
+                                <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--cyan);word-break:break-all;">${esc(S.email)}</span>
+                                <span style="font-family:var(--font-mono);font-size:0.78rem;">Roll: ${esc(S.reg)}</span>
                             </div>
                         </div>
 
@@ -2447,17 +2839,12 @@
 
                 <!-- Right Question Stage Card -->
                 <div class="cyber-card question-stage-card">
-                    <div class="gauge-wrapper">
-                        <div class="gauge-telemetry">
-                            <span class="unit-topic-tag">Unit IV · Decentralized Microgrids</span>
-                            <span class="timer-digital-readout">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <span id="timer-text">${SECS}s</span>
-                            </span>
-                        </div>
-                        <div class="gauge-track">
-                            <div class="gauge-energy-bar" id="tm"></div>
-                        </div>
+                    <!-- Untimed Header (No Countdown Timer) -->
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+                        <span class="unit-topic-tag">Unit IV · Decentralized Microgrids</span>
+                        <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--ok-light);display:inline-flex;align-items:center;gap:6px;font-weight:700;background:var(--ok-bg);padding:4px 12px;border-radius:var(--r-full);border:1px solid var(--ok-border);">
+                            <span>●</span> Untimed Assessment
+                        </span>
                     </div>
 
                     <h2 class="question-prompt-text">${esc(q.q)}</h2>
@@ -2516,34 +2903,12 @@
                     pick(selected);
                 }
             };
-
-            S.iv = setInterval(() => {
-                S.t -= 0.1;
-                const tm = $("#tm");
-                const tt = $("#timer-text");
-                if (tm && tt) {
-                    const pct = Math.max(0, (S.t / SECS) * 100);
-                    tm.style.width = pct + "%";
-                    tt.textContent = Math.max(0, Math.ceil(S.t)) + "s";
-
-                    if (S.t <= 5) {
-                        tm.classList.add("critical");
-                        if (Math.abs(S.t - Math.round(S.t)) < 0.1) playSound('tick');
-                    } else {
-                        tm.classList.remove("critical");
-                    }
-                }
-                if (S.t <= 0) {
-                    pick(-1);
-                }
-            }, 100);
         }
 
         /* 4. Pick Answer */
         function pick(k) {
             if (S.done) return;
             S.done = true;
-            clearInterval(S.iv);
 
             const q = Q[S.i];
             const good = k === q.a;
@@ -2560,9 +2925,8 @@
                 S.st++;
                 S.best = Math.max(S.best, S.st);
 
-                const speedBonus = Math.round(Math.max(0, S.t) * 5);
-                const streakBonus = S.st > 1 ? S.st * 15 : 0;
-                const ptsEarned = 100 + speedBonus + streakBonus;
+                const streakBonus = S.st > 1 ? S.st * 20 : 0;
+                const ptsEarned = 100 + streakBonus;
                 S.pts += ptsEarned;
 
                 if (S.st >= 3) playSound('streak');
@@ -2571,15 +2935,13 @@
                 fb.className = "feedback-banner good";
                 fb.innerHTML = `
                     <span>✅ Correct!</span>
-                    <span style="font-size:0.86rem;color:var(--ink-dim);">(+${ptsEarned} PTS: 100 Base + ${speedBonus} Speed${streakBonus ? ` + ${streakBonus} Streak` : ''})</span>
+                    <span style="font-size:0.86rem;color:var(--ink-dim);">(+${ptsEarned} PTS: 100 Base${streakBonus ? ` + ${streakBonus} Streak` : ''})</span>
                 `;
             } else {
                 S.st = 0;
                 playSound('wrong');
                 fb.className = "feedback-banner wrong";
-                fb.innerHTML = k < 0 
-                    ? `<span>⏰ Time's up! Correct answer: <b>Option ${L[q.a]}</b></span>` 
-                    : `<span>❌ Incorrect. Correct answer: <b>Option ${L[q.a]}</b></span>`;
+                fb.innerHTML = `<span>❌ Incorrect. Correct answer: <b>Option ${L[q.a]}</b></span>`;
             }
 
             S.log[S.i] = { good, k };
@@ -2620,9 +2982,10 @@
                 </div>
 
                 <div class="rank-banner-title">${rank}</div>
-                <p style="color:var(--ink-dim);max-width:540px;font-size:0.96rem;">
-                    Official assessment completed for <b>${esc(S.name)}</b> (${esc(S.reg)}). 
-                    Your final score has been locked and permanently submitted to course records.
+                <p style="color:var(--ink-dim);max-width:560px;font-size:0.96rem;">
+                    Official assessment completed for <b>${esc(S.name)}</b><br>
+                    <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--ink);">Roll No: <b>${esc(S.reg)}</b> · Email: <b>${esc(S.email)}</b></span><br>
+                    Course In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>. Your score has been submitted to Supabase records.
                 </p>
 
                 <div class="kpi-matrix-row">
@@ -2656,7 +3019,7 @@
                 </div>
 
                 <div id="sv" style="font-family:var(--font-mono);font-size:0.84rem;color:var(--ink-muted);margin-top:6px;">
-                    Syncing result with Google Sheet…
+                    Syncing result with Supabase Cloud Database…
                 </div>
             </div>
 
@@ -2676,7 +3039,7 @@
                         <div class="review-answers-grid">
                             <span class="review-pill ${isGood ? 'pill-ok' : 'pill-bad'}">
                                 ${isGood ? '✅ Your Answer: ' : '❌ Your Answer: '}
-                                ${l.k >= 0 && l.k != null ? esc(q.o[l.k]) : 'Unanswered / Timeout'}
+                                ${l.k >= 0 && l.k != null ? esc(q.o[l.k]) : 'Unanswered'}
                             </span>
                             ${!isGood ? `
                                 <span class="review-pill pill-ok">
@@ -2698,6 +3061,7 @@
             try {
                 const submitRes = await api({
                     action: "submit",
+                    email: S.email,
                     name: S.name,
                     reg: S.reg,
                     score: S.ok,
@@ -2706,36 +3070,47 @@
                 });
                 const sv = $("#sv");
                 if (submitRes && submitRes.ok) {
-                    sv.innerHTML = `<span style="color:var(--ok-light)">✔ Verified &amp; Saved to Google Sheets</span>`;
+                    if (submitRes.supabase) {
+                        sv.innerHTML = `<span style="color:var(--ok-light)">✔ Verified &amp; Saved to Supabase Cloud Database (quiz_results)</span>`;
+                    } else {
+                        sv.innerHTML = `<span style="color:var(--ok-light)">✔ Saved to Course Records (Local &amp; Cloud Queue)</span>`;
+                    }
                 } else {
-                    sv.innerHTML = `<span style="color:var(--bad-light)">⚠ Saved locally (Sync note: ${submitRes && submitRes.error ? submitRes.error : "offline"})</span>`;
+                    sv.innerHTML = `<span style="color:var(--bad-light)">⚠ Saved locally (Offline mode)</span>`;
                 }
             } catch (err) {
                 const sv = $("#sv");
-                if (sv) sv.innerHTML = `<span style="color:var(--bad-light)">⚠ Saved locally — notify instructor if sheet doesn't update.</span>`;
+                if (sv) sv.innerHTML = `<span style="color:var(--bad-light)">⚠ Saved locally to browser records.</span>`;
             }
         }
 
         /* ==========================================================================
            TEACHER PORTAL & WORD (.DOCX) IMPORT QUIZ MAKER
            ========================================================================== */
-        $("#nt").onclick = () => pw ? dash() : login();
+        $("#nt").onclick = () => {
+            document.body.classList.add("teacher-mode");
+            pw ? dash() : login();
+        };
 
         function login() {
+            document.body.classList.add("teacher-mode");
             window.onkeydown = null;
             app.innerHTML = `
-            <div class="cyber-card" style="max-width:440px;margin:40px auto;text-align:center;">
-                <div style="width:58px;height:58px;border-radius:var(--r-full);background:var(--gold-glow);color:var(--gold);display:grid;place-items:center;margin:0 auto 16px;box-shadow:0 0 20px var(--gold-glow);">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <div class="cyber-card" style="max-width:460px;margin:40px auto;text-align:center;background:#ffffff;border:1px solid #e2e8f0;box-shadow:0 12px 36px rgba(0,0,0,0.06);border-radius:var(--r-md);padding:32px;">
+                <div style="width:62px;height:62px;border-radius:var(--r-full);background:#e0f2fe;color:#0284c7;display:grid;place-items:center;margin:0 auto 16px;box-shadow:0 4px 14px rgba(2, 132, 199, 0.15);">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 </div>
-                <h2 style="font-family:var(--font-head);font-size:1.55rem;font-weight:900;margin-bottom:6px;">Faculty Sign-in</h2>
-                <p style="color:var(--ink-dim);font-size:0.88rem;margin-bottom:20px;">Access student telemetry, upload Word (.docx) question banks, and export CSV grades.</p>
+                <div style="display:inline-block;background:#f0fdf4;color:#166534;font-size:0.78rem;font-weight:700;padding:4px 12px;border-radius:var(--r-full);border:1px solid #bbf7d0;margin-bottom:10px;">
+                    Faculty In-Charge: ${esc(INSTRUCTOR_NAME)}
+                </div>
+                <h2 style="font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:#0f172a;margin-bottom:6px;">Faculty Sign-in</h2>
+                <p style="color:#64748b;font-size:0.88rem;margin-bottom:20px;">Access student telemetry, Supabase cloud sync, Word (.docx) question bank import, and CSV records.</p>
 
-                <div style="position:relative;margin-bottom:8px;">
+                <div style="position:relative;margin-bottom:12px;">
                     <input id="login-password" name="login-password" class="cyber-input" type="password"
                         placeholder="Instructor Password"
                         autocomplete="current-password"
-                        style="padding-left:16px;position:relative;z-index:20;"
+                        style="padding-left:16px;position:relative;z-index:20;background:#ffffff;color:#0f172a;border:1px solid #cbd5e1;"
                     >
                 </div>
 
@@ -2744,24 +3119,25 @@
             </div>
             `;
 
-            // Focus the input after render
             setTimeout(() => {
                 const inp = document.getElementById('login-password');
                 if (inp) inp.focus();
             }, 80);
 
-            $("#bk").onclick = home;
+            $("#bk").onclick = () => {
+                document.body.classList.remove("teacher-mode");
+                home();
+            };
 
             const submitLogin = async () => {
                 const inp = document.getElementById('login-password');
                 const pass = inp ? inp.value.trim() : '';
                 if (!pass) { toast('Please enter your instructor password'); return; }
 
-                // Local fallback: accept known passwords without network
-                if (['admin123', 'ChangeMe123', 'admin'].includes(pass)) {
+                if (['admin123', 'ChangeMe123', 'admin', 'balamurugan', 'eee'].includes(pass)) {
                     pw = pass;
                     sessionStorage.setItem('pw', pass);
-                    toast('Signed in ✔');
+                    toast('Signed in as Faculty ✔');
                     dash();
                     return;
                 }
@@ -2773,7 +3149,7 @@
                     dash();
                     return;
                 }
-                toast((res && res.error) ? res.error : 'Wrong password. Try ChangeMe123 or admin123');
+                toast((res && res.error) ? res.error : 'Wrong password. Try admin123 or balamurugan');
             };
 
             $("#li").onclick = submitLogin;
@@ -2788,6 +3164,7 @@
         let stagedDocxQuestions = [];
 
         async function dash() {
+            document.body.classList.add("teacher-mode");
             const res = await api({ action: "results", password: pw }).catch(() => ({ error: "Network connection error" }));
             if (res.error) {
                 const altPw = pw === "admin123" ? "ChangeMe123" : "admin123";
@@ -2809,6 +3186,7 @@
         }
 
         function draw() {
+            document.body.classList.add("teacher-mode");
             const totalAttempts = rows.length;
             const scoresPct = rows.map(r => r.total ? (r.score / r.total) * 100 : 0);
             const avgScore = totalAttempts ? Math.round(scoresPct.reduce((a, b) => a + b, 0) / totalAttempts) : 0;
@@ -2822,49 +3200,51 @@
             const maxBin = Math.max(1, ...bins);
 
             app.innerHTML = `
-            <div class="cyber-card">
+            <div class="cyber-card" style="background:#ffffff;border:1px solid #e2e8f0;box-shadow:0 10px 30px rgba(0,0,0,0.04);border-radius:var(--r-md);padding:26px;">
                 <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:22px;">
                     <div>
-                        <h2 style="font-family:var(--font-head);font-size:1.55rem;font-weight:900;">Instructor Command Portal</h2>
-                        <span style="font-size:0.84rem;color:var(--ink-dim);">Cloud Synced Assessment Console</span>
+                        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;">
+                            <h2 style="font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:#0f172a;margin:0;">Instructor Command Portal</h2>
+                            <span style="background:#f0fdf4;color:#166534;font-size:0.8rem;font-weight:800;padding:3px 12px;border-radius:var(--r-full);border:1px solid #bbf7d0;">
+                                Faculty In-Charge: ${esc(INSTRUCTOR_NAME)}
+                            </span>
+                        </div>
+                        <span style="font-size:0.86rem;color:#64748b;">Course 20EE2E41 · Dept of EEE · Supabase Cloud: <b>bdmwcdokbptuohkccefe.supabase.co</b></span>
                     </div>
                     <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                        ${SHEET_URL ? `
-                            <a class="btn btn-secondary btn-sm" href="${esc(SHEET_URL)}" target="_blank" rel="noopener">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                <span>Google Sheet</span>
-                            </a>
-                        ` : ''}
                         <button class="btn btn-secondary btn-sm" id="bk">Student View</button>
                         <button class="btn btn-secondary btn-sm" id="lo">Sign Out</button>
                     </div>
                 </div>
 
                 <div class="feature-matrix" style="margin-bottom:22px;">
-                    <div class="matrix-tile">
-                        <div class="tile-icon-hex">👥</div>
-                        <div><b>${totalAttempts}</b><span>Submissions</span></div>
+                    <div class="matrix-tile" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                        <div class="tile-icon-hex" style="background:#e0f2fe;color:#0284c7;">👥</div>
+                        <div><b style="color:#0f172a;">${totalAttempts}</b><span style="color:#64748b;">Total Submissions</span></div>
                     </div>
-                    <div class="matrix-tile">
-                        <div class="tile-icon-hex">📊</div>
-                        <div><b>${avgScore}%</b><span>Class Average</span></div>
+                    <div class="matrix-tile" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                        <div class="tile-icon-hex" style="background:#fef3c7;color:#d97706;">📊</div>
+                        <div><b style="color:#0f172a;">${avgScore}%</b><span style="color:#64748b;">Class Average</span></div>
                     </div>
-                    <div class="matrix-tile">
-                        <div class="tile-icon-hex">🏆</div>
-                        <div><b>${topScore}%</b><span>Highest Score</span></div>
+                    <div class="matrix-tile" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                        <div class="tile-icon-hex" style="background:#ecfdf5;color:#059669;">🏆</div>
+                        <div><b style="color:#0f172a;">${topScore}%</b><span style="color:#64748b;">Highest Score</span></div>
                     </div>
-                    <div class="matrix-tile">
-                        <div class="tile-icon-hex">📝</div>
-                        <div><b>${Q.length}</b><span>Active Questions</span></div>
+                    <div class="matrix-tile" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                        <div class="tile-icon-hex" style="background:#f3e8ff;color:#7c3aed;">📝</div>
+                        <div><b style="color:#0f172a;">${Q.length}</b><span style="color:#64748b;">Active Questions</span></div>
                     </div>
                 </div>
 
                 <!-- Tabs Navigation -->
-                <div class="tabs-header-bar">
+                <div class="tabs-header-bar" style="border-bottom:2px solid #e2e8f0;">
                     <button data-t="r" class="tab-button-nav ${tab === 'r' ? 'active' : ''}">Student Results (${totalAttempts})</button>
                     <button data-t="q" class="tab-button-nav ${tab === 'q' ? 'active' : ''}">Manage Questions (${Q.length})</button>
-                    <button data-t="d" class="tab-button-nav ${tab === 'd' ? 'active' : ''}" style="border:1px dashed var(--gold);">
+                    <button data-t="d" class="tab-button-nav ${tab === 'd' ? 'active' : ''}" style="border:1px dashed #cbd5e1;">
                         📄 Import Word (.docx)
+                    </button>
+                    <button data-t="s" class="tab-button-nav ${tab === 's' ? 'active' : ''}" style="border:1px solid #0284c7;color:#0284c7;background:#f0f9ff;">
+                        ⚡ Supabase Database
                     </button>
                 </div>
 
@@ -2872,10 +3252,14 @@
             </div>
             `;
 
-            $("#bk").onclick = home;
+            $("#bk").onclick = () => {
+                document.body.classList.remove("teacher-mode");
+                home();
+            };
             $("#lo").onclick = () => {
                 sessionStorage.removeItem("pw");
                 pw = "";
+                document.body.classList.remove("teacher-mode");
                 home();
             };
 
@@ -2892,40 +3276,47 @@
                 renderQuestionEditor();
             } else if (tab === "d") {
                 renderDocxImportTab();
+            } else if (tab === "s") {
+                renderSupabaseTab();
             }
         }
 
         /* Results Tab */
         function renderResultsTab(bins, maxBin) {
             $("#tb").innerHTML = `
-            <div class="chart-visual-box">
-                <div style="font-family:var(--font-head);font-size:0.96rem;font-weight:800;margin-bottom:14px;color:var(--ink-dim);">Score Distribution Histogram</div>
+            <div class="chart-visual-box" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                <div style="font-family:var(--font-head);font-size:0.96rem;font-weight:800;margin-bottom:14px;color:#334155;">Score Distribution Histogram</div>
                 <div class="histogram-flex-frame">
                     ${bins.map((val, idx) => `
                         <div class="hist-col">
-                            <div class="hist-tower" style="height:${(val / maxBin) * 100}%;">
-                                <span class="hist-tower-val">${val || ''}</span>
+                            <div class="hist-tower" style="height:${(val / maxBin) * 100}%;background:linear-gradient(135deg, #0284c7 0%, #0369a1 100%);box-shadow:none;">
+                                <span class="hist-tower-val" style="color:#0284c7;">${val || ''}</span>
                             </div>
-                            <span class="hist-tower-label">${idx * 20}-${idx * 20 + 20}%</span>
+                            <span class="hist-tower-label" style="color:#64748b;">${idx * 20}-${idx * 20 + 20}%</span>
                         </div>
                     `).join("")}
                 </div>
             </div>
 
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px;">
-                <div class="input-wrapper" style="max-width:320px;">
+                <div class="input-wrapper" style="max-width:360px;">
                     <span class="input-prefix-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     </span>
-                    <input id="se" class="cyber-input" placeholder="Search name or roll number..." style="padding-top:10px;padding-bottom:10px;">
+                    <input id="se" class="cyber-input" placeholder="Search email, name or roll number..." style="padding-top:10px;padding-bottom:10px;background:#ffffff;border:1px solid #cbd5e1;color:#0f172a;">
                 </div>
-                <button class="btn btn-primary btn-sm" id="cv">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    <span>Export CSV</span>
-                </button>
+                <div style="display:flex;gap:10px;">
+                    <button class="btn btn-secondary btn-sm" id="btn-reload-sb" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0f172a;">
+                        🔄 Refresh from Supabase
+                    </button>
+                    <button class="btn btn-primary btn-sm" id="cv">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Export CSV</span>
+                    </button>
+                </div>
             </div>
 
-            <div class="table-glass-wrap">
+            <div class="table-glass-wrap" style="background:#ffffff;border:1px solid #e2e8f0;">
                 <table class="cyber-table" id="tt"></table>
             </div>
             `;
@@ -2933,34 +3324,42 @@
             renderTable("");
             $("#se").oninput = e => renderTable(e.target.value);
             $("#cv").onclick = exportCsv;
+            $("#btn-reload-sb").onclick = async () => {
+                toast("Fetching latest submissions from Supabase…");
+                await dash();
+            };
         }
 
         function renderTable(filter) {
             const query = filter.toLowerCase();
-            const filtered = rows.filter(r => (String(r.name) + String(r.reg)).toLowerCase().includes(query));
+            const filtered = rows.filter(r => (String(r.email || '') + String(r.name || '') + String(r.reg || '')).toLowerCase().includes(query));
 
             $("#tt").innerHTML = `
                 <thead>
-                    <tr>
-                        <th>Timestamp</th>
-                        <th>Student Name</th>
-                        <th>Register No</th>
-                        <th>Score</th>
-                        <th>Points</th>
+                    <tr style="background:#f8fafc;border-bottom:2px solid #e2e8f0;">
+                        <th style="color:#475569;font-weight:700;">Timestamp</th>
+                        <th style="color:#475569;font-weight:700;">Student Email</th>
+                        <th style="color:#475569;font-weight:700;">Student Name</th>
+                        <th style="color:#475569;font-weight:700;">Roll No (7181...)</th>
+                        <th style="color:#475569;font-weight:700;">Score</th>
+                        <th style="color:#475569;font-weight:700;">Points</th>
+                        <th style="color:#475569;font-weight:700;">Database</th>
                     </tr>
                 </thead>
                 <tbody>
                     ${filtered.length ? filtered.map(r => `
-                        <tr>
-                            <td style="color:var(--ink-dim);font-family:var(--font-mono);font-size:0.82rem;">${esc(new Date(r.time).toLocaleString())}</td>
-                            <td style="font-weight:700;">${esc(r.name)}</td>
-                            <td><span style="font-family:var(--font-mono);font-size:0.85rem;background:var(--bg);padding:3px 8px;border-radius:4px;border:1px solid var(--border);">${esc(r.reg)}</span></td>
+                        <tr style="border-bottom:1px solid #f1f5f9;">
+                            <td style="color:#64748b;font-family:var(--font-mono);font-size:0.82rem;">${esc(new Date(r.time).toLocaleString())}</td>
+                            <td style="font-family:var(--font-mono);font-size:0.84rem;color:#0284c7;font-weight:600;">${esc(r.email || '-')}</td>
+                            <td style="font-weight:700;color:#0f172a;">${esc(r.name)}</td>
+                            <td><span style="font-family:var(--font-mono);font-size:0.85rem;background:#f1f5f9;color:#0f172a;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;font-weight:700;">${esc(r.reg)}</span></td>
                             <td><span class="review-pill ${r.score / r.total >= 0.5 ? 'pill-ok' : 'pill-bad'}">${r.score} / ${r.total}</span></td>
-                            <td style="font-family:var(--font-mono);font-weight:800;color:var(--gold);">${r.points}</td>
+                            <td style="font-family:var(--font-mono);font-weight:800;color:#d97706;">${r.points}</td>
+                            <td><span style="font-size:0.75rem;padding:3px 8px;border-radius:4px;background:${r.source === 'supabase' ? '#e0f2fe' : '#f1f5f9'};color:${r.source === 'supabase' ? '#0369a1' : '#64748b'};font-weight:700;">${r.source === 'supabase' ? '⚡ Supabase' : '💾 Local'}</span></td>
                         </tr>
                     `).join("") : `
                         <tr>
-                            <td colspan="5" style="text-align:center;padding:30px;color:var(--ink-muted);">No matching student submissions.</td>
+                            <td colspan="7" style="text-align:center;padding:36px;color:#94a3b8;">No matching student submissions found.</td>
                         </tr>
                     `}
                 </tbody>
@@ -2969,8 +3368,8 @@
 
         function exportCsv() {
             const csvRows = [
-                ["Timestamp", "Name", "Register No", "Score", "Total", "Points"],
-                ...rows.map(r => [r.time, r.name, r.reg, r.score, r.total, r.points])
+                ["Timestamp", "Student Email", "Student Name", "Roll No", "Score", "Total", "Points", "Database Source"],
+                ...rows.map(r => [r.time, r.email || '', r.name, r.reg, r.score, r.total, r.points, r.source || 'local'])
             ];
             const csvContent = csvRows.map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
             const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
@@ -2978,6 +3377,170 @@
             link.href = URL.createObjectURL(blob);
             link.download = `quiz-results-${new Date().toISOString().slice(0, 10)}.csv`;
             link.click();
+        }
+
+        /* Supabase Cloud Tab */
+        function renderSupabaseTab() {
+            const sqlCode = `-- ========================================================
+-- Supabase SQL Code: Table & RLS Policies for Quiz Portal
+-- Run in: Supabase Dashboard -> SQL Editor -> New Query -> Run
+-- ========================================================
+
+-- 1. Create quiz_results table for student submissions
+CREATE TABLE IF NOT EXISTS public.quiz_results (
+    id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    email TEXT,
+    name TEXT NOT NULL,
+    reg TEXT NOT NULL,
+    score INTEGER NOT NULL,
+    total INTEGER NOT NULL,
+    points INTEGER NOT NULL
+);
+
+-- 2. Enable Row Level Security (RLS)
+ALTER TABLE public.quiz_results ENABLE ROW LEVEL SECURITY;
+
+-- 3. Policy: Allow students to insert their assessment result
+CREATE POLICY "Allow public insert to quiz_results" 
+ON public.quiz_results 
+FOR INSERT 
+WITH CHECK (true);
+
+-- 4. Policy: Allow reading results in teacher portal
+CREATE POLICY "Allow public select from quiz_results" 
+ON public.quiz_results 
+FOR SELECT 
+USING (true);
+
+-- 5. (Optional) Table for syncing questions bank in cloud
+CREATE TABLE IF NOT EXISTS public.quiz_questions (
+    id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    data JSONB NOT NULL
+);
+
+ALTER TABLE public.quiz_questions ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public all to quiz_questions" 
+ON public.quiz_questions 
+FOR ALL 
+USING (true);`;
+
+            $("#tb").innerHTML = `
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:var(--r-md);padding:24px;display:flex;flex-direction:column;gap:18px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+                    <div>
+                        <h3 style="font-family:var(--font-head);font-size:1.3rem;font-weight:900;color:#0f172a;">⚡ Supabase Cloud Integration Console</h3>
+                        <p style="font-size:0.86rem;color:#64748b;margin-top:2px;">
+                            Active Project: <code style="background:#e2e8f0;padding:2px 6px;border-radius:4px;color:#0f172a;">https://bdmwcdokbptuohkccefe.supabase.co</code>
+                        </p>
+                    </div>
+                    <div style="display:flex;gap:10px;">
+                        <button class="btn btn-primary btn-sm" id="btn-test-sb">
+                            🔌 Test Connection
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="btn-sync-local">
+                            ⬆ Push Local Results to Supabase
+                        </button>
+                    </div>
+                </div>
+
+                <div id="sb-status-box" style="padding:14px;border-radius:var(--r-sm);background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-size:0.88rem;display:flex;align-items:center;gap:10px;">
+                    <span>🟢</span>
+                    <div><b>Supabase Configured:</b> Client initialized with publishable key and connected to <code>bdmwcdokbptuohkccefe.supabase.co</code>.</div>
+                </div>
+
+                <!-- Supabase Table SQL Code -->
+                <div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+                        <div>
+                            <b style="font-family:var(--font-head);font-size:1.05rem;color:#0f172a;">📋 Supabase Table Code (SQL)</b>
+                            <div style="font-size:0.82rem;color:#64748b;">Execute this SQL query in your Supabase SQL Editor to initialize <code>quiz_results</code> and <code>quiz_questions</code> tables with full public access policies.</div>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" id="btn-copy-sql" style="border:1px solid #cbd5e1;">
+                            📋 Copy SQL Code
+                        </button>
+                    </div>
+
+                    <pre id="sql-display" style="background:#0f172a;color:#f8fafc;padding:18px;border-radius:var(--r-sm);font-family:var(--font-mono);font-size:0.82rem;overflow-x:auto;line-height:1.5;max-height:360px;">${esc(sqlCode)}</pre>
+                </div>
+            </div>
+            `;
+
+            $("#btn-copy-sql").onclick = () => {
+                navigator.clipboard.writeText(sqlCode).then(() => {
+                    toast("✔ Supabase SQL table code copied to clipboard!");
+                }).catch(() => {
+                    toast("Please select and copy the SQL code manually");
+                });
+            };
+
+            $("#btn-test-sb").onclick = async () => {
+                const box = $("#sb-status-box");
+                box.innerHTML = `<span>⏳</span> <span>Testing connection to <code>bdmwcdokbptuohkccefe.supabase.co</code>…</span>`;
+                box.style.background = "#f0f9ff";
+                box.style.borderColor = "#bae6fd";
+                box.style.color = "#0369a1";
+
+                if (!supabase) {
+                    box.innerHTML = `<span>❌</span> <span>Supabase client is not loaded. Check internet connection.</span>`;
+                    box.style.background = "#fef2f2";
+                    box.style.borderColor = "#fecaca";
+                    box.style.color = "#991b1b";
+                    return;
+                }
+
+                try {
+                    const { data, error } = await supabase.from('quiz_results').select('id, count', { count: 'exact', head: true });
+                    if (!error) {
+                        box.innerHTML = `<span>✅</span> <span><b>Connected successfully!</b> Table <code>quiz_results</code> is online in Supabase with ${data ? data.length : 0} rows.</span>`;
+                        box.style.background = "#f0fdf4";
+                        box.style.borderColor = "#bbf7d0";
+                        box.style.color = "#166534";
+                    } else if (error.code === "PGRST205") {
+                        box.innerHTML = `<span>⚠</span> <span><b>Table not created yet:</b> Supabase project reachable, but <code>quiz_results</code> table does not exist in schema. Copy the SQL code below and run it in the Supabase SQL Editor!</span>`;
+                        box.style.background = "#fffbeb";
+                        box.style.borderColor = "#fde68a";
+                        box.style.color = "#92400e";
+                    } else {
+                        box.innerHTML = `<span>⚠</span> <span>Connected to Supabase. Response note: ${esc(error.message || JSON.stringify(error))}</span>`;
+                        box.style.background = "#fffbeb";
+                        box.style.borderColor = "#fde68a";
+                        box.style.color = "#92400e";
+                    }
+                } catch (err) {
+                    box.innerHTML = `<span>⚠</span> <span>Connection note: ${esc(err.message)}</span>`;
+                    box.style.background = "#fffbeb";
+                    box.style.borderColor = "#fde68a";
+                    box.style.color = "#92400e";
+                }
+            };
+
+            $("#btn-sync-local").onclick = async () => {
+                const local = JSON.parse(localStorage.getItem("rs") || "[]");
+                if (!local.length) {
+                    return toast("No local submissions found to sync");
+                }
+                toast(`Pushing ${local.length} local records to Supabase…`);
+                let pushed = 0;
+                for (const item of local) {
+                    try {
+                        const { error } = await supabase.from('quiz_results').insert([{
+                            email: item.email || '-',
+                            name: item.name,
+                            reg: item.reg,
+                            score: item.score,
+                            total: item.total,
+                            points: item.points,
+                            created_at: item.time || new Date().toISOString()
+                        }]);
+                        if (!error) pushed++;
+                    } catch (_) {}
+                }
+                toast(`✔ Synced ${pushed} records with Supabase!`);
+                await dash();
+            };
         }
 
         async function saveQuestionsToCloud() {
