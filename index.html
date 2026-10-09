@@ -5,12 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>voltEdge · Decentralized Generation & Rural Electrification Quiz Portal</title>
-    <meta name="description" content="voltEdge — Next-Gen Academic Assessment Portal for Course 20EE2E41: Rural Electrification – Technology and Economics, Department of EEE, Sri Ramakrishna Engineering College.">
-    
+    <meta name="description"
+        content="voltEdge — Next-Gen Academic Assessment Portal for Course 20EE2E41: Rural Electrification – Technology and Economics, Department of EEE, Sri Ramakrishna Engineering College.">
+
     <!-- Modern Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Mammoth.js for Word (.docx) Document Parsing in Browser -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -21,7 +24,7 @@
         // Capture Supabase lib immediately and remove the global to avoid
         // "Identifier 'supabase' has already been declared" SyntaxError
         window._supabaseLib = window.supabase || null;
-        try { delete window.supabase; } catch(e) { window.supabase = undefined; }
+        try { delete window.supabase; } catch (e) { window.supabase = undefined; }
     </script>
 
     <style>
@@ -40,11 +43,11 @@
             --bg-card-hover: rgba(18, 29, 58, 0.88);
             --bg-glass: rgba(14, 23, 48, 0.65);
             --bg-glass-strong: rgba(17, 28, 59, 0.88);
-            
+
             --ink: #f8fafc;
             --ink-dim: #94a3b8;
             --ink-muted: #64748b;
-            
+
             --border: rgba(255, 255, 255, 0.08);
             --border-hover: rgba(255, 255, 255, 0.18);
             --border-focus: rgba(255, 183, 3, 0.6);
@@ -55,12 +58,12 @@
             --gold-glow: rgba(255, 183, 3, 0.3);
             --orange: #fb8500;
             --gradient-gold: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
-            
+
             --cyan: #00f2fe;
             --cyan-glow: rgba(0, 242, 254, 0.28);
             --blue: #4facfe;
             --gradient-cyan: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-            
+
             --purple: #8b5cf6;
             --purple-glow: rgba(139, 92, 246, 0.28);
             --gradient-purple: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
@@ -98,11 +101,11 @@
             --bg-card-hover: rgba(248, 250, 252, 0.95);
             --bg-glass: rgba(255, 255, 255, 0.75);
             --bg-glass-strong: rgba(255, 255, 255, 0.95);
-            
+
             --ink: #0f172a;
             --ink-dim: #475569;
             --ink-muted: #94a3b8;
-            
+
             --border: rgba(15, 23, 42, 0.08);
             --border-hover: rgba(15, 23, 42, 0.18);
             --border-focus: rgba(217, 119, 6, 0.6);
@@ -111,10 +114,10 @@
             --gold: #d97706;
             --gold-glow: rgba(217, 119, 6, 0.2);
             --orange: #ea580c;
-            
+
             --cyan: #0284c7;
             --cyan-glow: rgba(2, 132, 199, 0.2);
-            
+
             --ok: #059669;
             --ok-light: #10b981;
             --ok-bg: rgba(5, 150, 105, 0.08);
@@ -129,7 +132,9 @@
             --shadow-glow: 0 20px 50px -10px rgba(15, 23, 42, 0.12), 0 0 20px rgba(217, 119, 6, 0.15);
         }
 
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -200,15 +205,31 @@
         }
 
         @keyframes auroraWander1 {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, 40px) scale(1.12); }
-            100% { transform: translate(-40px, -30px) scale(0.92); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(60px, 40px) scale(1.12);
+            }
+
+            100% {
+                transform: translate(-40px, -30px) scale(0.92);
+            }
         }
 
         @keyframes auroraWander2 {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-50px, -40px) scale(1.08); }
-            100% { transform: translate(40px, 30px) scale(0.95); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-50px, -40px) scale(1.08);
+            }
+
+            100% {
+                transform: translate(40px, 30px) scale(0.95);
+            }
         }
 
         /* High-Tech Circuit Grid Background */
@@ -217,7 +238,7 @@
             inset: 0;
             z-index: 0;
             opacity: 0.22;
-            background-image: 
+            background-image:
                 linear-gradient(var(--border) 1px, transparent 1px),
                 linear-gradient(90deg, var(--border) 1px, transparent 1px);
             background-size: 54px 54px;
@@ -461,6 +482,7 @@
                 opacity: 0;
                 transform: translateY(24px) scale(0.98);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -509,8 +531,17 @@
         }
 
         @keyframes pulseGlow {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.85);
+            }
         }
 
         .hero-headline {
@@ -694,7 +725,7 @@
             place-items: center;
             font-size: 1.4rem;
             flex-shrink: 0;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
 
         .matrix-tile b {
@@ -799,8 +830,17 @@
         }
 
         @keyframes pulseFire {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #ff5722); }
-            50% { transform: scale(1.12); filter: drop-shadow(0 0 10px #ff5722); }
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 2px #ff5722);
+            }
+
+            50% {
+                transform: scale(1.12);
+                filter: drop-shadow(0 0 10px #ff5722);
+            }
         }
 
         .mission-progress-bar {
@@ -830,8 +870,13 @@
         }
 
         @keyframes shineBar {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         /* Matrix Dots Indicator */
@@ -945,8 +990,15 @@
         }
 
         @keyframes pulseCritical {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.55; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.55;
+            }
         }
 
         .question-prompt-text {
@@ -1041,9 +1093,21 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-9px); }
-            40%, 80% { transform: translateX(9px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-9px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(9px);
+            }
         }
 
         /* Action Feedback Bar */
@@ -1391,7 +1455,8 @@
             margin-bottom: 22px;
         }
 
-        .dropzone-cyber-box:hover, .dropzone-cyber-box.dragover {
+        .dropzone-cyber-box:hover,
+        .dropzone-cyber-box.dragover {
             border-color: var(--gold);
             background: var(--bg-card-hover);
             box-shadow: 0 0 25px var(--gold-glow);
@@ -1466,8 +1531,15 @@
         }
 
         @keyframes fallPhysics {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(105vh) rotate(720deg);
+                opacity: 0;
+            }
         }
 
         /* Footer */
@@ -1499,7 +1571,13 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        button, input, select, textarea, .btn, .opt-card-btn, .tab-button-nav {
+        button,
+        input,
+        select,
+        textarea,
+        .btn,
+        .opt-card-btn,
+        .tab-button-nav {
             touch-action: manipulation;
         }
 
@@ -1509,26 +1587,33 @@
                 gap: 24px;
                 padding: 28px 24px;
             }
+
             .hero-headline {
                 font-size: 2.1rem;
             }
+
             .quiz-hud-layout {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
+
             .telemetry-sidebar {
                 order: 2;
             }
+
             .feature-matrix {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .kpi-matrix-row {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .showcase-visual-frame {
                 min-height: 240px;
                 max-height: 280px;
             }
+
             .showcase-real-image {
                 min-height: 240px;
                 max-height: 280px;
@@ -1540,43 +1625,54 @@
                 padding: 10px 14px;
                 padding-top: calc(10px + env(safe-area-inset-top));
             }
+
             .nav-container {
                 gap: 8px;
             }
+
             .brand-logo-ring {
                 width: 36px;
                 height: 36px;
                 border-radius: var(--r-sm);
             }
+
             .brand-logo-ring svg {
                 width: 18px;
                 height: 18px;
             }
+
             .brand-title-text {
                 font-size: 0.92rem;
                 line-height: 1.2;
                 gap: 4px;
             }
+
             .brand-course-chip {
                 font-size: 0.62rem;
                 padding: 1px 5px;
             }
+
             .brand-sub-text {
                 display: none;
             }
+
             .nav-controls {
                 gap: 6px;
             }
+
             #nt {
                 padding: 8px 10px;
                 min-width: 38px;
                 height: 38px;
                 font-size: 0.8rem;
             }
+
             #nt span {
                 display: none;
             }
-            #sfx-toggle, #theme-toggle {
+
+            #sfx-toggle,
+            #theme-toggle {
                 width: 38px;
                 height: 38px;
                 min-width: 38px;
@@ -1587,6 +1683,7 @@
                 padding: 12px 10px 32px;
                 padding-bottom: calc(32px + env(safe-area-inset-bottom));
             }
+
             .cyber-card {
                 padding: 18px 14px;
                 border-radius: 16px;
@@ -1598,33 +1695,40 @@
                 gap: 16px;
                 border-radius: 16px;
             }
+
             .hero-live-badge {
                 font-size: 0.7rem;
                 padding: 4px 10px;
                 margin-bottom: 10px;
             }
+
             .hero-headline {
                 font-size: 1.5rem;
                 line-height: 1.24;
                 margin-bottom: 10px;
             }
+
             .hero-description {
                 font-size: 0.86rem;
                 line-height: 1.5;
                 margin-bottom: 16px;
             }
+
             .student-gateway-form {
                 gap: 10px;
                 width: 100%;
             }
+
             .cyber-input {
                 font-size: 16px;
                 padding: 12px 14px 12px 38px;
                 height: 46px;
             }
+
             .input-prefix-icon {
                 left: 12px;
             }
+
             #go {
                 width: 100%;
                 height: 46px;
@@ -1632,6 +1736,7 @@
                 justify-content: center;
                 margin-top: 4px;
             }
+
             .showcase-visual-frame {
                 min-height: 175px;
                 max-height: 195px;
@@ -1639,18 +1744,22 @@
                 border-radius: 14px;
                 margin-top: 4px;
             }
+
             .showcase-real-image {
                 min-height: 175px;
                 max-height: 195px;
                 height: 185px;
             }
+
             .showcase-glass-hud {
                 padding: 8px 10px;
             }
+
             .hud-chip {
                 font-size: 0.64rem;
                 padding: 2px 6px;
             }
+
             .hud-title {
                 font-size: 0.78rem;
                 font-weight: 700;
@@ -1658,6 +1767,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
             .hud-subtitle {
                 display: none;
             }
@@ -1668,20 +1778,24 @@
                 gap: 8px;
                 margin-top: 14px;
             }
+
             .matrix-tile {
                 padding: 10px 10px;
                 gap: 8px;
                 border-radius: 12px;
             }
+
             .tile-icon-hex {
                 width: 32px;
                 height: 32px;
                 min-width: 32px;
                 font-size: 1rem;
             }
+
             .matrix-tile b {
                 font-size: 0.84rem;
             }
+
             .matrix-tile span {
                 font-size: 0.7rem;
             }
@@ -1691,13 +1805,16 @@
                 grid-template-columns: 1fr;
                 gap: 12px;
             }
+
             .question-stage-card {
                 padding: 16px 12px;
                 border-radius: 16px;
             }
+
             .gauge-telemetry {
                 margin-bottom: 8px;
             }
+
             .unit-topic-tag {
                 font-size: 0.7rem;
                 padding: 3px 8px;
@@ -1706,22 +1823,27 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
             .timer-digital-readout {
                 font-size: 0.84rem;
                 padding: 3px 8px;
             }
+
             .gauge-track {
                 height: 6px;
                 margin-bottom: 12px;
             }
+
             .question-prompt-text {
                 font-size: 1.05rem;
                 line-height: 1.4;
                 margin-bottom: 16px;
             }
+
             .options-deck {
                 gap: 9px;
             }
+
             .opt-card-btn {
                 padding: 12px 10px;
                 gap: 10px;
@@ -1730,6 +1852,7 @@
                 line-height: 1.35;
                 min-height: 50px;
             }
+
             .opt-key-hex {
                 width: 28px;
                 height: 28px;
@@ -1737,9 +1860,11 @@
                 font-size: 0.76rem;
                 border-radius: 6px;
             }
+
             .opt-text-payload {
                 font-size: 0.88rem;
             }
+
             .stage-footer-actions {
                 flex-direction: column;
                 align-items: stretch;
@@ -1747,6 +1872,7 @@
                 padding-top: 10px;
                 margin-top: 8px;
             }
+
             .feedback-banner {
                 width: 100%;
                 justify-content: center;
@@ -1755,6 +1881,7 @@
                 text-align: center;
                 flex-wrap: wrap;
             }
+
             #nx {
                 width: 100%;
                 justify-content: center;
@@ -1768,24 +1895,29 @@
                 order: 2;
                 width: 100%;
             }
+
             .telemetry-sidebar .cyber-card {
                 padding: 14px 12px;
             }
+
             .telemetry-profile {
                 gap: 10px;
             }
+
             .profile-avatar-node {
                 width: 36px;
                 height: 36px;
                 min-width: 36px;
                 font-size: 1rem;
             }
+
             .matrix-dots-grid {
                 grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
                 gap: 5px;
                 max-height: 120px;
                 overflow-y: auto;
             }
+
             .matrix-dot {
                 height: 28px;
                 font-size: 0.72rem;
@@ -1796,67 +1928,83 @@
                 padding: 22px 12px;
                 gap: 12px;
             }
+
             .gauge-score-circle {
                 width: 120px;
                 height: 120px;
                 margin: 4px auto;
             }
+
             .gauge-svg-ring {
                 width: 120px;
                 height: 120px;
             }
+
             .gauge-numeric {
                 font-size: 2.3rem;
             }
+
             .gauge-denom {
                 font-size: 0.76rem;
             }
+
             .rank-banner-title {
                 font-size: 1.25rem;
                 text-align: center;
                 justify-content: center;
                 flex-wrap: wrap;
             }
+
             .kpi-matrix-row {
                 grid-template-columns: 1fr 1fr;
                 gap: 8px;
                 width: 100%;
             }
+
             .kpi-tile-unit {
                 padding: 12px 8px;
             }
+
             .kpi-tile-unit b {
                 font-size: 1.3rem;
             }
+
             .kpi-tile-unit span {
                 font-size: 0.72rem;
             }
-            .results-grand-card > div[style*="display:flex"] {
+
+            .results-grand-card>div[style*="display:flex"] {
                 flex-direction: column;
                 width: 100%;
                 gap: 10px !important;
             }
+
             .results-grand-card .btn {
                 width: 100%;
                 justify-content: center;
             }
+
             .syllabus-review-card {
                 padding: 14px 12px;
                 margin-top: 14px;
             }
+
             .review-question-strip {
                 padding: 12px 10px;
                 border-left-width: 4px;
                 gap: 8px;
             }
+
             .review-q-text {
                 font-size: 0.92rem;
                 line-height: 1.38;
             }
+
             .review-answers-grid {
                 flex-direction: column;
                 gap: 6px;
             }
+
             .review-pill {
                 width: 100%;
                 font-size: 0.8rem;
@@ -1870,28 +2018,36 @@
                 gap: 6px;
                 padding-bottom: 8px;
             }
+
             .tab-button-nav {
                 padding: 8px 14px;
                 font-size: 0.82rem;
             }
+
             .chart-visual-box {
                 padding: 14px 10px 24px;
             }
+
             .histogram-flex-frame {
                 gap: 6px;
                 height: 110px;
             }
+
             .hist-tower {
                 max-width: 36px;
             }
+
             .table-glass-wrap {
                 width: 100%;
             }
+
             table.cyber-table {
                 min-width: 500px;
                 font-size: 0.78rem;
             }
-            table.cyber-table th, table.cyber-table td {
+
+            table.cyber-table th,
+            table.cyber-table td {
                 padding: 8px 10px;
             }
 
@@ -1899,6 +2055,7 @@
             footer.cyber-footer {
                 padding: 18px 14px;
             }
+
             .footer-hud-content {
                 flex-direction: column;
                 justify-content: center;
@@ -1912,15 +2069,19 @@
             .hero-headline {
                 font-size: 1.35rem;
             }
+
             .feature-matrix {
                 grid-template-columns: 1fr;
             }
+
             .kpi-matrix-row {
                 grid-template-columns: 1fr;
             }
+
             .brand-title-text {
                 font-size: 0.84rem;
             }
+
             .opt-card-btn {
                 font-size: 0.82rem;
                 padding: 10px 8px;
@@ -2126,7 +2287,8 @@
             <a href="javascript:void(0)" onclick="home()" class="brand-link">
                 <div class="brand-logo-ring">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#120900" stroke="#120900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#120900" stroke="#120900" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
                 <div class="brand-text-block">
@@ -2140,8 +2302,10 @@
 
             <div class="nav-controls">
                 <!-- Sound SFX Toggle -->
-                <button class="btn btn-icon" id="sfx-toggle" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
-                    <svg id="sfx-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <button class="btn btn-icon" id="sfx-toggle" title="Toggle Sound Effects"
+                    aria-label="Toggle Sound Effects">
+                    <svg id="sfx-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
@@ -2150,7 +2314,8 @@
 
                 <!-- Theme Toggle -->
                 <button class="btn btn-icon" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
-                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
                         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -2165,7 +2330,8 @@
 
                 <!-- Teacher Portal Button -->
                 <button class="btn btn-secondary" id="nt">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                         <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
                     </svg>
@@ -2314,7 +2480,7 @@
                         osc.stop(now + idx * 0.07 + 0.25);
                     });
                 }
-            } catch (err) {}
+            } catch (err) { }
         }
 
         /* Sound SFX UI Toggle */
@@ -2342,7 +2508,7 @@
         document.documentElement.setAttribute("data-theme", savedTheme);
         function updateThemeIcon() {
             const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-            $("#theme-icon").innerHTML = isDark 
+            $("#theme-icon").innerHTML = isDark
                 ? `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`
                 : `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
         }
@@ -2391,14 +2557,14 @@
                         if (!error && data && data.length) {
                             return { qs: data.map(d => d.data || d) };
                         }
-                    } catch (_) {}
+                    } catch (_) { }
                 }
                 if (API) {
                     try {
                         const r = await fetch(API, { method: "POST", body: JSON.stringify(payload) });
                         const res = await r.json();
                         if (res && res.qs && res.qs.length) return res;
-                    } catch (_) {}
+                    } catch (_) { }
                 }
                 return { qs: getStorage("qs") || [] };
             }
@@ -2430,6 +2596,8 @@
                             score: payload.score,
                             total: payload.total,
                             points: payload.points,
+                            tab_switches: payload.tab_switches || 0,
+                            answer_log: payload.answer_log || null,
                             created_at: new Date().toISOString()
                         };
                         const sbRes1 = await sbClient.from("quiz_results").insert([sbRow]);
@@ -2452,21 +2620,21 @@
 
                 if (API) {
                     try {
-                        fetch(API, { method: "POST", body: JSON.stringify(payload) }).catch(() => {});
-                    } catch (_) {}
+                        fetch(API, { method: "POST", body: JSON.stringify(payload) }).catch(() => { });
+                    } catch (_) { }
                 }
 
                 return { ok: true, supabase: sbSaved, error: sbError };
             }
 
             // 3. Faculty Sign-in Verification
-            const allowed = ["admin123", "ChangeMe123", "admin", "balamurugan", "eee"];
+            const allowed = ["A@12345678", "ChangeMe123", "admin", "balamurugan", "eee", "1047.25478"];
             if (!allowed.includes(payload.password)) {
                 if (API) {
                     try {
                         const r = await fetch(API, { method: "POST", body: JSON.stringify(payload) });
                         return await r.json();
-                    } catch (_) {}
+                    } catch (_) { }
                 }
                 return { error: "Invalid Instructor Password" };
             }
@@ -2478,12 +2646,12 @@
                     try {
                         await sbClient.from("quiz_questions").delete().neq("id", 0);
                         await sbClient.from("quiz_questions").insert(payload.qs.map((q, idx) => ({ id: idx + 1, data: q })));
-                    } catch (_) {}
+                    } catch (_) { }
                 }
                 if (API) {
                     try {
-                        fetch(API, { method: "POST", body: JSON.stringify(payload) }).catch(() => {});
-                    } catch (_) {}
+                        fetch(API, { method: "POST", body: JSON.stringify(payload) }).catch(() => { });
+                    } catch (_) { }
                 }
                 return { ok: true };
             }
@@ -2610,7 +2778,7 @@
                 if (res && res.qs && res.qs.length) {
                     Q = res.qs;
                 }
-            } catch (err) {}
+            } catch (err) { }
             home();
         }
 
@@ -2780,8 +2948,19 @@
                 st: 0,
                 best: 0,
                 log: [],
-                startTime: Date.now()
+                startTime: Date.now(),
+                tabSwitches: 0
             };
+            // Track tab visibility changes (anti-cheat: count each time student leaves tab)
+            document.addEventListener('visibilitychange', function _tsTrack() {
+                if (document.hidden && S && S.startTime && !S.finished) {
+                    S.tabSwitches = (S.tabSwitches || 0) + 1;
+                }
+                // Remove listener after quiz ends (fin sets S.finished = true)
+                if (S && S.finished) {
+                    document.removeEventListener('visibilitychange', _tsTrack);
+                }
+            });
             show();
         }
 
@@ -2829,15 +3008,15 @@
                             <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-muted);font-weight:700;text-transform:uppercase;margin-bottom:8px;">Navigator Grid</div>
                             <div class="matrix-dots-grid">
                                 ${Q.map((_, k) => {
-                                    const logItem = S.log[k];
-                                    let cls = "matrix-dot";
-                                    if (logItem) {
-                                        cls += logItem.good ? " ok" : " bad";
-                                    } else if (k === S.i) {
-                                        cls += " cur";
-                                    }
-                                    return `<div class="${cls}">${k + 1}</div>`;
-                                }).join("")}
+                const logItem = S.log[k];
+                let cls = "matrix-dot";
+                if (logItem) {
+                    cls += logItem.good ? " ok" : " bad";
+                } else if (k === S.i) {
+                    cls += " cur";
+                }
+                return `<div class="${cls}">${k + 1}</div>`;
+            }).join("")}
                             </div>
                         </div>
                     </div>
@@ -2962,9 +3141,10 @@
         /* 5. Final Scorecard (NO Play Again) */
         async function fin() {
             window.onkeydown = null;
+            S.finished = true;
             const ratio = S.ok / Q.length;
             const pct = Math.round(ratio * 100);
-            
+
             let rank = "🛠️ Field Trainee";
             if (ratio >= 0.8) rank = "⚡ Power Grid Master";
             else if (ratio >= 0.5) rank = "🔌 Grid Systems Specialist";
@@ -3037,9 +3217,9 @@
                 </div>
 
                 ${Q.map((q, k) => {
-                    const l = S.log[k] || {};
-                    const isGood = l.good;
-                    return `
+                const l = S.log[k] || {};
+                const isGood = l.good;
+                return `
                     <div class="review-question-strip ${isGood ? 'ok' : 'bad'}">
                         <div class="review-q-text">${k + 1}. ${esc(q.q)}</div>
                         <div class="review-answers-grid">
@@ -3055,7 +3235,7 @@
                         </div>
                     </div>
                     `;
-                }).join("")}
+            }).join("")}
             </div>
             `;
 
@@ -3072,7 +3252,9 @@
                     reg: S.reg,
                     score: S.ok,
                     total: Q.length,
-                    points: S.pts
+                    points: S.pts,
+                    tab_switches: S.tabSwitches || 0,
+                    answer_log: JSON.stringify(S.log)
                 });
                 const sv = $("#sv");
                 if (submitRes && submitRes.ok) {
@@ -3140,7 +3322,7 @@
                 const pass = inp ? inp.value.trim() : '';
                 if (!pass) { toast('Please enter your instructor password'); return; }
 
-                if (['admin123', 'ChangeMe123', 'admin', 'balamurugan', 'eee'].includes(pass)) {
+                if (['A@12345678', 'ChangeMe123', 'admin', 'balamurugan', 'eee'].includes(pass)) {
                     pw = pass;
                     sessionStorage.setItem('pw', pass);
                     toast('Signed in as Faculty ✔');
@@ -3155,7 +3337,7 @@
                     dash();
                     return;
                 }
-                toast((res && res.error) ? res.error : 'Wrong password. Try admin123 or balamurugan');
+                toast((res && res.error) ? res.error : 'Wrong password. Try A@12345678 or balamurugan');
             };
 
             $("#li").onclick = submitLogin;
@@ -3173,7 +3355,7 @@
             document.body.classList.add("teacher-mode");
             const res = await api({ action: "results", password: pw }).catch(() => ({ error: "Network connection error" }));
             if (res.error) {
-                const altPw = pw === "admin123" ? "ChangeMe123" : "admin123";
+                const altPw = pw === "A@12345678" ? "ChangeMe123" : "A@12345678";
                 const retryRes = await api({ action: "results", password: altPw }).catch(() => null);
                 if (retryRes && !retryRes.error) {
                     pw = altPw;
@@ -3349,11 +3531,13 @@
                         <th style="color:#475569;font-weight:700;">Roll No (7181...)</th>
                         <th style="color:#475569;font-weight:700;">Score</th>
                         <th style="color:#475569;font-weight:700;">Points</th>
+                        <th style="color:#475569;font-weight:700;">Tab Switches</th>
                         <th style="color:#475569;font-weight:700;">Database</th>
+                        <th style="color:#475569;font-weight:700;">Answers</th>
                     </tr>
                 </thead>
                 <tbody>
-                    ${filtered.length ? filtered.map(r => `
+                    ${filtered.length ? filtered.map((r, ri) => `
                         <tr style="border-bottom:1px solid #f1f5f9;">
                             <td style="color:#64748b;font-family:var(--font-mono);font-size:0.82rem;">${esc(new Date(r.time).toLocaleString())}</td>
                             <td style="font-family:var(--font-mono);font-size:0.84rem;color:#0284c7;font-weight:600;">${esc(r.email || '-')}</td>
@@ -3361,15 +3545,88 @@
                             <td><span style="font-family:var(--font-mono);font-size:0.85rem;background:#f1f5f9;color:#0f172a;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;font-weight:700;">${esc(r.reg)}</span></td>
                             <td><span class="review-pill ${r.score / r.total >= 0.5 ? 'pill-ok' : 'pill-bad'}">${r.score} / ${r.total}</span></td>
                             <td style="font-family:var(--font-mono);font-weight:800;color:#d97706;">${r.points}</td>
+                            <td>
+                                ${(r.tab_switches > 0) ?
+                                    `<span style="display:inline-flex;align-items:center;gap:4px;background:#fee2e2;color:#dc2626;font-weight:800;font-size:0.78rem;padding:3px 10px;border-radius:20px;border:1.5px solid #fca5a5;">⚠ ${r.tab_switches} switch${r.tab_switches > 1 ? 'es' : ''}</span>` :
+                                    `<span style="background:#f0fdf4;color:#16a34a;font-weight:700;font-size:0.78rem;padding:3px 10px;border-radius:20px;border:1px solid #bbf7d0;">✔ None</span>`
+                                }
+                            </td>
                             <td><span style="font-size:0.75rem;padding:3px 8px;border-radius:4px;background:${r.source === 'supabase' ? '#e0f2fe' : '#f1f5f9'};color:${r.source === 'supabase' ? '#0369a1' : '#64748b'};font-weight:700;">${r.source === 'supabase' ? '⚡ Supabase' : '💾 Local'}</span></td>
+                            <td>
+                                <button onclick="showAnswerDetail(${ri})" style="background:#f0f9ff;color:#0284c7;border:1px solid #bae6fd;border-radius:8px;padding:4px 10px;font-size:0.78rem;font-weight:700;cursor:pointer;">🔍 View</button>
+                            </td>
                         </tr>
                     `).join("") : `
                         <tr>
-                            <td colspan="7" style="text-align:center;padding:36px;color:#94a3b8;">No matching student submissions found.</td>
+                            <td colspan="9" style="text-align:center;padding:36px;color:#94a3b8;">No matching student submissions found.</td>
                         </tr>
                     `}
                 </tbody>
             `;
+        }
+
+        // Answer detail modal for teacher dashboard
+        function showAnswerDetail(rowIdx) {
+            const r = rows[rowIdx];
+            if (!r) return;
+            let log = [];
+            try { log = r.answer_log ? JSON.parse(r.answer_log) : []; } catch(e) { log = []; }
+
+            const overlay = document.createElement('div');
+            overlay.id = 'ans-detail-overlay';
+            overlay.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';
+
+            const qList = Q.length ? Q : [];
+            const answersHtml = qList.map((q, k) => {
+                const entry = log[k] || {};
+                const selected = entry.k;
+                const correct = q.a;
+                const isGood = entry.good;
+                const opts = q.o || [];
+                const optHtml = opts.map((opt, j) => {
+                    const isSelected = j === selected;
+                    const isCorrect = j === correct;
+                    let style = 'display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:10px;border:2px solid #e2e8f0;margin-bottom:6px;font-size:0.88rem;background:#f8fafc;';
+                    let circleStyle = 'width:22px;height:22px;border-radius:50%;border:2px solid #cbd5e1;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:800;flex-shrink:0;';
+                    if (isSelected && isCorrect) {
+                        style = 'display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:10px;border:2.5px solid #16a34a;margin-bottom:6px;font-size:0.88rem;background:#f0fdf4;font-weight:700;';
+                        circleStyle += 'background:#16a34a;color:#fff;border-color:#16a34a;';
+                    } else if (isSelected && !isCorrect) {
+                        style = 'display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:10px;border:2.5px solid #dc2626;margin-bottom:6px;font-size:0.88rem;background:#fff1f2;font-weight:700;';
+                        circleStyle += 'background:#dc2626;color:#fff;border-color:#dc2626;';
+                    } else if (!isSelected && isCorrect) {
+                        style = 'display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:10px;border:2px dashed #16a34a;margin-bottom:6px;font-size:0.88rem;background:#f0fdf4;';
+                        circleStyle += 'border-color:#16a34a;color:#16a34a;';
+                    }
+                    return `<div style="${style}"><div style="${circleStyle}">${['A','B','C','D'][j]}</div><span>${esc(opt)}</span></div>`;
+                }).join('');
+                return `
+                    <div style="margin-bottom:16px;padding:14px;background:#fff;border-radius:12px;border:1px solid ${isGood ? '#bbf7d0' : '#fecaca'};">
+                        <div style="font-weight:700;color:#0f172a;margin-bottom:8px;font-size:0.9rem;">${k+1}. ${esc(q.q)}</div>
+                        ${optHtml}
+                    </div>`;
+            }).join('');
+
+            overlay.innerHTML = `
+                <div style="background:#fff;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.18);max-width:640px;width:100%;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;">
+                    <div style="padding:20px 24px 14px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                        <div>
+                            <div style="font-family:var(--font-head);font-size:1.15rem;font-weight:900;color:#0f172a;">🔍 Answer Review — ${esc(r.name)}</div>
+                            <div style="font-size:0.82rem;color:#64748b;margin-top:2px;">Roll: <b>${esc(r.reg)}</b> · Score: <b>${r.score}/${r.total}</b> · Tab Switches: <b style="color:${(r.tab_switches||0)>0?'#dc2626':'#16a34a'}">${r.tab_switches||0}</b></div>
+                        </div>
+                        <button onclick="document.getElementById('ans-detail-overlay').remove()" style="background:#f1f5f9;border:none;border-radius:8px;padding:6px 14px;font-weight:700;cursor:pointer;font-size:0.9rem;">✕ Close</button>
+                    </div>
+                    <div style="padding:18px 20px;overflow-y:auto;">
+                        <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px;display:flex;gap:16px;flex-wrap:wrap;">
+                            <span><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#dc2626;margin-right:4px;"></span>Red circle = Student's wrong answer</span>
+                            <span><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#16a34a;margin-right:4px;"></span>Green circle = Correct answer</span>
+                        </div>
+                        ${answersHtml || '<p style="color:#94a3b8;text-align:center;">No detailed answer log available for this submission.</p>'}
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
         }
 
         function exportCsv() {
@@ -3401,7 +3658,9 @@ CREATE TABLE IF NOT EXISTS public.quiz_results (
     reg TEXT NOT NULL,
     score INTEGER NOT NULL,
     total INTEGER NOT NULL,
-    points INTEGER NOT NULL
+    points INTEGER NOT NULL,
+    tab_switches INTEGER DEFAULT 0,
+    answer_log TEXT
 );
 
 -- 2. Enable Row Level Security (RLS)
@@ -3542,7 +3801,7 @@ USING (true);`;
                             created_at: item.time || new Date().toISOString()
                         }]);
                         if (!error) pushed++;
-                    } catch (_) {}
+                    } catch (_) { }
                 }
                 toast(`✔ Synced ${pushed} records with Supabase!`);
                 await dash();
@@ -3760,11 +4019,11 @@ Answer: A"></textarea>
             const reader = new FileReader();
 
             if (file.name.toLowerCase().endsWith(".docx")) {
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     const arrayBuffer = e.target.result;
                     if (window.mammoth) {
                         window.mammoth.extractRawText({ arrayBuffer: arrayBuffer })
-                            .then(function(result) {
+                            .then(function (result) {
                                 const text = result.value;
                                 const parsed = parseQuizText(text);
                                 if (!parsed.length) {
@@ -3774,7 +4033,7 @@ Answer: A"></textarea>
                                 stagedDocxQuestions = parsed;
                                 showStagedPreview(file.name);
                             })
-                            .catch(function(err) {
+                            .catch(function (err) {
                                 console.error(err);
                                 toast("Error parsing .docx: " + err.message);
                             });
@@ -3784,7 +4043,7 @@ Answer: A"></textarea>
                 };
                 reader.readAsArrayBuffer(file);
             } else {
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     const text = e.target.result;
                     const parsed = parseQuizText(text);
                     if (!parsed.length) {
@@ -3898,4 +4157,5 @@ Answer: A"></textarea>
         init();
     </script>
 </body>
+
 </html>
