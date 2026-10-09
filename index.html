@@ -17,6 +17,12 @@
 
     <!-- Supabase JS Client for Cloud Database Integration -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Capture Supabase lib immediately and remove the global to avoid
+        // "Identifier 'supabase' has already been declared" SyntaxError
+        window._supabaseLib = window.supabase || null;
+        try { delete window.supabase; } catch(e) { window.supabase = undefined; }
+    </script>
 
     <style>
         /* ==========================================================================
@@ -2199,8 +2205,8 @@
         // Supabase Client Initialization
         let sbClient = null;
         try {
-            if (window.supabase) {
-                sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            if (window._supabaseLib) {
+                sbClient = window._supabaseLib.createClient(SUPABASE_URL, SUPABASE_KEY);
             }
         } catch (e) {
             console.warn("Supabase initialization error:", e);
