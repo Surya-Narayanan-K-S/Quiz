@@ -2197,10 +2197,10 @@
         const INSTRUCTOR_NAME = "Dr. K Balamurugan";
 
         // Supabase Client Initialization
-        let supabase = null;
+        let sbClient = null;
         try {
             if (window.supabase) {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
             }
         } catch (e) {
             console.warn("Supabase initialization error:", e);
@@ -2379,9 +2379,9 @@
 
             // 1. Fetch Questions
             if (payload.action === "questions") {
-                if (supabase) {
+                if (sbClient) {
                     try {
-                        const { data, error } = await supabase.from("quiz_questions").select("*").order("id", { ascending: true });
+                        const { data, error } = await sbClient.from("quiz_questions").select("*").order("id", { ascending: true });
                         if (!error && data && data.length) {
                             return { qs: data.map(d => d.data || d) };
                         }
@@ -2415,7 +2415,7 @@
                 let sbSaved = false;
                 let sbError = null;
 
-                if (supabase) {
+                if (sbClient) {
                     try {
                         const sbRow = {
                             email: payload.email || "-",
@@ -2426,12 +2426,12 @@
                             points: payload.points,
                             created_at: new Date().toISOString()
                         };
-                        const sbRes1 = await supabase.from("quiz_results").insert([sbRow]);
+                        const sbRes1 = await sbClient.from("quiz_results").insert([sbRow]);
                         if (!sbRes1.error) {
                             sbSaved = true;
                         } else {
                             console.warn("quiz_results insert note:", sbRes1.error);
-                            const sbRes2 = await supabase.from("results").insert([sbRow]);
+                            const sbRes2 = await sbClient.from("results").insert([sbRow]);
                             if (!sbRes2.error) {
                                 sbSaved = true;
                             } else {
@@ -2468,10 +2468,10 @@
             // 4. Save Question Bank
             if (payload.action === "save") {
                 localStorage.setItem("qs", JSON.stringify(payload.qs));
-                if (supabase) {
+                if (sbClient) {
                     try {
-                        await supabase.from("quiz_questions").delete().neq("id", 0);
-                        await supabase.from("quiz_questions").insert(payload.qs.map((q, idx) => ({ id: idx + 1, data: q })));
+                        await sbClient.from("quiz_questions").delete().neq("id", 0);
+                        await sbClient.from("quiz_questions").insert(payload.qs.map((q, idx) => ({ id: idx + 1, data: q })));
                     } catch (_) {}
                 }
                 if (API) {
@@ -2487,11 +2487,11 @@
                 let rows = [];
                 let fromSupabase = false;
 
-                if (supabase) {
+                if (sbClient) {
                     try {
-                        let sbRes = await supabase.from("quiz_results").select("*").order("created_at", { ascending: false });
+                        let sbRes = await sbClient.from("quiz_results").select("*").order("created_at", { ascending: false });
                         if (sbRes.error || !sbRes.data || !sbRes.data.length) {
-                            sbRes = await supabase.from("results").select("*").order("created_at", { ascending: false });
+                            sbRes = await sbClient.from("results").select("*").order("created_at", { ascending: false });
                         }
                         if (!sbRes.error && sbRes.data && sbRes.data.length) {
                             fromSupabase = true;
@@ -3483,7 +3483,7 @@ USING (true);`;
                 box.style.borderColor = "#bae6fd";
                 box.style.color = "#0369a1";
 
-                if (!supabase) {
+                if (!sbClient) {
                     box.innerHTML = `<span>❌</span> <span>Supabase client is not loaded. Check internet connection.</span>`;
                     box.style.background = "#fef2f2";
                     box.style.borderColor = "#fecaca";
@@ -3492,7 +3492,7 @@ USING (true);`;
                 }
 
                 try {
-                    const { data, error } = await supabase.from('quiz_results').select('id, count', { count: 'exact', head: true });
+                    const { data, error } = await sbClient.from('quiz_results').select('id, count', { count: 'exact', head: true });
                     if (!error) {
                         box.innerHTML = `<span>✅</span> <span><b>Connected successfully!</b> Table <code>quiz_results</code> is online in Supabase with ${data ? data.length : 0} rows.</span>`;
                         box.style.background = "#f0fdf4";
@@ -3526,7 +3526,7 @@ USING (true);`;
                 let pushed = 0;
                 for (const item of local) {
                     try {
-                        const { error } = await supabase.from('quiz_results').insert([{
+                        const { error } = await sbClient.from('quiz_results').insert([{
                             email: item.email || '-',
                             name: item.name,
                             reg: item.reg,
