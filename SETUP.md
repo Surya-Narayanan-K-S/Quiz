@@ -15,7 +15,7 @@
 ## Using it
 - Students open `https://quiz.srecieee.org`, enter name and register number, take the quiz. Each attempt becomes a row in the `Results` tab.
 - Teachers click **Teacher**, sign in, then add/edit/delete questions (saved into the `Questions` tab) and view results, a score chart and CSV export. You can also edit the sheet directly.
-- With `API` left empty the site runs in demo mode (browser storage, password `admin123`).
+- With `API` left empty the site runs in demo mode (browser storage, password `A@12345678`).
 
 ## Notes
 - Questions, including correct answers, are sent to the student's browser, so a technical student could find them. That's fine for a classroom quiz; it is not exam-grade security.

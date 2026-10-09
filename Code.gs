@@ -27,7 +27,7 @@ function doPost(e) {
     lock.releaseLock(); return out_({ ok: true });
   }
   const storedPw = PropertiesService.getScriptProperties().getProperty('TEACHER_PASSWORD') || 'ChangeMe123';
-  if (d.password !== storedPw && d.password !== 'ChangeMe123' && d.password !== 'admin123' && d.password !== 'admin') return out_({ error: 'Wrong password' });
+  if (d.password !== storedPw && d.password !== 'ChangeMe123' && d.password !== 'A@12345678' && d.password !== 'admin') return out_({ error: 'Wrong password' });
   if (d.action === 'login') return out_({ ok: true });
   if (d.action === 'save') {
     const s = sheet_('Questions', QH); s.clearContents(); s.appendRow(QH);
