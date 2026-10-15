@@ -3376,7 +3376,7 @@
                 <div class="matrix-tile">
                     <div class="tile-icon-hex">⚡</div>
                     <div>
-                        <b>Supabase Cloud</b>
+                        <b>Cloud Sync</b>
                         <span>Instant Live Sync</span>
                     </div>
                 </div>
@@ -3680,7 +3680,7 @@
                 <p style="color:var(--ink-dim);max-width:560px;font-size:0.96rem;">
                     Official assessment completed for <b>${esc(S.name)}</b><br>
                     <span style="font-family:var(--font-mono);font-size:0.86rem;color:var(--ink);">Roll No: <b>${esc(S.reg)}</b> · Email: <b>${esc(S.email)}</b></span><br>
-                    Course In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>. Your score has been submitted to Supabase records.
+                    Course In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>. Your score has been submitted to course records.
                 </p>
 
                 <div class="kpi-matrix-row">
@@ -3714,7 +3714,7 @@
                 </div>
 
                 <div id="sv" style="font-family:var(--font-mono);font-size:0.84rem;color:var(--ink-muted);margin-top:6px;">
-                    Syncing result with Supabase Cloud Database…
+                    Syncing result with Cloud Database…
                 </div>
             </div>
 
@@ -3768,7 +3768,7 @@
                 const sv = $("#sv");
                 if (submitRes && submitRes.ok) {
                     if (submitRes.supabase) {
-                        sv.innerHTML = `<span style="color:var(--ok-light)">✔ Verified &amp; Saved to Supabase Cloud Database (quiz_results)</span>`;
+                        sv.innerHTML = `<span style="color:var(--ok-light)">✔ Verified &amp; Saved to Cloud Database</span>`;
                     } else {
                         sv.innerHTML = `<span style="color:var(--ok-light)">✔ Saved to Course Records (Local &amp; Cloud Queue)</span>`;
                     }
@@ -3801,7 +3801,7 @@
                     Faculty In-Charge: ${esc(INSTRUCTOR_NAME)}
                 </div>
                 <h2 style="font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:#0f172a;margin-bottom:6px;">Faculty Sign-in</h2>
-                <p style="color:#64748b;font-size:0.88rem;margin-bottom:20px;">Access student telemetry, Supabase cloud sync, Word (.docx) question bank import, and CSV records.</p>
+                <p style="color:#64748b;font-size:0.88rem;margin-bottom:20px;">Access student telemetry, cloud sync, Word (.docx) question bank import, and CSV records.</p>
 
                 <div style="position:relative;margin-bottom:12px;">
                     <input id="login-password" name="login-password" class="cyber-input" type="password"
@@ -3906,7 +3906,7 @@
                                 Faculty In-Charge: ${esc(INSTRUCTOR_NAME)}
                             </span>
                         </div>
-                        <span style="font-size:0.86rem;color:#64748b;">Course 25EE2201 - PCB Design · Dept of EEE · Supabase Cloud: <b>bdmwcdokbptuohkccefe.supabase.co</b></span>
+                        <span style="font-size:0.86rem;color:#64748b;">Course 25EE2201 - PCB Design · Dept of EEE · Cloud DB Connected</span>
                     </div>
                     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
                         <button class="btn btn-secondary btn-sm" id="btn-open-print" style="border:1px solid #0284c7;color:#0284c7;background:#f0f9ff;font-weight:700;">
@@ -3944,7 +3944,7 @@
                         📄 Import Word (.docx)
                     </button>
                     <button data-t="s" class="tab-button-nav ${tab === 's' ? 'active' : ''}" style="border:1px solid #0284c7;color:#0284c7;background:#f0f9ff;">
-                        ⚡ Supabase Database
+                        ⚡ Cloud Database
                     </button>
                 </div>
 
@@ -4009,7 +4009,7 @@
                 </div>
                 <div style="display:flex;gap:10px;">
                     <button class="btn btn-secondary btn-sm" id="btn-reload-sb" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0f172a;">
-                        🔄 Refresh from Supabase
+                        🔄 Refresh Records
                     </button>
                     <button class="btn btn-primary btn-sm" id="cv">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -4027,7 +4027,7 @@
             $("#se").oninput = e => renderTable(e.target.value);
             $("#cv").onclick = exportCsv;
             $("#btn-reload-sb").onclick = async () => {
-                toast("Fetching latest submissions from Supabase…");
+                toast("Fetching latest submissions from Cloud…");
                 await dash();
             };
         }
@@ -4065,7 +4065,7 @@
                     `<span style="background:#f0fdf4;color:#16a34a;font-weight:700;font-size:0.78rem;padding:3px 10px;border-radius:20px;border:1px solid #bbf7d0;">✔ None</span>`
                 }
                             </td>
-                            <td><span style="font-size:0.75rem;padding:3px 8px;border-radius:4px;background:${r.source === 'supabase' ? '#e0f2fe' : '#f1f5f9'};color:${r.source === 'supabase' ? '#0369a1' : '#64748b'};font-weight:700;">${r.source === 'supabase' ? '⚡ Supabase' : '💾 Local'}</span></td>
+                            <td><span style="font-size:0.75rem;padding:3px 8px;border-radius:4px;background:${r.source === 'supabase' ? '#e0f2fe' : '#f1f5f9'};color:${r.source === 'supabase' ? '#0369a1' : '#64748b'};font-weight:700;">${r.source === 'supabase' ? '⚡ Cloud' : '💾 Local'}</span></td>
                             <td>
                                 <button onclick="showAnswerDetail(${ri})" style="background:#f0f9ff;color:#0284c7;border:1px solid #bae6fd;border-radius:8px;padding:4px 10px;font-size:0.78rem;font-weight:700;cursor:pointer;">🔍 View</button>
                             </td>
@@ -4210,9 +4210,9 @@ USING (true);`;
             <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:var(--r-md);padding:24px;display:flex;flex-direction:column;gap:18px;">
                 <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
                     <div>
-                        <h3 style="font-family:var(--font-head);font-size:1.3rem;font-weight:900;color:#0f172a;">⚡ Supabase Cloud Integration Console</h3>
+                        <h3 style="font-family:var(--font-head);font-size:1.3rem;font-weight:900;color:#0f172a;">⚡ Cloud Integration Console</h3>
                         <p style="font-size:0.86rem;color:#64748b;margin-top:2px;">
-                            Active Project: <code style="background:#e2e8f0;padding:2px 6px;border-radius:4px;color:#0f172a;">https://bdmwcdokbptuohkccefe.supabase.co</code>
+                            Active Project: <code style="background:#e2e8f0;padding:2px 6px;border-radius:4px;color:#0f172a;">Cloud DB · Quiz Results</code>
                         </p>
                     </div>
                     <div style="display:flex;gap:10px;">
@@ -4220,22 +4220,22 @@ USING (true);`;
                             🔌 Test Connection
                         </button>
                         <button class="btn btn-secondary btn-sm" id="btn-sync-local">
-                            ⬆ Push Local Results to Supabase
+                            ⬆ Push Local Results to Cloud
                         </button>
                     </div>
                 </div>
 
                 <div id="sb-status-box" style="padding:14px;border-radius:var(--r-sm);background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-size:0.88rem;display:flex;align-items:center;gap:10px;">
                     <span>🟢</span>
-                    <div><b>Supabase Configured:</b> Client initialized with publishable key and connected to <code>bdmwcdokbptuohkccefe.supabase.co</code>.</div>
+                    <div><b>Cloud Database Configured:</b> Client initialized and connected to cloud records.</div>
                 </div>
 
                 <!-- Supabase Table SQL Code -->
                 <div>
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
                         <div>
-                            <b style="font-family:var(--font-head);font-size:1.05rem;color:#0f172a;">📋 Supabase Table Code (SQL)</b>
-                            <div style="font-size:0.82rem;color:#64748b;">Execute this SQL query in your Supabase SQL Editor to initialize <code>quiz_results</code> and <code>quiz_questions</code> tables with full public access policies.</div>
+                            <b style="font-family:var(--font-head);font-size:1.05rem;color:#0f172a;">📋 Database Table Code (SQL)</b>
+                            <div style="font-size:0.82rem;color:#64748b;">Execute this SQL query in the SQL Editor to initialize <code>quiz_results</code> and <code>quiz_questions</code> tables with full public access policies.</div>
                         </div>
                         <button class="btn btn-secondary btn-sm" id="btn-copy-sql" style="border:1px solid #cbd5e1;">
                             📋 Copy SQL Code
@@ -4249,7 +4249,7 @@ USING (true);`;
 
             $("#btn-copy-sql").onclick = () => {
                 navigator.clipboard.writeText(sqlCode).then(() => {
-                    toast("✔ Supabase SQL table code copied to clipboard!");
+                    toast("✔ SQL table code copied to clipboard!");
                 }).catch(() => {
                     toast("Please select and copy the SQL code manually");
                 });
@@ -4257,13 +4257,13 @@ USING (true);`;
 
             $("#btn-test-sb").onclick = async () => {
                 const box = $("#sb-status-box");
-                box.innerHTML = `<span>⏳</span> <span>Testing connection to <code>bdmwcdokbptuohkccefe.supabase.co</code>…</span>`;
+                box.innerHTML = `<span>⏳</span> <span>Testing cloud database connection…</span>`;
                 box.style.background = "#f0f9ff";
                 box.style.borderColor = "#bae6fd";
                 box.style.color = "#0369a1";
 
                 if (!sbClient) {
-                    box.innerHTML = `<span>❌</span> <span>Supabase client is not loaded. Check internet connection.</span>`;
+                    box.innerHTML = `<span>❌</span> <span>Cloud client is not loaded. Check internet connection.</span>`;
                     box.style.background = "#fef2f2";
                     box.style.borderColor = "#fecaca";
                     box.style.color = "#991b1b";
@@ -4273,17 +4273,17 @@ USING (true);`;
                 try {
                     const { data, error } = await sbClient.from('quiz_results').select('id, count', { count: 'exact', head: true });
                     if (!error) {
-                        box.innerHTML = `<span>✅</span> <span><b>Connected successfully!</b> Table <code>quiz_results</code> is online in Supabase with ${data ? data.length : 0} rows.</span>`;
+                        box.innerHTML = `<span>✅</span> <span><b>Connected successfully!</b> Table <code>quiz_results</code> is online with ${data ? data.length : 0} rows.</span>`;
                         box.style.background = "#f0fdf4";
                         box.style.borderColor = "#bbf7d0";
                         box.style.color = "#166534";
                     } else if (error.code === "PGRST205") {
-                        box.innerHTML = `<span>⚠</span> <span><b>Table not created yet:</b> Supabase project reachable, but <code>quiz_results</code> table does not exist in schema. Copy the SQL code below and run it in the Supabase SQL Editor!</span>`;
+                        box.innerHTML = `<span>⚠</span> <span><b>Table not created yet:</b> Cloud project reachable, but <code>quiz_results</code> table does not exist in schema. Copy the SQL code below and run it in the SQL Editor!</span>`;
                         box.style.background = "#fffbeb";
                         box.style.borderColor = "#fde68a";
                         box.style.color = "#92400e";
                     } else {
-                        box.innerHTML = `<span>⚠</span> <span>Connected to Supabase. Response note: ${esc(error.message || JSON.stringify(error))}</span>`;
+                        box.innerHTML = `<span>⚠</span> <span>Connected to Cloud. Response note: ${esc(error.message || JSON.stringify(error))}</span>`;
                         box.style.background = "#fffbeb";
                         box.style.borderColor = "#fde68a";
                         box.style.color = "#92400e";
@@ -4301,7 +4301,7 @@ USING (true);`;
                 if (!local.length) {
                     return toast("No local submissions found to sync");
                 }
-                toast(`Pushing ${local.length} local records to Supabase…`);
+                toast(`Pushing ${local.length} local records to Cloud…`);
                 let pushed = 0;
                 for (const item of local) {
                     try {
@@ -4317,7 +4317,7 @@ USING (true);`;
                         if (!error) pushed++;
                     } catch (_) { }
                 }
-                toast(`✔ Synced ${pushed} records with Supabase!`);
+                toast(`✔ Synced ${pushed} records with Cloud!`);
                 await dash();
             };
         }
