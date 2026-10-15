@@ -3895,12 +3895,35 @@
             draw();
         }
 
+        function getStudentSection(r) {
+            const reg = String((r && r.reg) || r || '').trim();
+            const name = String((r && r.name) || '').toUpperCase();
+            if (/\bEEE[\s\-_]*A\b/i.test(name) || /\bSEC(?:TION)?[\s\-_]*A\b/i.test(name)) return "EEE A";
+            if (/\bEEE[\s\-_]*B\b/i.test(name) || /\bSEC(?:TION)?[\s\-_]*B\b/i.test(name)) return "EEE B";
+            const m = reg.match(/(\d{3,4})$/);
+            if (m) {
+                const num = parseInt(m[1], 10);
+                if (num >= 301 && num <= 330) return "EEE A";
+                if (num > 330 && num <= 380) return "EEE B";
+                if (num <= 60) return "EEE A";
+                return "EEE B";
+            }
+            return "EEE A";
+        }
+
+        let currentSectionFilter = "ALL";
+
         function draw() {
             document.body.classList.add("teacher-mode");
             const totalAttempts = rows.length;
             const scoresPct = rows.map(r => r.total ? (r.score / r.total) * 100 : 0);
             const avgScore = totalAttempts ? Math.round(scoresPct.reduce((a, b) => a + b, 0) / totalAttempts) : 0;
             const topScore = totalAttempts ? Math.max(...scoresPct.map(Math.round)) : 0;
+
+            const rowsA = rows.filter(r => getStudentSection(r) === "EEE A");
+            const rowsB = rows.filter(r => getStudentSection(r) === "EEE B");
+            const avgA = rowsA.length ? Math.round(rowsA.reduce((acc, r) => acc + (r.score / r.total) * 100, 0) / rowsA.length) : 0;
+            const avgB = rowsB.length ? Math.round(rowsB.reduce((acc, r) => acc + (r.score / r.total) * 100, 0) / rowsB.length) : 0;
 
             const bins = [0, 0, 0, 0, 0];
             scoresPct.forEach(p => {
@@ -3911,7 +3934,7 @@
 
             app.innerHTML = `
             <div class="cyber-card" style="background:#ffffff;border:1px solid #e2e8f0;box-shadow:0 10px 30px rgba(0,0,0,0.04);border-radius:var(--r-md);padding:26px;">
-                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:22px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:16px;">
                     <div>
                         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;">
                             <h2 style="font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:#0f172a;margin:0;">Instructor Command Portal</h2>
@@ -3919,7 +3942,7 @@
                                 Faculty In-Charge: ${esc(INSTRUCTOR_NAME)}
                             </span>
                         </div>
-                        <span style="font-size:0.86rem;color:#64748b;">Course 25EE2201 - PCB Design · Dept of EEE · Cloud DB Connected</span>
+                        <span style="font-size:0.86rem;color:#64748b;">Course 25EE2201 - PCB Design · Dept of EEE · Cloud Records Connected</span>
                     </div>
                     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
                         <button class="btn btn-secondary btn-sm" id="btn-open-print" style="border:1px solid #0284c7;color:#0284c7;background:#f0f9ff;font-weight:700;">
@@ -3927,6 +3950,32 @@
                         </button>
                         <button class="btn btn-secondary btn-sm" id="bk">Student View</button>
                         <button class="btn btn-secondary btn-sm" id="lo">Sign Out</button>
+                    </div>
+                </div>
+
+                <!-- Prominent PCB Design Assessment Banner -->
+                <div style="background:linear-gradient(135deg, #090e1e 0%, #172554 100%);color:#ffffff;border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border:1px solid rgba(0,242,254,0.3);box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+                    <div style="display:flex;align-items:center;gap:14px;">
+                        <div style="width:46px;height:46px;border-radius:10px;background:rgba(255,183,3,0.15);border:1.5px solid #ffb703;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">
+                            ⚡
+                        </div>
+                        <div>
+                            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                                <span style="font-family:var(--font-head);font-size:1.15rem;font-weight:900;color:#ffb703;letter-spacing:0.5px;">25EE2201 — PCB DESIGN ASSESSMENT</span>
+                                <span style="background:rgba(0,242,254,0.15);color:#38bdf8;font-size:0.75rem;font-weight:800;padding:2px 10px;border-radius:4px;border:1px solid rgba(56,189,248,0.3);font-family:var(--font-mono);">EEE-A &amp; EEE-B</span>
+                            </div>
+                            <div style="font-size:0.82rem;color:#94a3b8;margin-top:2px;">
+                                Department of Electrical &amp; Electronics Engineering · Sri Ramakrishna Engineering College
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <div style="background:rgba(255,255,255,0.08);padding:6px 14px;border-radius:8px;font-size:0.82rem;font-weight:700;color:#e2e8f0;border:1px solid rgba(255,255,255,0.1);">
+                            🅰 <b>EEE - A:</b> <span style="color:#38bdf8;font-weight:800;">${rowsA.length}</span> students (${avgA}%)
+                        </div>
+                        <div style="background:rgba(255,255,255,0.08);padding:6px 14px;border-radius:8px;font-size:0.82rem;font-weight:700;color:#e2e8f0;border:1px solid rgba(255,255,255,0.1);">
+                            🅱 <b>EEE - B:</b> <span style="color:#c084fc;font-weight:800;">${rowsB.length}</span> students (${avgB}%)
+                        </div>
                     </div>
                 </div>
 
@@ -3945,7 +3994,7 @@
                     </div>
                     <div class="matrix-tile" style="background:#f8fafc;border:1px solid #e2e8f0;">
                         <div class="tile-icon-hex" style="background:#f3e8ff;color:#7c3aed;">📝</div>
-                        <div><b style="color:#0f172a;">${Q.length}</b><span style="color:#64748b;">Active Questions</span></div>
+                        <div><b style="color:#0f172a;">${Q.length}</b><span style="color:#64748b;">PCB Questions</span></div>
                     </div>
                 </div>
 
@@ -3998,9 +4047,12 @@
 
         /* Results Tab */
         function renderResultsTab(bins, maxBin) {
+            const rowsA = rows.filter(r => getStudentSection(r) === "EEE A");
+            const rowsB = rows.filter(r => getStudentSection(r) === "EEE B");
+
             $("#tb").innerHTML = `
             <div class="chart-visual-box" style="background:#f8fafc;border:1px solid #e2e8f0;">
-                <div style="font-family:var(--font-head);font-size:0.96rem;font-weight:800;margin-bottom:14px;color:#334155;">Score Distribution Histogram</div>
+                <div style="font-family:var(--font-head);font-size:0.96rem;font-weight:800;margin-bottom:14px;color:#334155;">Score Distribution Histogram (PCB Design Assessment)</div>
                 <div class="histogram-flex-frame">
                     ${bins.map((val, idx) => `
                         <div class="hist-col">
@@ -4013,20 +4065,45 @@
                 </div>
             </div>
 
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px;">
-                <div class="input-wrapper" style="max-width:360px;">
-                    <span class="input-prefix-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    </span>
-                    <input id="se" class="cyber-input" placeholder="Search email, name or roll number..." style="padding-top:10px;padding-bottom:10px;background:#ffffff;border:1px solid #cbd5e1;color:#0f172a;">
+            <!-- Filter and Export Actions Bar -->
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:18px;">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <div class="input-wrapper" style="min-width:260px;max-width:320px;">
+                        <span class="input-prefix-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </span>
+                        <input id="se" class="cyber-input" placeholder="Search email, name or roll number..." style="padding-top:9px;padding-bottom:9px;background:#ffffff;border:1px solid #cbd5e1;color:#0f172a;">
+                    </div>
+                    <!-- Section Filter Pills -->
+                    <div style="display:inline-flex;background:#f1f5f9;border-radius:8px;padding:3px;border:1px solid #cbd5e1;">
+                        <button class="sec-filter-btn ${currentSectionFilter === 'ALL' ? 'active' : ''}" data-sec="ALL" style="border:none;background:${currentSectionFilter === 'ALL' ? '#ffffff' : 'transparent'};color:${currentSectionFilter === 'ALL' ? '#0f172a' : '#64748b'};font-weight:700;padding:6px 12px;border-radius:6px;font-size:0.8rem;cursor:pointer;box-shadow:${currentSectionFilter === 'ALL' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'};">
+                            All (${rows.length})
+                        </button>
+                        <button class="sec-filter-btn ${currentSectionFilter === 'EEE A' ? 'active' : ''}" data-sec="EEE A" style="border:none;background:${currentSectionFilter === 'EEE A' ? '#ffffff' : 'transparent'};color:${currentSectionFilter === 'EEE A' ? '#0284c7' : '#64748b'};font-weight:700;padding:6px 12px;border-radius:6px;font-size:0.8rem;cursor:pointer;box-shadow:${currentSectionFilter === 'EEE A' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'};">
+                            EEE A (${rowsA.length})
+                        </button>
+                        <button class="sec-filter-btn ${currentSectionFilter === 'EEE B' ? 'active' : ''}" data-sec="EEE B" style="border:none;background:${currentSectionFilter === 'EEE B' ? '#ffffff' : 'transparent'};color:${currentSectionFilter === 'EEE B' ? '#7c3aed' : '#64748b'};font-weight:700;padding:6px 12px;border-radius:6px;font-size:0.8rem;cursor:pointer;box-shadow:${currentSectionFilter === 'EEE B' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'};">
+                            EEE B (${rowsB.length})
+                        </button>
+                    </div>
                 </div>
-                <div style="display:flex;gap:10px;">
+
+                <!-- Excel Download Options (EEE A Sep, EEE B Sep, All) -->
+                <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
                     <button class="btn btn-secondary btn-sm" id="btn-reload-sb" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0f172a;">
-                        🔄 Refresh Records
+                        🔄 Refresh
                     </button>
-                    <button class="btn btn-primary btn-sm" id="cv">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                        <span>Export CSV</span>
+                    <button class="btn btn-sm" id="btn-excel-eee-a" style="background:#059669;color:#ffffff;border:1px solid #047857;font-weight:700;display:inline-flex;align-items:center;gap:6px;">
+                        <span>📊 Download Excel (EEE A)</span>
+                    </button>
+                    <button class="btn btn-sm" id="btn-excel-eee-b" style="background:#7c3aed;color:#ffffff;border:1px solid #6d28d9;font-weight:700;display:inline-flex;align-items:center;gap:6px;">
+                        <span>📊 Download Excel (EEE B)</span>
+                    </button>
+                    <button class="btn btn-sm" id="btn-excel-all" style="background:#0284c7;color:#ffffff;border:1px solid #0369a1;font-weight:700;display:inline-flex;align-items:center;gap:6px;">
+                        <span>📥 Download Excel (All)</span>
+                    </button>
+                    <button class="btn btn-secondary btn-sm" id="cv" title="Export CSV" style="border:1px solid #cbd5e1;">
+                        CSV
                     </button>
                 </div>
             </div>
@@ -4036,8 +4113,25 @@
             </div>
             `;
 
-            renderTable("");
+            renderTable($("#se").value || "");
             $("#se").oninput = e => renderTable(e.target.value);
+            
+            document.querySelectorAll(".sec-filter-btn").forEach(btn => {
+                btn.onclick = () => {
+                    currentSectionFilter = btn.dataset.sec;
+                    document.querySelectorAll(".sec-filter-btn").forEach(b => {
+                        const isActive = b.dataset.sec === currentSectionFilter;
+                        b.style.background = isActive ? "#ffffff" : "transparent";
+                        b.style.color = isActive ? "#0f172a" : "#64748b";
+                        b.style.boxShadow = isActive ? "0 1px 3px rgba(0,0,0,0.1)" : "none";
+                    });
+                    renderTable($("#se").value || "");
+                };
+            });
+
+            $("#btn-excel-eee-a").onclick = () => downloadExcelSection("EEE A");
+            $("#btn-excel-eee-b").onclick = () => downloadExcelSection("EEE B");
+            $("#btn-excel-all").onclick = () => downloadExcelSection("ALL");
             $("#cv").onclick = exportCsv;
             $("#btn-reload-sb").onclick = async () => {
                 toast("Fetching latest submissions from Cloud…");
@@ -4046,8 +4140,12 @@
         }
 
         function renderTable(filter) {
-            const query = filter.toLowerCase();
-            const filtered = rows.filter(r => (String(r.email || '') + String(r.name || '') + String(r.reg || '')).toLowerCase().includes(query));
+            const query = (filter || '').toLowerCase();
+            let filtered = rows.filter(r => (String(r.email || '') + String(r.name || '') + String(r.reg || '')).toLowerCase().includes(query));
+
+            if (currentSectionFilter !== "ALL") {
+                filtered = filtered.filter(r => getStudentSection(r) === currentSectionFilter);
+            }
 
             $("#tt").innerHTML = `
                 <thead>
@@ -4056,6 +4154,7 @@
                         <th style="color:#475569;font-weight:700;">Student Email</th>
                         <th style="color:#475569;font-weight:700;">Student Name</th>
                         <th style="color:#475569;font-weight:700;">Roll No (7181...)</th>
+                        <th style="color:#475569;font-weight:700;">Section</th>
                         <th style="color:#475569;font-weight:700;">Score</th>
                         <th style="color:#475569;font-weight:700;">Points</th>
                         <th style="color:#475569;font-weight:700;">Tab Switches</th>
@@ -4064,12 +4163,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    ${filtered.length ? filtered.map((r, ri) => `
+                    ${filtered.length ? filtered.map((r, ri) => {
+                        const sec = getStudentSection(r);
+                        return `
                         <tr style="border-bottom:1px solid #f1f5f9;">
                             <td style="color:#64748b;font-family:var(--font-mono);font-size:0.82rem;">${esc(new Date(r.time).toLocaleString())}</td>
                             <td style="font-family:var(--font-mono);font-size:0.84rem;color:#0284c7;font-weight:600;">${esc(r.email || '-')}</td>
                             <td style="font-weight:700;color:#0f172a;">${esc(r.name)}</td>
                             <td><span style="font-family:var(--font-mono);font-size:0.85rem;background:#f1f5f9;color:#0f172a;padding:3px 8px;border-radius:4px;border:1px solid #e2e8f0;font-weight:700;">${esc(r.reg)}</span></td>
+                            <td>
+                                <span style="font-family:var(--font-mono);font-size:0.78rem;font-weight:800;padding:3px 8px;border-radius:4px;background:${sec === 'EEE A' ? '#e0f2fe' : '#f3e8ff'};color:${sec === 'EEE A' ? '#0369a1' : '#7c3aed'};border:1px solid ${sec === 'EEE A' ? '#bae6fd' : '#ddd6fe'};">
+                                    ${sec}
+                                </span>
+                            </td>
                             <td><span class="review-pill ${r.score / r.total >= 0.5 ? 'pill-ok' : 'pill-bad'}">${r.score} / ${r.total}</span></td>
                             <td style="font-family:var(--font-mono);font-weight:800;color:#d97706;">${r.points}</td>
                             <td>
@@ -4083,9 +4189,9 @@
                                 <button onclick="showAnswerDetail(${ri})" style="background:#f0f9ff;color:#0284c7;border:1px solid #bae6fd;border-radius:8px;padding:4px 10px;font-size:0.78rem;font-weight:700;cursor:pointer;">🔍 View</button>
                             </td>
                         </tr>
-                    `).join("") : `
+                    `}).join("") : `
                         <tr>
-                            <td colspan="9" style="text-align:center;padding:36px;color:#94a3b8;">No matching student submissions found.</td>
+                            <td colspan="10" style="text-align:center;padding:36px;color:#94a3b8;">No matching student submissions found.</td>
                         </tr>
                     `}
                 </tbody>
@@ -4156,17 +4262,75 @@
             overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
         }
 
+        /* Excel Download Function (EEE A Sep, EEE B Sep, All) */
+        function downloadExcelSection(section) {
+            let dataToExport = rows;
+            let filePrefix = "PCB_Design_25EE2201";
+
+            if (section === "EEE A") {
+                dataToExport = rows.filter(r => getStudentSection(r) === "EEE A");
+                filePrefix = "PCB_Design_25EE2201_EEE_A";
+            } else if (section === "EEE B") {
+                dataToExport = rows.filter(r => getStudentSection(r) === "EEE B");
+                filePrefix = "PCB_Design_25EE2201_EEE_B";
+            }
+
+            if (!dataToExport.length) {
+                return toast(`No student records found for ${section}`);
+            }
+
+            const exportRows = dataToExport.map((r, idx) => ({
+                "S.No": idx + 1,
+                "Roll No": r.reg,
+                "Student Name": r.name,
+                "Student Email": r.email || "-",
+                "Section": getStudentSection(r),
+                "Course Code": "25EE2201",
+                "Course Name": "PCB Design",
+                "Score": r.score,
+                "Total Questions": r.total,
+                "Percentage": Math.round((r.score / r.total) * 100) + "%",
+                "Points": r.points,
+                "Tab Switches": r.tab_switches || 0,
+                "Submission Timestamp": new Date(r.time).toLocaleString(),
+                "Evaluation Result": (r.score / r.total) >= 0.5 ? "Passed" : "Needs Improvement"
+            }));
+
+            const fileName = `${filePrefix}_Results_${new Date().toISOString().slice(0, 10)}.xlsx`;
+
+            if (typeof XLSX !== "undefined") {
+                const wb = XLSX.utils.book_new();
+                if (section === "ALL") {
+                    const wsAll = XLSX.utils.json_to_sheet(exportRows);
+                    const rowsForA = exportRows.filter(r => r["Section"] === "EEE A");
+                    const rowsForB = exportRows.filter(r => r["Section"] === "EEE B");
+                    XLSX.utils.book_append_sheet(wb, wsAll, "All Students");
+                    if (rowsForA.length) XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rowsForA), "EEE A");
+                    if (rowsForB.length) XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rowsForB), "EEE B");
+                } else {
+                    const ws = XLSX.utils.json_to_sheet(exportRows);
+                    XLSX.utils.book_append_sheet(wb, ws, section);
+                }
+                XLSX.writeFile(wb, fileName);
+                toast(`✔ Downloaded ${section} Excel (${exportRows.length} records)`);
+            } else {
+                // Fallback to CSV formatted with Excel mime type
+                const headers = Object.keys(exportRows[0]);
+                const csvContent = [
+                    headers.join(","),
+                    ...exportRows.map(row => headers.map(h => `"${String(row[h] || '').replace(/"/g, '""')}"`).join(","))
+                ].join("\n");
+                const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = fileName.replace(".xlsx", ".csv");
+                link.click();
+                toast(`✔ Exported ${section} records (${exportRows.length} records)`);
+            }
+        }
+
         function exportCsv() {
-            const csvRows = [
-                ["Timestamp", "Student Email", "Student Name", "Roll No", "Score", "Total", "Points", "Database Source"],
-                ...rows.map(r => [r.time, r.email || '', r.name, r.reg, r.score, r.total, r.points, r.source || 'local'])
-            ];
-            const csvContent = csvRows.map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
-            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = `quiz-results-${new Date().toISOString().slice(0, 10)}.csv`;
-            link.click();
+            downloadExcelSection("ALL");
         }
 
         /* Supabase Cloud Tab */
