@@ -2269,6 +2269,109 @@
         body.teacher-mode .btn-primary:hover {
             background: #0369a1 !important;
         }
+
+        /* EEE PCB Design Portal Styles */
+        .eee-q-card {
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .eee-q-card:hover {
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        /* Printable Assessment Paper Modal */
+        .paper-modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 24px 16px;
+            overflow-y: auto;
+        }
+
+        .paper-modal-card {
+            background: #ffffff;
+            color: #0f172a;
+            width: 100%;
+            max-width: 920px;
+            border-radius: var(--r-md);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .paper-modal-toolbar {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .printable-content {
+            padding: 44px 52px;
+            background: #ffffff;
+            color: #0f172a;
+            font-family: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
+            font-size: 0.96rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .printable-content {
+                padding: 24px 20px;
+            }
+        }
+
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+            .cyber-universe,
+            .circuit-grid,
+            .nav-hud,
+            .cyber-footer,
+            .paper-modal-toolbar,
+            .no-print,
+            #app,
+            #toast {
+                display: none !important;
+            }
+            .paper-modal-backdrop {
+                position: static !important;
+                padding: 0 !important;
+                background: transparent !important;
+                overflow: visible !important;
+            }
+            .paper-modal-card {
+                box-shadow: none !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+            }
+            .printable-content {
+                padding: 0 !important;
+                color: #000000 !important;
+            }
+            .print-q-block {
+                page-break-inside: avoid;
+                margin-bottom: 14px !important;
+            }
+        }
     </style>
 </head>
 
@@ -2294,7 +2397,7 @@
                 <div class="brand-text-block">
                     <div class="brand-title-text">
                         <span>voltEdge</span>
-                        <span class="brand-course-chip">20EE2E41</span>
+                        <span class="brand-course-chip" id="nav-course-chip">20EE2E41</span>
                     </div>
                     <span class="brand-sub-text">Department of EEE · Sri Ramakrishna Engineering College</span>
                 </div>
@@ -2357,6 +2460,9 @@
     <!-- Toast UI -->
     <div id="toast"></div>
 
+    <!-- Printable Assessment Paper Modal Container -->
+    <div id="print-modal-container"></div>
+
     <script>
         /* ==========================================================================
            CONFIGURATION & CONSTANTS
@@ -2392,15 +2498,450 @@
             ["A rural area has good grid penetration, but the quality and reliability of grid supply are poor. _______ approach is most appropriate.", "DG with grid backup|Individual home systems only in every village|Remove the existing distribution network|Increase the distance from the grid", 0]
         ].map(([q, o, a]) => ({ q, o: o.split("|"), a }));
 
+        // EEE Department Question Bank: PCB DESIGN (20 Assessment Questions)
+        const EEE_DEF = [
+            {
+                q: "Which statement best describes a printed circuit board (PCB)?",
+                o: [
+                    "A board used only to store electrical energy",
+                    "An insulating board that mechanically supports and electrically connects components using conductive paths",
+                    "A device that converts AC to DC",
+                    "A component used only for wireless communication"
+                ],
+                a: 1,
+                tag: "PCB Fundamentals"
+            },
+            {
+                q: "What is the main difference between a single-sided PCB and a double-sided PCB?",
+                o: [
+                    "A single-sided PCB has no insulating substrate",
+                    "A double-sided PCB uses only surface-mount components",
+                    "A double-sided PCB has conductive layers on both sides of the substrate",
+                    "A single-sided PCB cannot contain copper"
+                ],
+                a: 2,
+                tag: "Board Types"
+            },
+            {
+                q: "Which PCB type is most suitable when the circuit must bend or fit into a compact, irregular space?",
+                o: [
+                    "Flexible PCB",
+                    "Rigid single-sided PCB",
+                    "Metal-only board",
+                    "Breadboard"
+                ],
+                a: 0,
+                tag: "Flexible Circuits"
+            },
+            {
+                q: "Which of the following is a surface-mount device (SMD)?",
+                o: [
+                    "A component whose leads must always pass through drilled holes",
+                    "A component mounted directly on surface pads of the PCB",
+                    "A component used only outside the PCB",
+                    "A mechanical fastener"
+                ],
+                a: 1,
+                tag: "SMD Technology"
+            },
+            {
+                q: "What is the primary purpose of a PCB substrate?",
+                o: [
+                    "To provide mechanical support and electrical insulation",
+                    "To generate the circuit clock signal",
+                    "To replace all copper conductors",
+                    "To perform soldering automatically"
+                ],
+                a: 0,
+                tag: "Substrates"
+            },
+            {
+                q: "In PCB design, what does a schematic primarily represent?",
+                o: [
+                    "The physical dimensions of the enclosure only",
+                    "The electrical connections and functional relationships between components",
+                    "The final board colour",
+                    "The drill machine settings"
+                ],
+                a: 1,
+                tag: "Schematics"
+            },
+            {
+                q: "Which PCB layout feature provides a conductive connection between copper layers?",
+                o: [
+                    "Pad",
+                    "Track label",
+                    "Via",
+                    "Silkscreen"
+                ],
+                a: 2,
+                tag: "Vias & Interconnects"
+            },
+            {
+                q: "What is the main function of a PCB track?",
+                o: [
+                    "To provide a conductive path between electrical points",
+                    "To insulate the board from all components",
+                    "To identify the manufacturer only",
+                    "To create a mounting hole"
+                ],
+                a: 0,
+                tag: "Conductive Tracks"
+            },
+            {
+                q: "Which layout practice generally helps reduce unwanted voltage drop and heating in a high-current path?",
+                o: [
+                    "Use the narrowest possible track",
+                    "Increase track width as appropriate for the current and design constraints",
+                    "Remove all copper from the path",
+                    "Route the path through extra unnecessary vias"
+                ],
+                a: 1,
+                tag: "High-Current Layout"
+            },
+            {
+                q: "Why is component placement performed before detailed routing?",
+                o: [
+                    "It determines the board's electrical and physical arrangement and helps make routing practical",
+                    "It eliminates the need for a schematic",
+                    "It automatically fabricates the board",
+                    "It replaces design rule checking"
+                ],
+                a: 0,
+                tag: "Floorplanning"
+            },
+            {
+                q: "What is the purpose of a ground plane in a PCB?",
+                o: [
+                    "To provide a reference/return path and help manage grounding and noise",
+                    "To prevent all current from flowing",
+                    "To serve only as a printed label",
+                    "To replace the power supply"
+                ],
+                a: 0,
+                tag: "Ground Plane"
+            },
+            {
+                q: "What is a PCB footprint?",
+                o: [
+                    "A list of software licences",
+                    "The physical pad pattern and component outline used for PCB layout",
+                    "A file used only by the drill operator",
+                    "The chemical composition of solder"
+                ],
+                a: 1,
+                tag: "Footprints"
+            },
+            {
+                q: "What is the purpose of design rule checking (DRC) in PCB CAD software?",
+                o: [
+                    "To check layout constraints such as clearances, widths, and connectivity rules",
+                    "To measure component weight",
+                    "To choose the product selling price",
+                    "To replace all functional testing"
+                ],
+                a: 0,
+                tag: "DRC Rules"
+            },
+            {
+                q: "Which file format is commonly used to communicate PCB copper-layer and other fabrication artwork to a board manufacturer?",
+                o: [
+                    "MP3",
+                    "JPEG only",
+                    "Gerber",
+                    "DOCX"
+                ],
+                a: 2,
+                tag: "Gerber Files"
+            },
+            {
+                q: "What information is primarily provided by a drill file in PCB fabrication?",
+                o: [
+                    "Component operating temperature only",
+                    "Locations and sizes of holes to be drilled",
+                    "The schematic's net names only",
+                    "The board's marketing description"
+                ],
+                a: 1,
+                tag: "NC Drill"
+            },
+            {
+                q: "What is the purpose of etching during PCB fabrication?",
+                o: [
+                    "To remove unwanted copper and leave the required conductive pattern",
+                    "To add component firmware",
+                    "To measure current consumption",
+                    "To create the schematic symbol library"
+                ],
+                a: 0,
+                tag: "Etching"
+            },
+            {
+                q: "Why is plating used in PCB manufacturing?",
+                o: [
+                    "To make the substrate flexible in every case",
+                    "To form or improve conductive metal layers, including connections in plated holes where required",
+                    "To remove all copper from the board",
+                    "To replace the need for pads"
+                ],
+                a: 1,
+                tag: "Plating"
+            },
+            {
+                q: "Which method is commonly used to make a reliable electrical and mechanical connection between a component lead and a PCB pad?",
+                o: [
+                    "Soldering",
+                    "Painting",
+                    "Sanding",
+                    "Lamination alone"
+                ],
+                a: 0,
+                tag: "Soldering"
+            },
+            {
+                q: "What is the main purpose of testing a fabricated PCB?",
+                o: [
+                    "To ensure the board meets required electrical and functional performance",
+                    "To increase the board's physical size",
+                    "To remove the component footprints",
+                    "To avoid all inspection"
+                ],
+                a: 0,
+                tag: "Testing & QA"
+            },
+            {
+                q: "Which software is listed in the course syllabus as a recommended PCB design tool?",
+                o: [
+                    "KiCad",
+                    "Video editing software only",
+                    "Word processor only",
+                    "Audio mixing software"
+                ],
+                a: 0,
+                tag: "KiCad EDA"
+            }
+        ];
+
+        function isEEEActive() {
+            const course = localStorage.getItem("quiz_active_course");
+            if (course === "eee") return true;
+            if (course === "co4") return false;
+            if (Q && Q.length === 20 && Q[0] && Q[0].q && Q[0].q.toLowerCase().includes("printed circuit board")) return true;
+            return false;
+        }
+
+        function getCourseMeta() {
+            const isEEE = isEEEActive();
+            if (isEEE) {
+                return {
+                    id: "eee",
+                    code: "20EE2E41",
+                    chip: "20EE2E41 · PCB",
+                    title: "Assessment · PCB Design & Fabrication",
+                    headline: "Design Circuits. <em>Master Board Layout.</em>",
+                    desc: `Autonomous examination portal on Printed Circuit Board (PCB) Design, Schematic Capture, Footprints, Routing, Fabrication & Quality Assurance for Dept of EEE. Faculty In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>.`,
+                    unitTag: "PCB Design & Fabrication",
+                    showcaseChip: "⚡ PCB Layout & Fabrication Array",
+                    showcaseTitle: "Schematics, Footprints & Board Fabrication",
+                    showcaseSubtitle: "Dept of EEE · Sri Ramakrishna Engineering College",
+                    syllabusText: "PCB Design Syllabus"
+                };
+            }
+            return {
+                id: "co4",
+                code: "20EE2E41",
+                chip: "20EE2E41",
+                title: TITLE,
+                headline: "Power The Grid. <em>Master The Future.</em>",
+                desc: `Autonomous examination portal on Decentralized Generation (DG), Renewable Micro-grids, and Grid Economic Sustainability for Course 20EE2E41. Faculty In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>.`,
+                unitTag: "Unit IV · Decentralized Microgrids",
+                showcaseChip: "⚡ Photovoltaic & Microgrid Array",
+                showcaseTitle: "Decentralized Power & Rural Grid Integration",
+                showcaseSubtitle: `Instructor: ${esc(INSTRUCTOR_NAME)} · Dept of EEE`,
+                syllabusText: "Curated Syllabus"
+            };
+        }
+
         const $ = s => document.querySelector(s);
         const app = $("#app");
         const L = "ABCD";
         const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-        let Q = DEF.slice();
+        let Q = (localStorage.getItem("quiz_active_course") === "eee") ? EEE_DEF.slice() : DEF.slice();
         let S = null;
         let pw = sessionStorage.getItem("pw") || "";
         let audioEnabled = localStorage.getItem("quiz_sound") !== "off";
+
+        function switchCourse(courseId) {
+            localStorage.setItem("quiz_active_course", courseId);
+            Q = (courseId === "eee") ? EEE_DEF.slice() : DEF.slice();
+            const meta = getCourseMeta();
+            const navChip = $("#nav-course-chip");
+            if (navChip) navChip.textContent = meta.chip;
+            toast(courseId === "eee" ? "Switched to: PCB Design & Fabrication (20 Questions)" : "Switched to: CO4 Decentralized Generation (10 Questions)");
+            home();
+        }
+
+        function closePrintModal() {
+            const cont = $("#print-modal-container");
+            if (cont) cont.innerHTML = "";
+        }
+
+        function openPrintModal() {
+            const cont = $("#print-modal-container");
+            if (!cont) return;
+            const isEEE = isEEEActive();
+            const courseCode = "20EE2E41";
+            const courseTitle = isEEE ? "PCB Design and Fabrication" : "Rural Electrification – Technology and Economics";
+
+            cont.innerHTML = `
+            <div class="paper-modal-backdrop" id="paper-backdrop">
+                <div class="paper-modal-card">
+                    <!-- Modal Toolbar (Hidden during print) -->
+                    <div class="paper-modal-toolbar no-print">
+                        <div style="display:flex;align-items:center;gap:10px;">
+                            <span style="font-weight:800;font-size:1.05rem;">📄 Printable Assessment Paper</span>
+                            <span style="font-size:0.8rem;background:rgba(255,255,255,0.18);padding:2px 8px;border-radius:4px;">${Q.length} Questions</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                            <label style="display:flex;align-items:center;gap:6px;font-size:0.84rem;cursor:pointer;user-select:none;">
+                                <input type="checkbox" id="chk-toggle-key" checked style="accent-color:#0284c7;">
+                                <span>Include Answer Key</span>
+                            </label>
+                            <button class="btn btn-primary btn-sm" id="btn-do-print" style="background:#0284c7;border-color:#0284c7;">
+                                🖨️ Print / Save to PDF
+                            </button>
+                            <button class="btn btn-secondary btn-sm" id="btn-close-print">
+                                ✕ Close
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Paper Body (Rendered for screen and print) -->
+                    <div class="printable-content" id="print-area">
+                        <!-- SREC Institutional Header -->
+                        <div style="text-align:center;border-bottom:2px solid #0f172a;padding-bottom:14px;margin-bottom:18px;">
+                            <h2 style="font-size:1.35rem;font-weight:900;letter-spacing:0.5px;margin:0 0 4px;color:#0f172a;text-transform:uppercase;">
+                                Sri Ramakrishna Engineering College
+                            </h2>
+                            <div style="font-size:0.82rem;font-weight:700;color:#334155;text-transform:uppercase;letter-spacing:0.8px;">
+                                [Autonomous Institution | Accredited by NAAC with 'A+' Grade | Approved by AICTE]
+                            </div>
+                            <div style="font-size:0.88rem;font-weight:800;color:#0284c7;margin-top:4px;text-transform:uppercase;">
+                                Department of Electrical and Electronics Engineering
+                            </div>
+                            <div style="font-size:1.05rem;font-weight:800;margin-top:6px;color:#0f172a;text-decoration:underline;text-underline-offset:3px;">
+                                CONTINUOUS ASSESSMENT TEST / OBJECTIVE QUESTION PAPER
+                            </div>
+                        </div>
+
+                        <!-- Assessment Meta Table -->
+                        <table style="width:100%;border-collapse:collapse;margin-bottom:18px;font-size:0.86rem;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:700;width:25%;">Course Code &amp; Title:</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:600;width:35%;">${courseCode} – ${courseTitle}</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:700;width:20%;">Date of Exam:</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;width:20%;">___________________</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:700;">Degree &amp; Branch:</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;">B.E. – Electrical &amp; Electronics Engg.</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:700;">Time / Duration:</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;">45 Minutes (Untimed)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:700;">Student Name:</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;">____________________________________</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:700;">Roll Number:</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-family:var(--font-mono);font-weight:700;">7181_______________</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:700;">Faculty In-Charge:</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;">${esc(INSTRUCTOR_NAME)}</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:700;">Max Marks:</td>
+                                    <td style="padding:4px 8px;border:1px solid #94a3b8;font-weight:800;">${Q.length * 2} Marks (${Q.length} × 2)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="font-size:0.82rem;font-style:italic;color:#475569;margin-bottom:18px;border-left:3px solid #0284c7;padding-left:10px;">
+                            <b>Instructions:</b> (1) Answer all questions. (2) Each question carries 2 marks. (3) Choose the single most appropriate option.
+                        </div>
+
+                        <!-- Questions List -->
+                        <div class="print-questions-flow" style="display:flex;flex-direction:column;gap:14px;">
+                            ${Q.map((item, idx) => `
+                                <div class="print-q-block" style="page-break-inside:avoid;border-bottom:1px dashed #cbd5e1;padding-bottom:10px;">
+                                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+                                        <div style="font-weight:700;font-size:0.94rem;color:#0f172a;line-height:1.45;">
+                                            <span style="font-family:var(--font-mono);margin-right:4px;">${idx + 1}.</span> ${esc(item.q)}
+                                        </div>
+                                        ${item.tag ? `<span style="font-size:0.72rem;background:#f1f5f9;border:1px solid #e2e8f0;padding:1px 6px;border-radius:3px;color:#475569;flex-shrink:0;">${esc(item.tag)}</span>` : ''}
+                                    </div>
+                                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-top:8px;font-size:0.88rem;padding-left:18px;">
+                                        ${item.o.map((opt, oIdx) => `
+                                            <div style="display:flex;align-items:flex-start;gap:6px;line-height:1.35;">
+                                                <b style="font-family:var(--font-mono);color:#334155;">(${L[oIdx]})</b>
+                                                <span>${esc(opt)}</span>
+                                            </div>
+                                        `).join("")}
+                                    </div>
+                                </div>
+                            `).join("")}
+                        </div>
+
+                        <!-- Answer Key Section -->
+                        <div id="print-answer-key-section" style="margin-top:28px;page-break-before:always;border-top:2px solid #0f172a;padding-top:16px;">
+                            <div style="text-align:center;margin-bottom:14px;">
+                                <h3 style="font-size:1.15rem;font-weight:800;color:#0f172a;text-transform:uppercase;margin:0 0 4px;">
+                                    CONFIDENTIAL · EVALUATION ANSWER KEY &amp; SYLLABUS MAPPING
+                                </h3>
+                                <div style="font-size:0.82rem;color:#64748b;">Course: ${courseCode} – ${courseTitle} | Department of EEE</div>
+                            </div>
+                            <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+                                <thead>
+                                    <tr style="background:#f1f5f9;color:#0f172a;">
+                                        <th style="padding:6px 8px;border:1px solid #cbd5e1;text-align:center;width:8%;">Q.No</th>
+                                        <th style="padding:6px 8px;border:1px solid #cbd5e1;text-align:center;width:12%;">Key</th>
+                                        <th style="padding:6px 8px;border:1px solid #cbd5e1;text-align:left;">Correct Answer Statement</th>
+                                        <th style="padding:6px 8px;border:1px solid #cbd5e1;text-align:left;width:25%;">Syllabus Module / Tag</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${Q.map((item, idx) => `
+                                        <tr style="background:${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
+                                            <td style="padding:6px 8px;border:1px solid #cbd5e1;text-align:center;font-weight:700;">${idx + 1}</td>
+                                            <td style="padding:6px 8px;border:1px solid #cbd5e1;text-align:center;font-weight:800;color:#0284c7;">(${L[item.a]})</td>
+                                            <td style="padding:6px 8px;border:1px solid #cbd5e1;">${esc(item.o[item.a])}</td>
+                                            <td style="padding:6px 8px;border:1px solid #cbd5e1;color:#475569;">${esc(item.tag || 'Decentralized Generation')}</td>
+                                        </tr>
+                                    `).join("")}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            $("#btn-close-print").onclick = closePrintModal;
+            $("#paper-backdrop").onclick = e => {
+                if (e.target.id === "paper-backdrop") closePrintModal();
+            };
+
+            const keySection = $("#print-answer-key-section");
+            const toggleChk = $("#chk-toggle-key");
+            if (toggleChk && keySection) {
+                toggleChk.onchange = () => {
+                    keySection.style.display = toggleChk.checked ? "block" : "none";
+                };
+            }
+
+            $("#btn-do-print").onclick = () => {
+                window.print();
+            };
+        }
 
         /* ==========================================================================
            AUDIO SYNTHESIZER ENGINE
@@ -2786,15 +3327,29 @@
         function home() {
             document.body.classList.remove("teacher-mode");
             window.onkeydown = null;
+            const meta = getCourseMeta();
+            const navChip = $("#nav-course-chip");
+            if (navChip) navChip.textContent = meta.chip;
+
             app.innerHTML = `
             <div class="cyber-card hero-stage">
                 <div class="hero-content">
+                    <!-- Course Switcher Pills -->
+                    <div class="course-switch-pills" style="display:inline-flex;gap:6px;background:rgba(255,255,255,0.06);padding:4px;border-radius:var(--r-full);border:1px solid var(--border);margin-bottom:14px;max-width:100%;flex-wrap:wrap;">
+                        <button id="pill-co4" class="btn btn-sm ${!isEEEActive() ? 'btn-primary' : 'btn-secondary'}" style="padding:5px 12px;font-size:0.78rem;border-radius:var(--r-full);gap:4px;">
+                            <span>⚡ Course CO4: Microgrids (10 Qs)</span>
+                        </button>
+                        <button id="pill-eee" class="btn btn-sm ${isEEEActive() ? 'btn-primary' : 'btn-secondary'}" style="padding:5px 12px;font-size:0.78rem;border-radius:var(--r-full);gap:4px;">
+                            <span>🖨️ EEE: PCB Design (20 Qs)</span>
+                        </button>
+                    </div>
+
                     <span class="hero-live-badge">
                         <span class="pulsing-dot"></span>
-                        <span>${esc(TITLE)}</span>
+                        <span>${esc(meta.title)}</span>
                     </span>
-                    <h1 class="hero-headline">Power The Grid. <em>Master The Future.</em></h1>
-                    <p class="hero-description">Autonomous examination portal on Decentralized Generation (DG), Renewable Micro-grids, and Grid Economic Sustainability for Course 20EE2E41. Faculty In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>.</p>
+                    <h1 class="hero-headline">${meta.headline}</h1>
+                    <p class="hero-description">${meta.desc}</p>
                     
                     <div class="student-gateway-form">
                         <!-- 1. Email ID First -->
@@ -2825,7 +3380,7 @@
                         </div>
 
                         <button class="btn btn-primary" id="go" style="width:100%;margin-top:2px;">
-                            <span>Launch Assessment</span>
+                            <span>Launch Assessment (${Q.length} Questions)</span>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </button>
                     </div>
@@ -2833,11 +3388,11 @@
 
                 <!-- Photorealistic Real Image Showcase Card -->
                 <div class="showcase-visual-frame">
-                    <img src="hero_microgrid.jpg" alt="Rural Electrification & Renewable Microgrid Infrastructure" class="showcase-real-image" onerror="this.src='https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=1200&q=80'">
+                    <img src="hero_microgrid.jpg" alt="Assessment Infrastructure" class="showcase-real-image" onerror="this.src='https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=1200&q=80'">
                     <div class="showcase-glass-hud">
-                        <span class="hud-chip">⚡ Photovoltaic &amp; Microgrid Array</span>
-                        <div class="hud-title">Decentralized Power &amp; Rural Grid Integration</div>
-                        <div class="hud-subtitle">Instructor: ${esc(INSTRUCTOR_NAME)} · Dept of EEE</div>
+                        <span class="hud-chip">${meta.showcaseChip}</span>
+                        <div class="hud-title">${meta.showcaseTitle}</div>
+                        <div class="hud-subtitle">${meta.showcaseSubtitle}</div>
                     </div>
                 </div>
             </div>
@@ -2847,7 +3402,7 @@
                     <div class="tile-icon-hex">📋</div>
                     <div>
                         <b>${Q.length} Questions</b>
-                        <span>Curated Syllabus</span>
+                        <span>${meta.syllabusText}</span>
                     </div>
                 </div>
                 <div class="matrix-tile">
@@ -2873,6 +3428,9 @@
                 </div>
             </div>
             `;
+
+            $("#pill-co4").onclick = () => switchCourse("co4");
+            $("#pill-eee").onclick = () => switchCourse("eee");
 
             const emInput = $("#em");
             const nmInput = $("#nm");
@@ -3026,7 +3584,7 @@
                 <div class="cyber-card question-stage-card">
                     <!-- Untimed Header (No Countdown Timer) -->
                     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
-                        <span class="unit-topic-tag">Unit IV · Decentralized Microgrids</span>
+                        <span class="unit-topic-tag">${esc(q.tag || (isEEEActive() ? "PCB Design & Fabrication" : "Unit IV · Decentralized Microgrids"))}</span>
                         <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--ok-light);display:inline-flex;align-items:center;gap:6px;font-weight:700;background:var(--ok-bg);padding:4px 12px;border-radius:var(--r-full);border:1px solid var(--ok-border);">
                             <span>●</span> Untimed Assessment
                         </span>
@@ -3398,8 +3956,20 @@
                             </span>
                         </div>
                         <span style="font-size:0.86rem;color:#64748b;">Course 20EE2E41 · Dept of EEE · Supabase Cloud: <b>bdmwcdokbptuohkccefe.supabase.co</b></span>
+                        <div style="display:flex;gap:6px;align-items:center;margin-top:8px;">
+                            <span style="font-size:0.8rem;color:#475569;font-weight:700;">Active Course Bank:</span>
+                            <button id="td-switch-co4" class="btn btn-sm ${!isEEEActive() ? 'btn-primary' : 'btn-secondary'}" style="padding:3px 10px;font-size:0.76rem;border-radius:var(--r-full);">
+                                ⚡ CO4 Microgrids (10 Qs)
+                            </button>
+                            <button id="td-switch-eee" class="btn btn-sm ${isEEEActive() ? 'btn-primary' : 'btn-secondary'}" style="padding:3px 10px;font-size:0.76rem;border-radius:var(--r-full);">
+                                🖨️ PCB Design (20 Qs)
+                            </button>
+                        </div>
                     </div>
-                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+                        <button class="btn btn-secondary btn-sm" id="btn-open-print" style="border:1px solid #0284c7;color:#0284c7;background:#f0f9ff;font-weight:700;">
+                            📄 Print Assessment Paper
+                        </button>
                         <button class="btn btn-secondary btn-sm" id="bk">Student View</button>
                         <button class="btn btn-secondary btn-sm" id="lo">Sign Out</button>
                     </div>
@@ -3439,6 +4009,20 @@
                 <div id="tb"></div>
             </div>
             `;
+
+            $("#btn-open-print").onclick = openPrintModal;
+            $("#td-switch-co4").onclick = () => {
+                localStorage.setItem("quiz_active_course", "co4");
+                Q = DEF.slice();
+                toast("Active course bank: CO4 Decentralized Generation");
+                draw();
+            };
+            $("#td-switch-eee").onclick = () => {
+                localStorage.setItem("quiz_active_course", "eee");
+                Q = EEE_DEF.slice();
+                toast("Active course bank: PCB Design & Fabrication");
+                draw();
+            };
 
             $("#bk").onclick = () => {
                 document.body.classList.remove("teacher-mode");
@@ -3845,8 +4429,11 @@ USING (true);`;
                         ${ed >= 0 ? 'Update Question' : 'Add to Bank'}
                     </button>
                     ${ed >= 0 ? `<button class="btn btn-secondary btn-sm" id="can">Cancel</button>` : ''}
-                    <button class="btn btn-secondary btn-sm" id="rs" style="margin-left:auto;">
-                        Reset to Default 10 Questions
+                    <button class="btn btn-secondary btn-sm" id="btn-load-pcb" style="margin-left:auto;border:1px solid #0284c7;color:#0284c7;">
+                        Load 20 PCB Questions (EEE)
+                    </button>
+                    <button class="btn btn-secondary btn-sm" id="rs">
+                        Reset to 10 CO4 Questions
                     </button>
                 </div>
             </div>
@@ -3919,11 +4506,24 @@ USING (true);`;
                 renderQuestionEditor();
             };
 
+            $("#btn-load-pcb").onclick = async () => {
+                if (confirm("Replace active bank with 20 PCB Design assessment questions?")) {
+                    localStorage.setItem("quiz_active_course", "eee");
+                    Q = EEE_DEF.slice();
+                    ed = -1;
+                    await saveQuestionsToCloud();
+                    toast("✔ Loaded 20 PCB Design Questions");
+                    renderQuestionEditor();
+                }
+            };
+
             $("#rs").onclick = async () => {
                 if (confirm("Restore the original 10 questions from course syllabus?")) {
+                    localStorage.setItem("quiz_active_course", "co4");
                     Q = DEF.slice();
                     ed = -1;
                     await saveQuestionsToCloud();
+                    toast("✔ Restored 10 CO4 Microgrid Questions");
                     renderQuestionEditor();
                 }
             };
