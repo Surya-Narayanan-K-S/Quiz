@@ -2341,6 +2341,7 @@
                 background: #ffffff !important;
                 color: #000000 !important;
             }
+
             .cyber-universe,
             .circuit-grid,
             .nav-hud,
@@ -2351,22 +2352,26 @@
             #toast {
                 display: none !important;
             }
+
             .paper-modal-backdrop {
                 position: static !important;
                 padding: 0 !important;
                 background: transparent !important;
                 overflow: visible !important;
             }
+
             .paper-modal-card {
                 box-shadow: none !important;
                 max-width: 100% !important;
                 margin: 0 !important;
                 border-radius: 0 !important;
             }
+
             .printable-content {
                 padding: 0 !important;
                 color: #000000 !important;
             }
+
             .print-q-block {
                 page-break-inside: avoid;
                 margin-bottom: 14px !important;
@@ -3306,7 +3311,7 @@
                             <span class="input-prefix-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                             </span>
-                            <input id="em" type="email" class="cyber-input" placeholder="Student Email ID (e.g. 7181...@srec.ac.in)" maxlength="80" autocomplete="email" required>
+                            <input id="em" type="email" class="cyber-input" placeholder="Student Email ID (e.g.name@srec.ac.in)" maxlength="80" autocomplete="email" required>
                         </div>
 
                         <!-- 2. Full Student Name -->
@@ -4056,9 +4061,9 @@
                             <td style="font-family:var(--font-mono);font-weight:800;color:#d97706;">${r.points}</td>
                             <td>
                                 ${(r.tab_switches > 0) ?
-                                    `<span style="display:inline-flex;align-items:center;gap:4px;background:#fee2e2;color:#dc2626;font-weight:800;font-size:0.78rem;padding:3px 10px;border-radius:20px;border:1.5px solid #fca5a5;">⚠ ${r.tab_switches} switch${r.tab_switches > 1 ? 'es' : ''}</span>` :
-                                    `<span style="background:#f0fdf4;color:#16a34a;font-weight:700;font-size:0.78rem;padding:3px 10px;border-radius:20px;border:1px solid #bbf7d0;">✔ None</span>`
-                                }
+                    `<span style="display:inline-flex;align-items:center;gap:4px;background:#fee2e2;color:#dc2626;font-weight:800;font-size:0.78rem;padding:3px 10px;border-radius:20px;border:1.5px solid #fca5a5;">⚠ ${r.tab_switches} switch${r.tab_switches > 1 ? 'es' : ''}</span>` :
+                    `<span style="background:#f0fdf4;color:#16a34a;font-weight:700;font-size:0.78rem;padding:3px 10px;border-radius:20px;border:1px solid #bbf7d0;">✔ None</span>`
+                }
                             </td>
                             <td><span style="font-size:0.75rem;padding:3px 8px;border-radius:4px;background:${r.source === 'supabase' ? '#e0f2fe' : '#f1f5f9'};color:${r.source === 'supabase' ? '#0369a1' : '#64748b'};font-weight:700;">${r.source === 'supabase' ? '⚡ Supabase' : '💾 Local'}</span></td>
                             <td>
@@ -4079,7 +4084,7 @@
             const r = rows[rowIdx];
             if (!r) return;
             let log = [];
-            try { log = r.answer_log ? JSON.parse(r.answer_log) : []; } catch(e) { log = []; }
+            try { log = r.answer_log ? JSON.parse(r.answer_log) : []; } catch (e) { log = []; }
 
             const overlay = document.createElement('div');
             overlay.id = 'ans-detail-overlay';
@@ -4107,11 +4112,11 @@
                         style = 'display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:10px;border:2px dashed #16a34a;margin-bottom:6px;font-size:0.88rem;background:#f0fdf4;';
                         circleStyle += 'border-color:#16a34a;color:#16a34a;';
                     }
-                    return `<div style="${style}"><div style="${circleStyle}">${['A','B','C','D'][j]}</div><span>${esc(opt)}</span></div>`;
+                    return `<div style="${style}"><div style="${circleStyle}">${['A', 'B', 'C', 'D'][j]}</div><span>${esc(opt)}</span></div>`;
                 }).join('');
                 return `
                     <div style="margin-bottom:16px;padding:14px;background:#fff;border-radius:12px;border:1px solid ${isGood ? '#bbf7d0' : '#fecaca'};">
-                        <div style="font-weight:700;color:#0f172a;margin-bottom:8px;font-size:0.9rem;">${k+1}. ${esc(q.q)}</div>
+                        <div style="font-weight:700;color:#0f172a;margin-bottom:8px;font-size:0.9rem;">${k + 1}. ${esc(q.q)}</div>
                         ${optHtml}
                     </div>`;
             }).join('');
@@ -4121,7 +4126,7 @@
                     <div style="padding:20px 24px 14px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;gap:10px;">
                         <div>
                             <div style="font-family:var(--font-head);font-size:1.15rem;font-weight:900;color:#0f172a;">🔍 Answer Review — ${esc(r.name)}</div>
-                            <div style="font-size:0.82rem;color:#64748b;margin-top:2px;">Roll: <b>${esc(r.reg)}</b> · Score: <b>${r.score}/${r.total}</b> · Tab Switches: <b style="color:${(r.tab_switches||0)>0?'#dc2626':'#16a34a'}">${r.tab_switches||0}</b></div>
+                            <div style="font-size:0.82rem;color:#64748b;margin-top:2px;">Roll: <b>${esc(r.reg)}</b> · Score: <b>${r.score}/${r.total}</b> · Tab Switches: <b style="color:${(r.tab_switches || 0) > 0 ? '#dc2626' : '#16a34a'}">${r.tab_switches || 0}</b></div>
                         </div>
                         <button onclick="document.getElementById('ans-detail-overlay').remove()" style="background:#f1f5f9;border:none;border-radius:8px;padding:6px 14px;font-weight:700;cursor:pointer;font-size:0.9rem;">✕ Close</button>
                     </div>
