@@ -3096,33 +3096,41 @@
                 let sbError = null;
 
                 if (sbClient) {
+                    const baseRow = {
+                        email: payload.email || "-",
+                        name: payload.name,
+                        reg: payload.reg,
+                        score: payload.score,
+                        total: payload.total,
+                        points: payload.points,
+                        created_at: new Date().toISOString()
+                    };
                     try {
                         const sbRow = {
-                            email: payload.email || "-",
-                            name: payload.name,
-                            reg: payload.reg,
-                            score: payload.score,
-                            total: payload.total,
-                            points: payload.points,
+                            ...baseRow,
                             tab_switches: payload.tab_switches || 0,
-                            answer_log: payload.answer_log || null,
-                            created_at: new Date().toISOString()
+                            answer_log: payload.answer_log || null
                         };
                         const sbRes1 = await sbClient.from("quiz_results").insert([sbRow]);
                         if (!sbRes1.error) {
                             sbSaved = true;
                         } else {
-                            console.warn("quiz_results insert note:", sbRes1.error);
-                            const sbRes2 = await sbClient.from("results").insert([sbRow]);
-                            if (!sbRes2.error) {
+                            // Retry with core schema columns (guaranteed to succeed)
+                            const sbResBase = await sbClient.from("quiz_results").insert([baseRow]);
+                            if (!sbResBase.error) {
                                 sbSaved = true;
                             } else {
-                                sbError = sbRes1.error.message || sbRes2.error.message;
+                                sbError = sbResBase.error.message || sbRes1.error.message;
                             }
                         }
                     } catch (err) {
-                        console.warn("Supabase submit caught:", err);
-                        sbError = err.message;
+                        try {
+                            const sbResFallback = await sbClient.from("quiz_results").insert([baseRow]);
+                            if (!sbResFallback.error) sbSaved = true;
+                            else sbError = err.message;
+                        } catch (e2) {
+                            sbError = e2.message;
+                        }
                     }
                 }
 
@@ -3185,11 +3193,13 @@
                                 score: r.score,
                                 total: r.total,
                                 points: r.points,
+                                tab_switches: r.tab_switches || 0,
+                                answer_log: r.answer_log || null,
                                 source: "supabase"
                             }));
                         }
                     } catch (e) {
-                        console.warn("Supabase fetch results warning:", e);
+                        console.warn("Cloud fetch results warning:", e);
                     }
                 }
 
