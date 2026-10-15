@@ -1,7 +1,7 @@
 {
   "name": "voltedge",
   "version": "1.0.0",
-  "description": "voltEdge — Rural Electrification & Microgrids Academic Assessment Portal",
+  "description": "voltEdge — 25EE2201 PCB Design Academic Assessment Portal",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

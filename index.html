@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>voltEdge · Decentralized Generation & Rural Electrification Quiz Portal</title>
+    <title>voltEdge · 25EE2201 PCB Design Assessment Portal</title>
     <meta name="description"
-        content="voltEdge — Next-Gen Academic Assessment Portal for Course 20EE2E41: Rural Electrification – Technology and Economics, Department of EEE, Sri Ramakrishna Engineering College.">
+        content="voltEdge — Next-Gen Academic Assessment Portal for Course 25EE2201: PCB Design, Department of EEE, Sri Ramakrishna Engineering College.">
 
     <!-- Modern Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2397,7 +2397,7 @@
                 <div class="brand-text-block">
                     <div class="brand-title-text">
                         <span>voltEdge</span>
-                        <span class="brand-course-chip" id="nav-course-chip">20EE2E41</span>
+                        <span class="brand-course-chip" id="nav-course-chip">25EE2201 - PCB Design</span>
                     </div>
                     <span class="brand-sub-text">Department of EEE · Sri Ramakrishna Engineering College</span>
                 </div>
@@ -2452,7 +2452,7 @@
     <!-- Footer -->
     <footer class="cyber-footer">
         <div class="footer-hud-content">
-            <span>voltEdge · Course 20EE2E41: Rural Electrification – Technology and Economics</span>
+            <span>voltEdge · Course 25EE2201: PCB Design</span>
             <span>Sri Ramakrishna Engineering College · Autonomous Institution · EEE Department</span>
         </div>
     </footer>
@@ -2471,7 +2471,9 @@
         const SUPABASE_KEY = "sb_publishable_hnsOA4Qx_nJy5Uh3E6lz9g_MqenVkYB";
         const API = "https://script.google.com/macros/s/AKfycbwbNmwbPJ6Wc8WGBa8zFffCaP4xYJi-__9Uq5Yw0qA9cZM_7FzYvyiIQMcGTXKAKuWr/exec";
         const SHEET_URL = "https://script.google.com/macros/s/AKfycbwbNmwbPJ6Wc8WGBa8zFffCaP4xYJi-__9Uq5Yw0qA9cZM_7FzYvyiIQMcGTXKAKuWr/exec";
-        const TITLE = "Surprise Quiz · CO4 Decentralized Generation";
+        const COURSE_CODE = "25EE2201";
+        const COURSE_NAME = "PCB Design";
+        const TITLE = "Assessment · 25EE2201 PCB Design";
         const INSTRUCTOR_NAME = "Dr. K Balamurugan";
 
         // Supabase Client Initialization
@@ -2484,22 +2486,8 @@
             console.warn("Supabase initialization error:", e);
         }
 
-        // Default Question Bank
+        // Course 25EE2201 Question Bank: PCB DESIGN (20 Assessment Questions)
         const DEF = [
-            ["________ is the primary purpose of a power grid in an electrical supply system.", "To transmit and distribute electrical power to consumers|To store electrical energy permanently|To replace all decentralized generation systems|To generate electricity only from renewable sources", 0],
-            ["DG stands for in the context of rural electrification ____________.", "Distribution Grid|Direct Generation|Digital Grid|Distributed Generation", 3],
-            ["____ of the following is identified as a service-delivery option for rural electrification.", "Nuclear transmission system|Independent micro-grid with local generation|Centralized battery grid only|Underground generation grid", 1],
-            ["______ factor is considered important for selecting a decentralized generation technology.", "Local resource availability|Colour of distribution poles|Number of substations in a city|Height of consumer buildings", 0],
-            ["______ of the following is a key characteristic of an independent Microgrid.", "It depends completely on a distant transmission network|It provides local generation and distribution|It can operate only with nuclear power|It does not require any distribution network", 1],
-            ["_____ of the following is a major factor influencing the cost of decentralized generation.", "Number of street lights only|Transformer paint colour|Plant Load Factor|Pole height only", 2],
-            ["Renewable energy source is identified in the module as a suitable option for DG in areas with hydro potential is ______.", "Diesel|Micro-hydro|Coal|Nuclear power", 1],
-            ["Why is tariff sustainability important for decentralized generation projects?", "It supports recovery of project operating costs and promotes long-term viability|It eliminates the need for generation|It increases transmission losses|It prevents local participation", 0],
-            ["______ can independent micro-grids be suitable for remote rural areas.", "They always have zero operating cost|They require no local energy resources|They eliminate all consumer loads|Grid extension may be technically difficult or expensive", 3],
-            ["A rural area has good grid penetration, but the quality and reliability of grid supply are poor. _______ approach is most appropriate.", "DG with grid backup|Individual home systems only in every village|Remove the existing distribution network|Increase the distance from the grid", 0]
-        ].map(([q, o, a]) => ({ q, o: o.split("|"), a }));
-
-        // EEE Department Question Bank: PCB DESIGN (20 Assessment Questions)
-        const EEE_DEF = [
             {
                 q: "Which statement best describes a printed circuit board (PCB)?",
                 o: [
@@ -2722,43 +2710,25 @@
             }
         ];
 
+        const EEE_DEF = DEF;
+
         function isEEEActive() {
-            const course = localStorage.getItem("quiz_active_course");
-            if (course === "eee") return true;
-            if (course === "co4") return false;
-            if (Q && Q.length === 20 && Q[0] && Q[0].q && Q[0].q.toLowerCase().includes("printed circuit board")) return true;
-            return false;
+            return true;
         }
 
         function getCourseMeta() {
-            const isEEE = isEEEActive();
-            if (isEEE) {
-                return {
-                    id: "eee",
-                    code: "20EE2E41",
-                    chip: "20EE2E41 · PCB",
-                    title: "Assessment · PCB Design & Fabrication",
-                    headline: "Design Circuits. <em>Master Board Layout.</em>",
-                    desc: `Autonomous examination portal on Printed Circuit Board (PCB) Design, Schematic Capture, Footprints, Routing, Fabrication & Quality Assurance for Dept of EEE. Faculty In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>.`,
-                    unitTag: "PCB Design & Fabrication",
-                    showcaseChip: "⚡ PCB Layout & Fabrication Array",
-                    showcaseTitle: "Schematics, Footprints & Board Fabrication",
-                    showcaseSubtitle: "Dept of EEE · Sri Ramakrishna Engineering College",
-                    syllabusText: "PCB Design Syllabus"
-                };
-            }
             return {
-                id: "co4",
-                code: "20EE2E41",
-                chip: "20EE2E41",
-                title: TITLE,
-                headline: "Power The Grid. <em>Master The Future.</em>",
-                desc: `Autonomous examination portal on Decentralized Generation (DG), Renewable Micro-grids, and Grid Economic Sustainability for Course 20EE2E41. Faculty In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>.`,
-                unitTag: "Unit IV · Decentralized Microgrids",
-                showcaseChip: "⚡ Photovoltaic & Microgrid Array",
-                showcaseTitle: "Decentralized Power & Rural Grid Integration",
-                showcaseSubtitle: `Instructor: ${esc(INSTRUCTOR_NAME)} · Dept of EEE`,
-                syllabusText: "Curated Syllabus"
+                id: "eee",
+                code: "25EE2201",
+                chip: "25EE2201 - PCB Design",
+                title: "Assessment · 25EE2201 PCB Design",
+                headline: "Design Circuits. <em>Master Board Layout.</em>",
+                desc: `Autonomous examination portal on Printed Circuit Board (PCB) Design, Schematic Capture, Footprints, Routing, Fabrication & Quality Assurance for Course 25EE2201. Faculty In-Charge: <b>${esc(INSTRUCTOR_NAME)}</b>.`,
+                unitTag: "PCB Design & Fabrication",
+                showcaseChip: "⚡ PCB Layout & Fabrication Array",
+                showcaseTitle: "Schematics, Footprints & Board Fabrication",
+                showcaseSubtitle: "Dept of EEE · Sri Ramakrishna Engineering College",
+                syllabusText: "25EE2201 PCB Design Syllabus"
             };
         }
 
@@ -2767,20 +2737,10 @@
         const L = "ABCD";
         const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-        let Q = (localStorage.getItem("quiz_active_course") === "eee") ? EEE_DEF.slice() : DEF.slice();
+        let Q = DEF.slice();
         let S = null;
         let pw = sessionStorage.getItem("pw") || "";
         let audioEnabled = localStorage.getItem("quiz_sound") !== "off";
-
-        function switchCourse(courseId) {
-            localStorage.setItem("quiz_active_course", courseId);
-            Q = (courseId === "eee") ? EEE_DEF.slice() : DEF.slice();
-            const meta = getCourseMeta();
-            const navChip = $("#nav-course-chip");
-            if (navChip) navChip.textContent = meta.chip;
-            toast(courseId === "eee" ? "Switched to: PCB Design & Fabrication (20 Questions)" : "Switched to: CO4 Decentralized Generation (10 Questions)");
-            home();
-        }
 
         function closePrintModal() {
             const cont = $("#print-modal-container");
@@ -2790,9 +2750,8 @@
         function openPrintModal() {
             const cont = $("#print-modal-container");
             if (!cont) return;
-            const isEEE = isEEEActive();
-            const courseCode = "20EE2E41";
-            const courseTitle = isEEE ? "PCB Design and Fabrication" : "Rural Electrification – Technology and Economics";
+            const courseCode = "25EE2201";
+            const courseTitle = "PCB Design";
 
             cont.innerHTML = `
             <div class="paper-modal-backdrop" id="paper-backdrop">
@@ -2914,7 +2873,7 @@
                                             <td style="padding:6px 8px;border:1px solid #cbd5e1;text-align:center;font-weight:700;">${idx + 1}</td>
                                             <td style="padding:6px 8px;border:1px solid #cbd5e1;text-align:center;font-weight:800;color:#0284c7;">(${L[item.a]})</td>
                                             <td style="padding:6px 8px;border:1px solid #cbd5e1;">${esc(item.o[item.a])}</td>
-                                            <td style="padding:6px 8px;border:1px solid #cbd5e1;color:#475569;">${esc(item.tag || 'Decentralized Generation')}</td>
+                                            <td style="padding:6px 8px;border:1px solid #cbd5e1;color:#475569;">${esc(item.tag || 'PCB Design & Fabrication')}</td>
                                         </tr>
                                     `).join("")}
                                 </tbody>
@@ -3334,16 +3293,6 @@
             app.innerHTML = `
             <div class="cyber-card hero-stage">
                 <div class="hero-content">
-                    <!-- Course Switcher Pills -->
-                    <div class="course-switch-pills" style="display:inline-flex;gap:6px;background:rgba(255,255,255,0.06);padding:4px;border-radius:var(--r-full);border:1px solid var(--border);margin-bottom:14px;max-width:100%;flex-wrap:wrap;">
-                        <button id="pill-co4" class="btn btn-sm ${!isEEEActive() ? 'btn-primary' : 'btn-secondary'}" style="padding:5px 12px;font-size:0.78rem;border-radius:var(--r-full);gap:4px;">
-                            <span>⚡ Course CO4: Microgrids (10 Qs)</span>
-                        </button>
-                        <button id="pill-eee" class="btn btn-sm ${isEEEActive() ? 'btn-primary' : 'btn-secondary'}" style="padding:5px 12px;font-size:0.78rem;border-radius:var(--r-full);gap:4px;">
-                            <span>🖨️ EEE: PCB Design (20 Qs)</span>
-                        </button>
-                    </div>
-
                     <span class="hero-live-badge">
                         <span class="pulsing-dot"></span>
                         <span>${esc(meta.title)}</span>
@@ -3428,9 +3377,6 @@
                 </div>
             </div>
             `;
-
-            $("#pill-co4").onclick = () => switchCourse("co4");
-            $("#pill-eee").onclick = () => switchCourse("eee");
 
             const emInput = $("#em");
             const nmInput = $("#nm");
@@ -3955,16 +3901,7 @@
                                 Faculty In-Charge: ${esc(INSTRUCTOR_NAME)}
                             </span>
                         </div>
-                        <span style="font-size:0.86rem;color:#64748b;">Course 20EE2E41 · Dept of EEE · Supabase Cloud: <b>bdmwcdokbptuohkccefe.supabase.co</b></span>
-                        <div style="display:flex;gap:6px;align-items:center;margin-top:8px;">
-                            <span style="font-size:0.8rem;color:#475569;font-weight:700;">Active Course Bank:</span>
-                            <button id="td-switch-co4" class="btn btn-sm ${!isEEEActive() ? 'btn-primary' : 'btn-secondary'}" style="padding:3px 10px;font-size:0.76rem;border-radius:var(--r-full);">
-                                ⚡ CO4 Microgrids (10 Qs)
-                            </button>
-                            <button id="td-switch-eee" class="btn btn-sm ${isEEEActive() ? 'btn-primary' : 'btn-secondary'}" style="padding:3px 10px;font-size:0.76rem;border-radius:var(--r-full);">
-                                🖨️ PCB Design (20 Qs)
-                            </button>
-                        </div>
+                        <span style="font-size:0.86rem;color:#64748b;">Course 25EE2201 - PCB Design · Dept of EEE · Supabase Cloud: <b>bdmwcdokbptuohkccefe.supabase.co</b></span>
                     </div>
                     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
                         <button class="btn btn-secondary btn-sm" id="btn-open-print" style="border:1px solid #0284c7;color:#0284c7;background:#f0f9ff;font-weight:700;">
@@ -4011,18 +3948,6 @@
             `;
 
             $("#btn-open-print").onclick = openPrintModal;
-            $("#td-switch-co4").onclick = () => {
-                localStorage.setItem("quiz_active_course", "co4");
-                Q = DEF.slice();
-                toast("Active course bank: CO4 Decentralized Generation");
-                draw();
-            };
-            $("#td-switch-eee").onclick = () => {
-                localStorage.setItem("quiz_active_course", "eee");
-                Q = EEE_DEF.slice();
-                toast("Active course bank: PCB Design & Fabrication");
-                draw();
-            };
 
             $("#bk").onclick = () => {
                 document.body.classList.remove("teacher-mode");
@@ -4429,11 +4354,8 @@ USING (true);`;
                         ${ed >= 0 ? 'Update Question' : 'Add to Bank'}
                     </button>
                     ${ed >= 0 ? `<button class="btn btn-secondary btn-sm" id="can">Cancel</button>` : ''}
-                    <button class="btn btn-secondary btn-sm" id="btn-load-pcb" style="margin-left:auto;border:1px solid #0284c7;color:#0284c7;">
-                        Load 20 PCB Questions (EEE)
-                    </button>
-                    <button class="btn btn-secondary btn-sm" id="rs">
-                        Reset to 10 CO4 Questions
+                    <button class="btn btn-secondary btn-sm" id="rs" style="margin-left:auto;">
+                        Reset to Default 20 PCB Questions
                     </button>
                 </div>
             </div>
@@ -4506,24 +4428,12 @@ USING (true);`;
                 renderQuestionEditor();
             };
 
-            $("#btn-load-pcb").onclick = async () => {
-                if (confirm("Replace active bank with 20 PCB Design assessment questions?")) {
-                    localStorage.setItem("quiz_active_course", "eee");
-                    Q = EEE_DEF.slice();
-                    ed = -1;
-                    await saveQuestionsToCloud();
-                    toast("✔ Loaded 20 PCB Design Questions");
-                    renderQuestionEditor();
-                }
-            };
-
             $("#rs").onclick = async () => {
-                if (confirm("Restore the original 10 questions from course syllabus?")) {
-                    localStorage.setItem("quiz_active_course", "co4");
+                if (confirm("Restore the 20 PCB Design assessment questions from course syllabus?")) {
                     Q = DEF.slice();
                     ed = -1;
                     await saveQuestionsToCloud();
-                    toast("✔ Restored 10 CO4 Microgrid Questions");
+                    toast("✔ Restored 20 PCB Design Questions");
                     renderQuestionEditor();
                 }
             };
